@@ -3,6 +3,26 @@
     "title": "LOPEZSOFT SAS — Your Technology Partner",
     "description": "Technology ecosystem focused on B2B solutions. Electronic invoicing, ERP, DIAN integration, AI agents and academic software."
   },
+  "seo": {
+    "home": {
+      "description": "LOPEZSOFT SAS: B2B technology ecosystem in Colombia. Electronic invoicing, ERP, DIAN integration, AI agents and academic software. +10 years of experience."
+    },
+    "about": {
+      "description": "Discover LOPEZSOFT SAS: +10 years building technology solutions for Colombian businesses. Mission, vision, values and tech stack."
+    },
+    "services": {
+      "description": "LOPEZSOFT SAS services: software development, technology consulting, electronic invoicing, AI, automation and web design for B2B enterprises."
+    },
+    "contact": {
+      "description": "Contact LOPEZSOFT SAS. Technical support, sales and technology consulting in Dosquebradas, Risaralda, Colombia."
+    },
+    "privacy": {
+      "description": "LOPEZSOFT SAS privacy policy. How we collect, use and protect your personal information."
+    },
+    "data_protection": {
+      "description": "LOPEZSOFT SAS personal data protection policy in accordance with Law 1581 of 2012."
+    }
+  },
   "nav": {
     "home": "Home",
     "services": "Services",

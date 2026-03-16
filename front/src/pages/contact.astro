@@ -8,9 +8,28 @@ import { useTranslations } from "@i18n/utils";
 import { DEFAULT_LOCALE } from "@i18n/config";
 
 const t = useTranslations(DEFAULT_LOCALE);
+
+const localBusinessLD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "LOPEZSOFT SAS",
+  description: t("site.description"),
+  url: "https://lopezsoft.com",
+  telephone: "+57-310-843-5431",
+  email: "gerencia@lopezsoft.net.co",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Dosquebradas",
+    addressRegion: "Risaralda",
+    addressCountry: "CO",
+  },
+  openingHours: "Mo-Fr 08:00-18:00",
+  image: "https://lopezsoft.com/images/logo/logo-horizontal.png",
+});
 ---
 
-<MainLayout title={`${t("contact.title")} — LOPEZSOFT SAS`}>
+<MainLayout title={`${t("contact.title")} \u2014 LOPEZSOFT SAS`} description={t("seo.contact.description")}>
+  <script type="application/ld+json" set:html={localBusinessLD} />
   <!-- Hero -->
   <div class="hero-wrapper">
     <section class="hero">

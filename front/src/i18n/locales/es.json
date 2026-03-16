@@ -3,6 +3,26 @@
     "title": "LOPEZSOFT SAS — Su Aliado Tecnológico",
     "description": "Ecosistema tecnológico enfocado en soluciones B2B. Facturación electrónica, ERP, integración DIAN, agentes de IA y software académico."
   },
+  "seo": {
+    "home": {
+      "description": "LOPEZSOFT SAS: ecosistema tecnológico B2B en Colombia. Facturación electrónica, ERP, integración DIAN, agentes de IA y software académico. +10 años de experiencia."
+    },
+    "about": {
+      "description": "Conozca LOPEZSOFT SAS: +10 años creando soluciones tecnológicas para empresas colombianas. Misión, visión, valores y stack tecnológico."
+    },
+    "services": {
+      "description": "Servicios de LOPEZSOFT SAS: desarrollo de software, consultoría tecnológica, facturación electrónica, IA, automatización y diseño web para empresas B2B."
+    },
+    "contact": {
+      "description": "Contacte a LOPEZSOFT SAS. Soporte técnico, ventas y consultoría tecnológica en Dosquebradas, Risaralda, Colombia."
+    },
+    "privacy": {
+      "description": "Política de privacidad de LOPEZSOFT SAS. Cómo recopilamos, usamos y protegemos su información personal."
+    },
+    "data_protection": {
+      "description": "Política de protección de datos personales de LOPEZSOFT SAS conforme a la Ley 1581 de 2012."
+    }
+  },
   "nav": {
     "home": "Inicio",
     "services": "Servicios",
