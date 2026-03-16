@@ -220,10 +220,22 @@
       }
     },
     "stats": {
-      "experience": { "value": "+10", "label": "Years of experience" },
-      "projects": { "value": "+50", "label": "Projects delivered" },
-      "technologies": { "value": "+30", "label": "Technologies mastered" },
-      "clients": { "value": "+20", "label": "Satisfied clients" }
+      "experience": {
+        "value": "+10",
+        "label": "Years of experience"
+      },
+      "projects": {
+        "value": "+260",
+        "label": "Direct clients"
+      },
+      "technologies": {
+        "value": "+500",
+        "label": "Indirect clients via API"
+      },
+      "clients": {
+        "value": "+30",
+        "label": "Technologies mastered"
+      }
     }
   },
   "contact": {
