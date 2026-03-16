@@ -168,8 +168,7 @@
         "name": "Móvil",
         "items": [
           "Flutter",
-          "Dart",
-          "React Native"
+          "Dart"
         ]
       },
       "tools": {
