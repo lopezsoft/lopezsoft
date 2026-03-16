@@ -142,12 +142,15 @@
       "databases": {
         "name": "Databases",
         "items": [
-          "PostgreSQL",
+          "MariaDB",
           "MySQL",
+          "SQL Server",
+          "PostgreSQL",
+          "SQLite",
+          "Oracle PL/SQL",
+          "DB2",
           "MongoDB",
-          "Redis",
-          "Oracle",
-          "SQL Server"
+          "Redis"
         ]
       },
       "cloud": {
