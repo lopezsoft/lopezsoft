@@ -5,9 +5,17 @@
 @use '../mixins' as *;
 
 .footer {
-  background-color: var(--bg-secondary);
-  border-top: $border-width-default solid var(--border-default);
-  @include theme-transition((background-color, border-color));
+  background: linear-gradient(180deg, var(--hero-gradient-start) 0%, var(--hero-gradient-end) 100%);
+  border-top: none;
+  color: $color-white;
+
+  // Override text colors inside footer for dark bg
+  --text-primary: #{$color-white};
+  --text-secondary: #{rgba($color-white, 0.65)};
+  --text-tertiary: #{rgba($color-white, 0.45)};
+  --border-default: #{rgba($color-white, 0.1)};
+  --accent: #{$color-blue-400};
+  --accent-hover: #{$color-amber-400};
 
   &__inner {
     @include container;

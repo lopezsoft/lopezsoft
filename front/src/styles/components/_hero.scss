@@ -10,6 +10,7 @@
   text-align: center;
   padding-block: $spacing-16 $spacing-12;
   gap: $spacing-6;
+  position: relative;
 
   @include breakpoint(md) {
     padding-block: $spacing-20 $spacing-16;
@@ -21,11 +22,63 @@
   }
 
   // ------------------------------------------------------------------
+  // Wrapper con gradiente
+  // ------------------------------------------------------------------
+  &-wrapper {
+    background: linear-gradient(135deg, var(--hero-gradient-start) 0%, var(--hero-gradient-end) 100%);
+    position: relative;
+    overflow: hidden;
+
+    // Decorador de patrón sutil
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 25% 25%, rgba($color-white, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba($color-white, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    // Decorador de forma inferior
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 4rem;
+      background: var(--bg-primary);
+      clip-path: ellipse(55% 100% at 50% 100%);
+
+      @include breakpoint(md) {
+        height: 5rem;
+      }
+    }
+
+    // Dentro del wrapper, textos son blancos
+    .hero__badge {
+      color: var(--accent-warm);
+      background-color: rgba($color-white, 0.1);
+      border-color: rgba($color-white, 0.15);
+      backdrop-filter: blur(4px);
+    }
+
+    .hero__title {
+      color: $color-white;
+    }
+
+    .hero__subtitle {
+      color: rgba($color-white, 0.8);
+    }
+  }
+
+  // ------------------------------------------------------------------
   // Contenido
   // ------------------------------------------------------------------
   &__badge {
     display: inline-block;
-    padding: $spacing-1 $spacing-3;
+    padding: $spacing-2 $spacing-4;
     font-size: $font-size-xs;
     font-weight: $font-weight-semibold;
     letter-spacing: 0.1em;

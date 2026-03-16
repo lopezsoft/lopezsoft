@@ -23,6 +23,7 @@ $theme-light: (
   accent-hover:    $color-blue-700,
   accent-warm:     $color-accent,
   accent-warm-hover: $color-amber-600,
+  accent-soft:     $color-blue-50,
 
   // Superficies
   surface:         $color-white,
@@ -42,6 +43,12 @@ $theme-light: (
   header-bg:       rgba($color-white, 0.95),
   nav-text:        $color-gray-700,
   nav-text-hover:  $color-royal,
+
+  // Gradientes como tokens
+  hero-gradient-start: $color-navy,
+  hero-gradient-end:   $color-blue-700,
+  cta-gradient-start:  $color-royal,
+  cta-gradient-end:    $color-blue-700,
 
   // Sombras (se usa como variable)
   shadow-color:    rgba($color-black, 0.1),
@@ -64,6 +71,7 @@ $theme-dark: (
   accent-hover:    $color-blue-500,
   accent-warm:     $color-amber-400,
   accent-warm-hover: $color-accent,
+  accent-soft:     rgba($color-blue-400, 0.1),
 
   // Superficies
   surface:         $color-gray-800,
@@ -83,6 +91,12 @@ $theme-dark: (
   header-bg:       rgba($color-navy, 0.95),
   nav-text:        $color-gray-300,
   nav-text-hover:  $color-blue-400,
+
+  // Gradientes como tokens
+  hero-gradient-start: $color-gray-900,
+  hero-gradient-end:   $color-gray-800,
+  cta-gradient-start:  $color-blue-600,
+  cta-gradient-end:    $color-blue-700,
 
   // Sombras
   shadow-color:    rgba($color-black, 0.3),

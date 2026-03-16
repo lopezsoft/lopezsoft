@@ -20,6 +20,32 @@
     @include theme-transition((background-color));
   }
 
+  // Gradient CTA section (contact, etc.)
+  &--gradient {
+    background: linear-gradient(135deg, var(--cta-gradient-start) 0%, var(--cta-gradient-end) 100%);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba($color-white, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba($color-white, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .section__title,
+    .section__subtitle {
+      color: $color-white;
+    }
+
+    .section__subtitle {
+      color: rgba($color-white, 0.8);
+    }
+  }
+
   // ------------------------------------------------------------------
   // Header de sección (título + subtítulo)
   // ------------------------------------------------------------------
@@ -36,6 +62,19 @@
 
   &__title {
     margin-bottom: $spacing-4;
+    position: relative;
+    display: inline-block;
+  }
+
+  // Decorative accent line under section titles
+  &__header &__title::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin: $spacing-3 auto 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+    border-radius: $border-radius-full;
   }
 
   &__subtitle {
@@ -72,13 +111,29 @@
     background-color: var(--surface);
     border: $border-width-default solid var(--border-default);
     border-radius: $border-radius-xl;
+    position: relative;
+    overflow: hidden;
     @include theme-transition((background-color, border-color));
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent), var(--accent-warm));
+      border-radius: $border-radius-full 0 0 $border-radius-full;
+    }
   }
 
   &__block-icon {
     width: 3rem;
     height: 3rem;
+    padding: $spacing-2;
     color: var(--accent);
+    background-color: var(--accent-soft);
+    border-radius: $border-radius-lg;
   }
 
   &__block-title {

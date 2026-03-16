@@ -12,15 +12,23 @@
   background-color: var(--surface);
   border: $border-width-default solid var(--border-default);
   border-radius: $border-radius-xl;
+  position: relative;
+  overflow: hidden;
   @include theme-transition((background-color, border-color, box-shadow));
 
   @include breakpoint(md) {
     padding: $spacing-8;
   }
 
+  // Hover accent glow
   &:hover {
-    box-shadow: $shadow-lg;
+    box-shadow: $shadow-xl;
     border-color: var(--accent);
+
+    .service-card__icon-wrapper {
+      background-color: var(--accent);
+      color: $color-white;
+    }
   }
 
   // ------------------------------------------------------------------
@@ -28,10 +36,10 @@
   // ------------------------------------------------------------------
   &__icon-wrapper {
     @include flex-center;
-    width: 3rem;
-    height: 3rem;
-    border-radius: $border-radius-lg;
-    background-color: var(--bg-tertiary);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: $border-radius-xl;
+    background-color: var(--accent-soft);
     color: var(--accent);
     @include theme-transition((background-color, color));
   }

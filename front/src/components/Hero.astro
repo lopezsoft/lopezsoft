@@ -14,24 +14,27 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<section class="hero container">
-  <span class="hero__badge">LOPEZSOFT SAS</span>
-  <h1 class="hero__title">{t("hero.slogan")}</h1>
-  <p class="hero__subtitle">{t("hero.subtitle")}</p>
-  <div class="hero__actions">
-    <Button
-      variant="primary"
-      size="lg"
-      href="#products"
-    >
-      {t("hero.cta")}
-    </Button>
-    <Button
-      variant="secondary"
-      size="lg"
-      href={getLocalizedPath("/contact", lang)}
-    >
-      {t("hero.cta_contact")}
-    </Button>
-  </div>
-</section>
+<div class="hero-wrapper">
+  <section class="hero container">
+    <span class="hero__badge">LOPEZSOFT SAS</span>
+    <h1 class="hero__title">{t("hero.slogan")}</h1>
+    <p class="hero__subtitle">{t("hero.subtitle")}</p>
+    <div class="hero__actions">
+      <Button
+        variant="warm"
+        size="lg"
+        href="#products"
+      >
+        {t("hero.cta")}
+      </Button>
+      <Button
+        variant="secondary"
+        size="lg"
+        href={getLocalizedPath("/contact", lang)}
+        class="btn--ghost"
+      >
+        {t("hero.cta_contact")}
+      </Button>
+    </div>
+  </section>
+</div>

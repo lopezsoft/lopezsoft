@@ -59,6 +59,18 @@
     }
   }
 
+  // Ghost variant (white border on dark backgrounds)
+  &--ghost {
+    background-color: transparent;
+    color: $color-white;
+    border-color: rgba($color-white, 0.4);
+
+    &:hover:not(:disabled) {
+      background-color: rgba($color-white, 0.1);
+      border-color: rgba($color-white, 0.7);
+    }
+  }
+
   // ------------------------------------------------------------------
   // Tamaños
   // ------------------------------------------------------------------
