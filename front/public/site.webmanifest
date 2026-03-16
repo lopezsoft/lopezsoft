@@ -3,9 +3,13 @@
   "short_name": "LOPEZSOFT",
   "description": "Ecosistema tecnológico B2B — Facturación electrónica, ERP, IA y software académico.",
   "start_url": "/",
+  "id": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0F172A",
+  "orientation": "any",
+  "categories": ["business", "productivity"],
   "icons": [
     {
       "src": "/images/logo/logo-circle.png",
@@ -16,6 +20,12 @@
       "src": "/images/logo/logo-circle.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/images/logo/logo-circle.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

@@ -116,5 +116,14 @@ const pathname = Astro.url.pathname;
         els.forEach(function (el) { observer.observe(el); });
       })();
     </script>
+
+    <!-- Service Worker: PWA offline support -->
+    <script is:inline>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("/sw.js");
+        });
+      }
+    </script>
   </body>
 </html>
