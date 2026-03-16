@@ -42,6 +42,20 @@
 
   &__logo {
     height: 2.5rem;
+
+    &--dark {
+      display: none;
+    }
+
+    [data-theme='dark'] & {
+      &--light {
+        display: none;
+      }
+
+      &--dark {
+        display: block;
+      }
+    }
   }
 
   &__slogan {
