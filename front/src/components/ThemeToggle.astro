@@ -59,7 +59,7 @@ const t = useTranslations(lang);
 </button>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const toggles = document.querySelectorAll<HTMLButtonElement>(
       "[data-theme-toggle]",
     );

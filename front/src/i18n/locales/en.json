@@ -257,7 +257,10 @@
       "message": "Message",
       "submit": "Send message",
       "success": "Message sent successfully! We will get in touch soon.",
-      "error": "There was an error sending the message. Please try again."
+      "error": "There was an error sending the message. Please try again.",
+      "consent": "I have read and accept the",
+      "consent_link": "Data Protection Policy",
+      "consent_required": "You must accept the data protection policy"
     }
   },
   "footer": {
@@ -393,5 +396,10 @@
   "language": {
     "switch": "Switch language",
     "current": "English"
+  },
+  "cookies": {
+    "message": "We use essential cookies for site functionality (theme and language). We do not use tracking or advertising cookies.",
+    "accept": "Accept",
+    "more_info": "More information"
   }
 }

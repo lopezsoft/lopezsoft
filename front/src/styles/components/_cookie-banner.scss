@@ -1,0 +1,66 @@
+// ==========================================================================
+// Cookie Banner — Aviso de cookies
+// ==========================================================================
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.cookie-banner {
+  position: fixed;
+  bottom: $spacing-4;
+  left: $spacing-4;
+  right: $spacing-4;
+  z-index: $z-toast;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-4;
+  padding: $spacing-4 $spacing-6;
+  background-color: var(--bg-primary);
+  border: $border-width-default solid var(--border-default);
+  border-radius: $border-radius-xl;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  @include theme-transition((background-color, border-color));
+
+  @include breakpoint(md) {
+    left: auto;
+    right: $spacing-6;
+    bottom: $spacing-6;
+    max-width: 32rem;
+  }
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-3;
+    flex: 1;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--accent);
+    margin-top: 0.125rem;
+  }
+
+  &__text {
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+    line-height: $line-height-relaxed;
+  }
+
+  &__link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: var(--accent-hover);
+    }
+  }
+
+  &__accept {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}

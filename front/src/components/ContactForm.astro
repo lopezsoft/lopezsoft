@@ -11,6 +11,8 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+const dataProtectionPath = lang === "es" ? "/data-protection" : "/en/data-protection";
 ---
 
 <form class="contact-form" id="contact-form" novalidate>
@@ -78,6 +80,27 @@ const t = useTranslations(lang);
     <span class="contact-form__error" id="cf-message-error" data-error="message" role="alert"></span>
   </div>
 
+  <div class="contact-form__group contact-form__group--checkbox">
+    <label class="contact-form__checkbox-label" for="cf-consent">
+      <input
+        class="contact-form__checkbox"
+        type="checkbox"
+        id="cf-consent"
+        name="consent"
+        required
+        aria-describedby="cf-consent-error"
+        data-error-msg={t("contact.form.consent_required")}
+      />
+      <span class="contact-form__checkbox-text">
+        {t("contact.form.consent")}
+        <a href={dataProtectionPath} target="_blank" rel="noopener noreferrer" class="contact-form__checkbox-link">
+          {t("contact.form.consent_link")}
+        </a>
+      </span>
+    </label>
+    <span class="contact-form__error" id="cf-consent-error" data-error="consent" role="alert"></span>
+  </div>
+
   <button class="btn btn--primary btn--lg contact-form__submit" type="submit">
     {t("contact.form.submit")}
   </button>
@@ -103,7 +126,7 @@ const t = useTranslations(lang);
 </form>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById(
       "contact-form",
     ) as HTMLFormElement | null;
@@ -166,12 +189,19 @@ const t = useTranslations(lang);
 
       const inputs = form.querySelectorAll<
         HTMLInputElement | HTMLTextAreaElement
-      >("input, textarea");
+      >("input:not([type='checkbox']), textarea");
 
       let isValid = true;
       inputs.forEach((input) => {
         if (!validateField(input)) isValid = false;
       });
+
+      // Validate consent checkbox
+      const consent = form.querySelector<HTMLInputElement>("#cf-consent");
+      if (consent && !consent.checked) {
+        showError("consent", consent.dataset.errorMsg || "Required");
+        isValid = false;
+      }
 
       if (!isValid) return;
 
