@@ -8,17 +8,17 @@
   @include flex-column;
   align-items: center;
   text-align: center;
-  padding-block: $spacing-16 $spacing-12;
+  padding-block: $spacing-16 $spacing-20;
   gap: $spacing-6;
   position: relative;
 
   @include breakpoint(md) {
-    padding-block: $spacing-20 $spacing-16;
+    padding-block: $spacing-20 $spacing-24;
     gap: $spacing-8;
   }
 
   @include breakpoint(lg) {
-    padding-block: $spacing-24 $spacing-20;
+    padding-block: $spacing-24 $spacing-32;
   }
 
   // ------------------------------------------------------------------
