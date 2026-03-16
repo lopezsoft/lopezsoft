@@ -24,7 +24,7 @@
     "matias_erp": {
       "name": "MATIAS ERP",
       "description": "Comprehensive enterprise resource planning system: electronic invoicing, payroll, inventory and accounting. All in one platform.",
-      "url": "https://matiaserp.com",
+      "url": "https://matias.com.co/",
       "features": [
         "Electronic invoicing",
         "Electronic payroll",
@@ -35,7 +35,7 @@
     "matias_api": {
       "name": "MATIAS API",
       "description": "Direct integration with DIAN for electronic invoicing and support documents. Robust and certified API.",
-      "url": "https://matiasapi.com",
+      "url": "https://matias-api.com/",
       "features": [
         "DIAN integration",
         "Electronic invoicing",

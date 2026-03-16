@@ -24,7 +24,7 @@
     "matias_erp": {
       "name": "MATIAS ERP",
       "description": "Sistema integral de planificación empresarial: facturación electrónica, nómina, inventarios y contabilidad. Todo en una sola plataforma.",
-      "url": "https://matiaserp.com",
+      "url": "https://matias.com.co/",
       "features": [
         "Facturación electrónica",
         "Nómina electrónica",
@@ -35,7 +35,7 @@
     "matias_api": {
       "name": "MATIAS API",
       "description": "Integración directa con la DIAN para facturación electrónica y documentos soporte. API robusta y certificada.",
-      "url": "https://matiasapi.com",
+      "url": "https://matias-api.com/",
       "features": [
         "Integración DIAN",
         "Facturación electrónica",
