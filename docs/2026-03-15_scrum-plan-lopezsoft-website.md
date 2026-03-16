@@ -3,12 +3,12 @@
 ## Plataforma Web Corporativa (Monorepo: Astro Frontend + NestJS Backend)
 
 **Fecha de creación:** 2026-03-15  
-**Última actualización:** 2026-03-15  
+**Última actualización:** 2026-03-16  
 **Producto:** Plataforma Web Corporativa LOPEZSOFT SAS  
 **Metodología:** SCRUM  
 **Duración estimada del Sprint:** 1 semana  
 **Estructura:** Monorepo con dos aplicaciones (`front/` y `backend/`)  
-**Fase actual:** Frontend (Astro + SCSS + i18n)  
+**Fase actual:** Frontend completado — preparando despliegue a producción  
 
 ---
 
@@ -70,6 +70,8 @@ El directorio `design/` contiene los recursos oficiales de identidad visual:
 | EP-07 | Testing y Calidad                        | Ambos      | Media     |
 | EP-08 | Despliegue y CI/CD                       | Global     | Media     |
 | EP-09 | Backend NestJS — Fundación y API Core    | `backend/` | Alta      |
+| EP-10 | Cumplimiento Legal y Privacidad           | `front/`   | Alta      |
+| EP-11 | Progressive Web App (PWA)                | `front/`   | Media     |
 
 ---
 
@@ -165,13 +167,30 @@ El directorio `design/` contiene los recursos oficiales de identidad visual:
 | US-0905 | Como administrador, necesito un módulo de analytics/tracking interno para registrar visitas al sitio.               | 5      | - Endpoint `POST /api/analytics/track`<br>- Registro seguro sin datos sensibles<br>- Compatible con GDPR/RGPD básico                                                         |
 | US-0906 | Como desarrollador, necesito documentación API con Swagger/OpenAPI en `backend/`.                                   | 3      | - Swagger UI accesible en `/api/docs` (solo en desarrollo/staging)<br>- Todos los endpoints documentados<br>- DTOs reflejados como schemas                                   |
 
+### EP-10: Cumplimiento Legal y Privacidad
+
+| ID      | User Story                                                                                                          | Puntos | Criterios de Aceptación                                                                                                                                                      |
+| ------- | ------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US-1001 | Como usuario, necesito páginas de Política de Privacidad y Protección de Datos bilingües y con diseño corporativo.   | 5      | - Páginas `/privacy` y `/data-protection` (ES) + `/en/privacy` y `/en/data-protection` (EN)<br>- Hero con gradiente corporativo<br>- Secciones con tarjetas informativas<br>- Sidebar con info de contacto<br>- Contenido legal bilingüe desde i18n |
+| US-1002 | Como usuario, necesito un banner de consentimiento de cookies conforme a RGPD/GDPR.                                 | 5      | - Componente `CookieBanner.astro` con botones Aceptar/Rechazar<br>- Persistencia en `localStorage`<br>- Se oculta al interactuar<br>- Bilingüe<br>- Estilos SCSS corporativos con soporte Light/Dark |
+| US-1003 | Como usuario, necesito un checkbox de consentimiento de tratamiento de datos en el formulario de contacto.           | 3      | - Checkbox obligatorio antes de enviar el formulario<br>- Enlace a política de privacidad<br>- Validación frontend<br>- Textos bilingües desde i18n |
+
+### EP-11: Progressive Web App (PWA)
+
+| ID      | User Story                                                                                                          | Puntos | Criterios de Aceptación                                                                                                                                                      |
+| ------- | ------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US-1101 | Como usuario, necesito que el sitio funcione como PWA instalable con soporte offline básico.                        | 5      | - Service Worker (`sw.js`) con cache-first para assets estáticos y network-first para HTML<br>- Registro del SW desde `MainLayout.astro`<br>- `site.webmanifest` con iconos, colores y configuración de display standalone |
+| US-1102 | Como usuario, necesito que el manifiesto web esté optimizado con iconos maskable y metadatos completos.             | 3      | - Icono `maskable` declarado en manifest<br>- Campos `scope`, `id`, `orientation`, `categories` configurados<br>- `apple-touch-icon` link en HTML<br>- `theme_color` y `background_color` correctos |
+
 ---
 
 ## 5. Planificación de Sprints
 
-### Sprint 0 — Fundación Monorepo (Semana 1)
+### Sprint 0 — Fundación Monorepo (Semana 1) ✅ COMPLETADO
 
 **Meta:** Tener el monorepo estructurado con `front/` compilando (Astro + SCSS completo) y `backend/` inicializado (NestJS scaffold). Sistema de estilos, temas y breakpoints mobile-first listos.
+
+**Commit:** `ae0d68e` — feat: complete Sprint 0 + Sprint 1 — monorepo foundation and UI components
 
 | User Story | Descripción                                                | Puntos |
 | ---------- | ---------------------------------------------------------- | ------ |
@@ -199,9 +218,11 @@ El directorio `design/` contiene los recursos oficiales de identidad visual:
 
 ---
 
-### Sprint 1 — i18n, Layout y Dark Mode (Semana 2)
+### Sprint 1 — i18n, Layout y Dark Mode (Semana 2) ✅ COMPLETADO
 
 **Meta:** Sistema de internacionalización 100% funcional, layout principal maquetado con soporte dual theme y mobile-first.
+
+**Commit:** `ae0d68e` — feat: complete Sprint 0 + Sprint 1 — monorepo foundation and UI components
 
 | User Story | Descripción                                    | Puntos |
 | ---------- | ---------------------------------------------- | ------ |
@@ -225,9 +246,11 @@ El directorio `design/` contiene los recursos oficiales de identidad visual:
 
 ---
 
-### Sprint 2 — Componentes UI (Semana 3)
+### Sprint 2 — Componentes UI (Semana 3) ✅ COMPLETADO
 
 **Meta:** Todos los componentes reutilizables listos y documentados.
+
+**Commit:** `8f6495b` — feat: complete Sprint 2 + Sprint 3 — ProductCard, ContactForm, page content
 
 | User Story | Descripción                                    | Puntos |
 | ---------- | ---------------------------------------------- | ------ |
@@ -248,9 +271,11 @@ El directorio `design/` contiene los recursos oficiales de identidad visual:
 
 ---
 
-### Sprint 3 — Páginas y Contenido (Semana 4)
+### Sprint 3 — Páginas y Contenido (Semana 4) ✅ COMPLETADO
 
 **Meta:** Todas las páginas del sitio ensambladas y con contenido bilingüe.
+
+**Commit:** `8f6495b` — feat: complete Sprint 2 + Sprint 3 — ProductCard, ContactForm, page content
 
 | User Story | Descripción                                    | Puntos |
 | ---------- | ---------------------------------------------- | ------ |
@@ -269,9 +294,11 @@ El directorio `design/` contiene los recursos oficiales de identidad visual:
 
 ---
 
-### Sprint 4 — SEO, Testing y QA (Semana 5)
+### Sprint 4 — SEO, Testing y QA (Semana 5) ✅ COMPLETADO
 
 **Meta:** Sitio optimizado para motores de búsqueda, accesible y con calidad asegurada.
+
+**Commit:** `c9d4da1` — feat(seo): complete Sprint 4 — SEO, accessibility, ESLint + Prettier
 
 | User Story | Descripción                                    | Puntos |
 | ---------- | ---------------------------------------------- | ------ |
@@ -331,6 +358,147 @@ El directorio `design/` contiene los recursos oficiales de identidad visual:
 - API REST documentada con Swagger
 - Servicios de contacto, newsletter y analytics funcionales
 - Integración front ↔ backend verificada
+
+---
+
+### Fases Post-Sprint — Refinamiento y Funcionalidades Adicionales ✅ COMPLETADAS
+
+Las siguientes fases se ejecutaron tras los sprints planificados para refinar la UI, corregir problemas y agregar funcionalidades no previstas inicialmente.
+
+#### Fase 1: Rediseño UI con Gradientes (Post-Sprint 4)
+
+**Commits:** `264216e`, `ab1bd86`
+
+| Cambio | Detalle |
+| --- | --- |
+| Home con gradientes | Hero y secciones con gradientes navy → royal blue, decoradores amber |
+| Paleta de color enriquecida | Más profundidad visual en Light y Dark Mode |
+| Separación productos/servicios | `e252e13` — Página de productos separada, URLs individuales por producto |
+
+#### Fase 2: Rediseño de Páginas de Contenido (Post-Sprint 4)
+
+**Commits:** `5e8a804`, `7d24544`, `21d4ebd`
+
+| Página | Cambios |
+| --- | --- |
+| Servicios | Hero con gradiente, nuevos servicios con tech stack (frontend, backend, DB, mobile), CTAs |
+| Acerca de | Hero, barra de estadísticas, sección de valores corporativos, CTA |
+| Contacto/Privacidad/Protección de datos | Hero con gradiente, sidebar informativo, secciones con tarjetas |
+
+#### Fase 3: Componentes Adicionales
+
+| Componente | Commit | Descripción |
+| --- | --- | --- |
+| `ServiceCard.astro` | `5e8a804` | Tarjeta de servicio con tech stack |
+| `CookieBanner.astro` | `02b7720` | Banner de consentimiento de cookies RGPD |
+| Checkbox de consentimiento | `02b7720` | Checkbox obligatorio en formulario de contacto |
+
+#### Fase 4: Correcciones Críticas
+
+| Fix | Commit | Detalle |
+| --- | --- | --- |
+| Dark theme toggle | `02b7720` | `astro:page-load` → `DOMContentLoaded` (Astro 6 MPA sin ClientRouter) |
+| Logo dark mode | `3b767c6` | Swap de logo a variante azul (`logo-horizontal-blue.png`) en Dark Mode |
+| HMR Windows | `ae61e9c` | Polling habilitado en Vite para hot reload fiable en Windows |
+| Renombrado de páginas | `82fe22f` | Archivos `.astro` renombrados a inglés para consistencia |
+| Correcciones i18n | Múltiples | URLs de productos, tech stacks, estadísticas de empresa, fechas |
+
+#### Fase 5: SEO Avanzado ✅
+
+**Commit:** `85eb7e9`
+
+| Mejora | Detalle |
+| --- | --- |
+| Meta descriptions únicas | Claves `seo.*.description` por página × idioma (12 descripciones) |
+| `meta author` | `LOPEZSOFT SAS` en todas las páginas |
+| `theme-color` | `#0F172A` (Navy corporativo) |
+| `og:image:alt` | Alt text para imagen Open Graph |
+| JSON-LD Organization | Schema.org `Organization` + `WebSite` global |
+| JSON-LD LocalBusiness | Schema.org `LocalBusiness` en páginas de contacto |
+| `site.webmanifest` | Manifiesto web completo con iconos |
+| `apple-touch-icon` | Link para dispositivos Apple |
+
+#### Fase 6: Progressive Web App (PWA) ✅
+
+**Commit:** `1d752cb`
+
+| Componente | Detalle |
+| --- | --- |
+| `sw.js` | Service Worker: cache-first para assets estáticos, network-first para navegación HTML |
+| Registro del SW | Script `is:inline` en `MainLayout.astro` con feature detection |
+| Manifest mejorado | Icono `maskable`, `scope`, `id`, `orientation: portrait`, `categories` |
+
+---
+
+## 6. Registro de Progreso
+
+### Estado General del Frontend
+
+| Área | Estado | Notas |
+| --- | --- | --- |
+| Arquitectura Monorepo | ✅ Completado | Astro 6.0.4 + NestJS 11 |
+| Sistema i18n | ✅ Completado | ES (default sin prefijo) + EN (`/en`) |
+| SCSS/Theming | ✅ Completado | Variables, mixins, tokens Light/Dark |
+| Componentes UI | ✅ Completado | 11 componentes Astro |
+| Páginas (8 rutas × 2 idiomas) | ✅ Completado | Home, Services, About, Contact, Privacy, Data Protection + EN |
+| SEO | ✅ Completado | Meta tags, JSON-LD, sitemap, robots.txt, manifiesto |
+| Accesibilidad | ✅ Completado | WCAG 2.1 AA, aria labels, skip-to-content, contraste |
+| PWA | ✅ Completado | Service Worker + Web Manifest |
+| Cookies/Privacidad | ✅ Completado | Banner RGPD + checkbox en formulario |
+| Dark Mode | ✅ Completado | Toggle funcional, logo swap, persistencia localStorage |
+| ESLint + Prettier | ✅ Completado | Configuración y formateo |
+| Backend API | 🔲 Pendiente | Scaffold NestJS creado, módulos API por implementar |
+| Docker/CI-CD | 🔲 Pendiente | Por configurar |
+| Testing | 🔲 Pendiente | Por implementar |
+
+### Componentes Implementados
+
+| Componente | Archivo | Descripción |
+| --- | --- | --- |
+| Header | `Header.astro` | Nav responsive, logo dual (light/dark), idioma, tema, hamburguesa móvil |
+| Footer | `Footer.astro` | Contacto, links legales, redes sociales, logo dual, año dinámico |
+| Hero | `Hero.astro` | Eslogan, CTA, fondo con gradiente corporativo |
+| Button | `Button.astro` | Variantes, tamaños, href, soporte de temas |
+| ProductCard | `ProductCard.astro` | Cards con logo, nombre, descripción, hover effects |
+| ServiceCard | `ServiceCard.astro` | Cards de servicio con tech stack |
+| ContactForm | `ContactForm.astro` | Formulario con validación, checkbox de consentimiento |
+| LanguageSwitcher | `LanguageSwitcher.astro` | Cambio ES↔EN sin recargar estructura |
+| ThemeToggle | `ThemeToggle.astro` | Toggle Dark/Light con persistencia |
+| SEOHead | `SEOHead.astro` | Meta tags, OG, JSON-LD dinámico por página |
+| CookieBanner | `CookieBanner.astro` | Banner RGPD con Aceptar/Rechazar |
+
+### Historial de Commits (cronológico)
+
+| Commit | Mensaje | Fase |
+| --- | --- | --- |
+| `6e9e1d7` | Initial commit | — |
+| `ae0d68e` | feat: complete Sprint 0 + Sprint 1 | Sprint 0–1 |
+| `8f6495b` | feat: complete Sprint 2 + Sprint 3 | Sprint 2–3 |
+| `c9d4da1` | feat(seo): complete Sprint 4 | Sprint 4 |
+| `0f3719f` | style: format prettierrc and package.json | QA |
+| `6b6ebea` | feat(ui): redesign footer with SVG logo and contact info | Post-Sprint |
+| `28cdbbf` | fix(footer): use existing PNG logo, update contact | Post-Sprint |
+| `82fe22f` | refactor(pages): rename all page files to English | Post-Sprint |
+| `ae61e9c` | fix(dev): enable Vite polling for reliable HMR on Windows | Post-Sprint |
+| `e252e13` | feat(ui): separate products from services | Post-Sprint |
+| `0d21229` | fix(i18n): correct product URLs | Post-Sprint |
+| `264216e` | style(ui): redesign home with gradients | Post-Sprint |
+| `ab1bd86` | style(hero): increase bottom padding | Post-Sprint |
+| `5e8a804` | feat(services): redesign page with hero, tech stack | Post-Sprint |
+| `1b0ff0d` | fix(i18n): add Bootstrap to frontend tech stack | Post-Sprint |
+| `b3bb418` | fix(i18n): remove Spring Boot from backend tech stack | Post-Sprint |
+| `2a1759b` | fix(i18n): update databases stack | Post-Sprint |
+| `9dafee7` | fix(i18n): remove React Native from mobile tech stack | Post-Sprint |
+| `4c1c1ee` | fix(services): use correct i18n keys for CTA section | Post-Sprint |
+| `7d24544` | feat(about): redesign page with hero, stats, values, CTA | Post-Sprint |
+| `7ffff8e` | fix(i18n): update about stats with real business numbers | Post-Sprint |
+| `21d4ebd` | feat(pages): redesign contact, privacy & data-protection | Post-Sprint |
+| `8c5d475` | fix(i18n): correct last_updated dates to March 2026 | Post-Sprint |
+| `02b7720` | feat: add cookie banner, consent checkbox & fix dark theme toggle | Post-Sprint |
+| `3b767c6` | feat: swap logo to blue variant in dark mode | Post-Sprint |
+| `85eb7e9` | feat(seo): comprehensive SEO optimization for production | Post-Sprint |
+| `1d752cb` | feat(pwa): add service worker and enhance web manifest | Post-Sprint |
+| `c622b71` | style: format categories in site.webmanifest | Post-Sprint |
 
 ---
 
