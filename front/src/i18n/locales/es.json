@@ -116,27 +116,70 @@
     "categories": {
       "frontend": {
         "name": "Frontend",
-        "items": ["Angular", "React", "Vue", "Astro", "HTML5", "SCSS", "Tailwind CSS", "TypeScript"]
+        "items": [
+          "Angular",
+          "React",
+          "Vue",
+          "Astro",
+          "HTML5",
+          "SCSS",
+          "Tailwind CSS",
+          "Bootstrap",
+          "TypeScript"
+        ]
       },
       "backend": {
         "name": "Backend",
-        "items": ["NestJS", "Node.js", "Express", "Laravel", "Spring Boot", ".NET", "Python"]
+        "items": [
+          "NestJS",
+          "Node.js",
+          "Express",
+          "Laravel",
+          "Spring Boot",
+          ".NET",
+          "Python"
+        ]
       },
       "databases": {
         "name": "Bases de datos",
-        "items": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Oracle", "SQL Server"]
+        "items": [
+          "PostgreSQL",
+          "MySQL",
+          "MongoDB",
+          "Redis",
+          "Oracle",
+          "SQL Server"
+        ]
       },
       "cloud": {
         "name": "Cloud & DevOps",
-        "items": ["AWS", "GCP", "Docker", "Serverless", "CI/CD", "Microservicios"]
+        "items": [
+          "AWS",
+          "GCP",
+          "Docker",
+          "Serverless",
+          "CI/CD",
+          "Microservicios"
+        ]
       },
       "mobile": {
         "name": "Móvil",
-        "items": ["Flutter", "Dart", "React Native"]
+        "items": [
+          "Flutter",
+          "Dart",
+          "React Native"
+        ]
       },
       "tools": {
         "name": "Herramientas",
-        "items": ["Git", "GitHub", "SonarQube", "Swagger", "OWASP ZAP", "Scrum"]
+        "items": [
+          "Git",
+          "GitHub",
+          "SonarQube",
+          "Swagger",
+          "OWASP ZAP",
+          "Scrum"
+        ]
       }
     }
   },
