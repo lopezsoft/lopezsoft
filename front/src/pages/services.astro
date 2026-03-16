@@ -17,16 +17,32 @@ const services = [
   "systems_implementation",
   "software_maintenance",
   "training",
+  "web_design",
+  "ai_automation",
+];
+
+const stackCategories = [
+  "frontend",
+  "backend",
+  "databases",
+  "cloud",
+  "mobile",
+  "tools",
 ];
 ---
 
 <MainLayout title={`${t("services.title")} — LOPEZSOFT SAS`}>
+  <!-- Hero de servicios -->
+  <div class="hero-wrapper">
+    <section class="hero">
+      <h1 class="hero__title">{t("services.title")}</h1>
+      <p class="hero__subtitle">{t("services.subtitle")}</p>
+    </section>
+  </div>
+
+  <!-- Grid de servicios -->
   <section class="section">
     <div class="container">
-      <div class="section__header reveal">
-        <h1 class="section__title">{t("services.title")}</h1>
-        <p class="section__subtitle">{t("services.subtitle")}</p>
-      </div>
       <div class="services-grid">
         {
           services.map((key) => (
@@ -37,6 +53,44 @@ const services = [
             />
           ))
         }
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack tecnológico -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2 class="section__title">{t("tech_stack.title")}</h2>
+        <p class="section__subtitle">{t("tech_stack.subtitle")}</p>
+      </div>
+      <div class="tech-stack">
+        {
+          stackCategories.map((cat) => (
+            <div class="tech-stack__category reveal">
+              <h3 class="tech-stack__category-name">
+                {t(`tech_stack.categories.${cat}.name`)}
+              </h3>
+              <div class="tech-stack__tags">
+                {(t.raw(`tech_stack.categories.${cat}.items`) as string[]).map(
+                  (item: string) => (
+                    <span class="tech-stack__tag">{item}</span>
+                  )
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA de contacto -->
+  <section class="section section--gradient">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2 class="section__title">{t("home.cta_title")}</h2>
+        <p class="section__subtitle">{t("home.cta_text")}</p>
       </div>
       <div class="section__cta">
         <Button

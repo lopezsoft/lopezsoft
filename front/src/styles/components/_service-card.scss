@@ -76,7 +76,7 @@
 }
 
 // ==========================================================================
-// Services grid — 3 columns on large screens
+// Services grid — responsive layout
 // ==========================================================================
 .services-grid {
   display: grid;
@@ -89,6 +89,6 @@
   }
 
   @include breakpoint(lg) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }

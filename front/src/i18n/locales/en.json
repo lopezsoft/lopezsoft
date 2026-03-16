@@ -98,6 +98,46 @@
       "name": "Training & Education",
       "description": "We train your team in the use of new technologies, tools and best practices to maximize your return on investment.",
       "icon": "academic"
+    },
+    "web_design": {
+      "name": "Web Design & Development",
+      "description": "We create modern, responsive and SEO-optimized websites that reflect your brand identity and drive business results.",
+      "icon": "globe"
+    },
+    "ai_automation": {
+      "name": "Artificial Intelligence & Automation",
+      "description": "We implement AI solutions, intelligent chatbots and process automation to optimize productivity and reduce operational costs.",
+      "icon": "sparkles"
+    }
+  },
+  "tech_stack": {
+    "title": "Our Tech Stack",
+    "subtitle": "We master the most relevant technologies in the market to deliver robust and scalable solutions.",
+    "categories": {
+      "frontend": {
+        "name": "Frontend",
+        "items": ["Angular", "React", "Vue", "Astro", "HTML5", "SCSS", "Tailwind CSS", "TypeScript"]
+      },
+      "backend": {
+        "name": "Backend",
+        "items": ["NestJS", "Node.js", "Express", "Laravel", "Spring Boot", ".NET", "Python"]
+      },
+      "databases": {
+        "name": "Databases",
+        "items": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Oracle", "SQL Server"]
+      },
+      "cloud": {
+        "name": "Cloud & DevOps",
+        "items": ["AWS", "GCP", "Docker", "Serverless", "CI/CD", "Microservices"]
+      },
+      "mobile": {
+        "name": "Mobile",
+        "items": ["Flutter", "Dart", "React Native"]
+      },
+      "tools": {
+        "name": "Tools",
+        "items": ["Git", "GitHub", "SonarQube", "Swagger", "OWASP ZAP", "Scrum"]
+      }
     }
   },
   "about": {

@@ -98,6 +98,46 @@
       "name": "Formación y Capacitación",
       "description": "Capacitamos a su equipo en el uso de nuevas tecnologías, herramientas y mejores prácticas para maximizar el retorno de su inversión.",
       "icon": "academic"
+    },
+    "web_design": {
+      "name": "Diseño y Desarrollo Web",
+      "description": "Creamos sitios web modernos, responsivos y optimizados para SEO que reflejan la identidad de su marca y generan resultados de negocio.",
+      "icon": "globe"
+    },
+    "ai_automation": {
+      "name": "Inteligencia Artificial y Automatizaciones",
+      "description": "Implementamos soluciones de IA, chatbots inteligentes y automatización de procesos para optimizar la productividad y reducir costos operativos.",
+      "icon": "sparkles"
+    }
+  },
+  "tech_stack": {
+    "title": "Nuestro Stack Tecnológico",
+    "subtitle": "Dominamos las tecnologías más relevantes del mercado para entregar soluciones robustas y escalables.",
+    "categories": {
+      "frontend": {
+        "name": "Frontend",
+        "items": ["Angular", "React", "Vue", "Astro", "HTML5", "SCSS", "Tailwind CSS", "TypeScript"]
+      },
+      "backend": {
+        "name": "Backend",
+        "items": ["NestJS", "Node.js", "Express", "Laravel", "Spring Boot", ".NET", "Python"]
+      },
+      "databases": {
+        "name": "Bases de datos",
+        "items": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Oracle", "SQL Server"]
+      },
+      "cloud": {
+        "name": "Cloud & DevOps",
+        "items": ["AWS", "GCP", "Docker", "Serverless", "CI/CD", "Microservicios"]
+      },
+      "mobile": {
+        "name": "Móvil",
+        "items": ["Flutter", "Dart", "React Native"]
+      },
+      "tools": {
+        "name": "Herramientas",
+        "items": ["Git", "GitHub", "SonarQube", "Swagger", "OWASP ZAP", "Scrum"]
+      }
     }
   },
   "about": {

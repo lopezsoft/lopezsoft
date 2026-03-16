@@ -1,0 +1,86 @@
+// ==========================================================================
+// Tech Stack — Estilos del componente
+// ==========================================================================
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.tech-stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-6;
+
+  @include breakpoint(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  // ------------------------------------------------------------------
+  // Category card
+  // ------------------------------------------------------------------
+  &__category {
+    padding: $spacing-6;
+    background-color: var(--surface);
+    border: $border-width-default solid var(--border-default);
+    border-radius: $border-radius-xl;
+    position: relative;
+    overflow: hidden;
+    @include theme-transition((background-color, border-color, box-shadow));
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+      opacity: 0;
+      @include theme-transition((opacity));
+    }
+
+    &:hover {
+      box-shadow: $shadow-lg;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__category-name {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: $spacing-4;
+  }
+
+  // ------------------------------------------------------------------
+  // Tags
+  // ------------------------------------------------------------------
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2;
+  }
+
+  &__tag {
+    display: inline-block;
+    padding: $spacing-1 $spacing-3;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--text-primary);
+    background-color: var(--accent-soft);
+    border-radius: $border-radius-full;
+    @include theme-transition((background-color, color));
+
+    &:hover {
+      background-color: var(--accent);
+      color: $color-white;
+    }
+  }
+}

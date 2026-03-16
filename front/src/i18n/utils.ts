@@ -29,6 +29,18 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string {
 }
 
 /**
+ * Obtiene un valor anidado sin forzar string (para arrays u objetos).
+ */
+function getNestedRaw(obj: Record<string, unknown>, path: string): unknown {
+  return path.split('.').reduce<unknown>((current, key) => {
+    if (current && typeof current === 'object' && key in (current as Record<string, unknown>)) {
+      return (current as Record<string, unknown>)[key];
+    }
+    return undefined;
+  }, obj);
+}
+
+/**
  * Retorna una función `t(key)` que resuelve traducciones del diccionario
  * para el idioma especificado, con fallback al idioma por defecto.
  */
@@ -47,6 +59,17 @@ export function useTranslations(lang: Locale) {
 
     return key;
   }
+
+  t.raw = function tRaw(key: string): unknown {
+    const value = getNestedRaw(dictionary, key);
+    if (value !== undefined) return value;
+
+    if (lang !== DEFAULT_LOCALE) {
+      return getNestedRaw(fallback, key);
+    }
+
+    return undefined;
+  };
 
   return t;
 }
