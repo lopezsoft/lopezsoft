@@ -1,0 +1,41 @@
+// ==========================================================================
+// Language Switcher — Estilos del componente
+// ==========================================================================
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-1;
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-1;
+    padding: $spacing-1 $spacing-2;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--nav-text);
+    text-decoration: none;
+    border-radius: $border-radius-md;
+    @include theme-transition((background-color, color));
+    @include focus-visible;
+
+    &:hover {
+      color: var(--nav-text-hover);
+      background-color: var(--bg-tertiary);
+    }
+
+    &--active {
+      color: var(--accent);
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  &__separator {
+    color: var(--border-default);
+    font-size: $font-size-sm;
+    user-select: none;
+  }
+}

@@ -1,0 +1,110 @@
+// ==========================================================================
+// LOPEZSOFT SAS — Tokens Semánticos de Tema (Light / Dark)
+// ==========================================================================
+@use 'variables' as *;
+
+// --------------------------------------------------------------------------
+// Mapas de tokens por tema
+// --------------------------------------------------------------------------
+$theme-light: (
+  // Fondos
+  bg-primary:      $color-white,
+  bg-secondary:    $color-gray-50,
+  bg-tertiary:     $color-gray-100,
+
+  // Texto
+  text-primary:    $color-gray-900,
+  text-secondary:  $color-gray-500,
+  text-tertiary:   $color-gray-400,
+  text-inverse:    $color-white,
+
+  // Acento
+  accent:          $color-royal,
+  accent-hover:    $color-blue-700,
+  accent-warm:     $color-accent,
+  accent-warm-hover: $color-amber-600,
+
+  // Superficies
+  surface:         $color-white,
+  surface-elevated:$color-white,
+
+  // Bordes
+  border-default:  $color-gray-200,
+  border-strong:   $color-gray-300,
+
+  // Estado
+  success:         $color-success,
+  error:           $color-error,
+  warning:         $color-warning,
+  info:            $color-info,
+
+  // Header/Nav
+  header-bg:       rgba($color-white, 0.95),
+  nav-text:        $color-gray-700,
+  nav-text-hover:  $color-royal,
+
+  // Sombras (se usa como variable)
+  shadow-color:    rgba($color-black, 0.1),
+);
+
+$theme-dark: (
+  // Fondos
+  bg-primary:      $color-navy,
+  bg-secondary:    $color-gray-800,
+  bg-tertiary:     $color-gray-700,
+
+  // Texto
+  text-primary:    $color-gray-50,
+  text-secondary:  $color-gray-400,
+  text-tertiary:   $color-gray-500,
+  text-inverse:    $color-gray-900,
+
+  // Acento
+  accent:          $color-blue-400,
+  accent-hover:    $color-blue-500,
+  accent-warm:     $color-amber-400,
+  accent-warm-hover: $color-accent,
+
+  // Superficies
+  surface:         $color-gray-800,
+  surface-elevated:$color-gray-700,
+
+  // Bordes
+  border-default:  $color-gray-700,
+  border-strong:   $color-gray-600,
+
+  // Estado
+  success:         $color-success,
+  error:           $color-error,
+  warning:         $color-warning,
+  info:            $color-info,
+
+  // Header/Nav
+  header-bg:       rgba($color-navy, 0.95),
+  nav-text:        $color-gray-300,
+  nav-text-hover:  $color-blue-400,
+
+  // Sombras
+  shadow-color:    rgba($color-black, 0.3),
+);
+
+// --------------------------------------------------------------------------
+// Generador de CSS Custom Properties
+// --------------------------------------------------------------------------
+@mixin apply-theme($theme) {
+  @each $key, $value in $theme {
+    --#{$key}: #{$value};
+  }
+}
+
+// --------------------------------------------------------------------------
+// Aplicación de temas
+// --------------------------------------------------------------------------
+:root,
+[data-theme='light'] {
+  @include apply-theme($theme-light);
+}
+
+[data-theme='dark'] {
+  @include apply-theme($theme-dark);
+}

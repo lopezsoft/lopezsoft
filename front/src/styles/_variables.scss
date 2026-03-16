@@ -1,0 +1,148 @@
+// ==========================================================================
+// LOPEZSOFT SAS — Variables Primitivas del Sistema de Diseño
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// Colores Primitivos (paleta corporativa)
+// --------------------------------------------------------------------------
+$color-navy:      #0F172A;
+$color-royal:     #2563EB;
+$color-accent:    #F59E0B;
+$color-white:     #FFFFFF;
+$color-black:     #000000;
+
+// Grises
+$color-gray-50:   #F8FAFC;
+$color-gray-100:  #F1F5F9;
+$color-gray-200:  #E2E8F0;
+$color-gray-300:  #CBD5E1;
+$color-gray-400:  #94A3B8;
+$color-gray-500:  #64748B;
+$color-gray-600:  #475569;
+$color-gray-700:  #334155;
+$color-gray-800:  #1E293B;
+$color-gray-900:  #0F172A;
+
+// Azules
+$color-blue-50:   #EFF6FF;
+$color-blue-100:  #DBEAFE;
+$color-blue-400:  #60A5FA;
+$color-blue-500:  #3B82F6;
+$color-blue-600:  #2563EB;
+$color-blue-700:  #1D4ED8;
+
+// Ámbar (acento)
+$color-amber-400: #FBBF24;
+$color-amber-500: #F59E0B;
+$color-amber-600: #D97706;
+
+// Semánticos
+$color-success:   #22C55E;
+$color-error:     #EF4444;
+$color-warning:   #F59E0B;
+$color-info:      #3B82F6;
+
+// --------------------------------------------------------------------------
+// Tipografía
+// --------------------------------------------------------------------------
+$font-primary:    'Inter', system-ui, -apple-system, sans-serif;
+$font-secondary:  'JetBrains Mono', ui-monospace, monospace;
+
+// Escala de tamaños (base 16px = 1rem)
+$font-size-xs:    0.75rem;   // 12px
+$font-size-sm:    0.875rem;  // 14px
+$font-size-base:  1rem;      // 16px
+$font-size-lg:    1.125rem;  // 18px
+$font-size-xl:    1.25rem;   // 20px
+$font-size-2xl:   1.5rem;    // 24px
+$font-size-3xl:   1.875rem;  // 30px
+$font-size-4xl:   2.25rem;   // 36px
+$font-size-5xl:   3rem;      // 48px
+$font-size-6xl:   3.75rem;   // 60px
+
+// Pesos
+$font-weight-light:    300;
+$font-weight-normal:   400;
+$font-weight-medium:   500;
+$font-weight-semibold: 600;
+$font-weight-bold:     700;
+$font-weight-extrabold:800;
+
+// Alturas de línea
+$line-height-tight:  1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed:1.75;
+
+// --------------------------------------------------------------------------
+// Spacing (escala de 4px)
+// --------------------------------------------------------------------------
+$spacing-0:   0;
+$spacing-1:   0.25rem;   // 4px
+$spacing-2:   0.5rem;    // 8px
+$spacing-3:   0.75rem;   // 12px
+$spacing-4:   1rem;      // 16px
+$spacing-5:   1.25rem;   // 20px
+$spacing-6:   1.5rem;    // 24px
+$spacing-8:   2rem;      // 32px
+$spacing-10:  2.5rem;    // 40px
+$spacing-12:  3rem;      // 48px
+$spacing-16:  4rem;      // 64px
+$spacing-20:  5rem;      // 80px
+$spacing-24:  6rem;      // 96px
+$spacing-32:  8rem;      // 128px
+
+// --------------------------------------------------------------------------
+// Breakpoints (mobile-first — solo min-width)
+// --------------------------------------------------------------------------
+$breakpoint-sm:   640px;
+$breakpoint-md:   768px;
+$breakpoint-lg:   1024px;
+$breakpoint-xl:   1280px;
+$breakpoint-2xl:  1536px;
+
+// --------------------------------------------------------------------------
+// Bordes
+// --------------------------------------------------------------------------
+$border-radius-none: 0;
+$border-radius-sm:   0.125rem;  // 2px
+$border-radius-md:   0.375rem;  // 6px
+$border-radius-lg:   0.5rem;    // 8px
+$border-radius-xl:   0.75rem;   // 12px
+$border-radius-2xl:  1rem;      // 16px
+$border-radius-full: 9999px;
+
+$border-width-default: 1px;
+$border-width-2:       2px;
+
+// --------------------------------------------------------------------------
+// Sombras
+// --------------------------------------------------------------------------
+$shadow-sm:   0 1px 2px 0 rgba($color-black, 0.05);
+$shadow-md:   0 4px 6px -1px rgba($color-black, 0.1), 0 2px 4px -2px rgba($color-black, 0.1);
+$shadow-lg:   0 10px 15px -3px rgba($color-black, 0.1), 0 4px 6px -4px rgba($color-black, 0.1);
+$shadow-xl:   0 20px 25px -5px rgba($color-black, 0.1), 0 8px 10px -6px rgba($color-black, 0.1);
+
+// --------------------------------------------------------------------------
+// Transiciones
+// --------------------------------------------------------------------------
+$transition-fast:     150ms ease;
+$transition-normal:   300ms ease;
+$transition-slow:     500ms ease;
+
+// --------------------------------------------------------------------------
+// Z-Index
+// --------------------------------------------------------------------------
+$z-dropdown:  10;
+$z-sticky:    20;
+$z-fixed:     30;
+$z-overlay:   40;
+$z-modal:     50;
+$z-toast:     60;
+
+// --------------------------------------------------------------------------
+// Container
+// --------------------------------------------------------------------------
+$container-sm:   640px;
+$container-md:   768px;
+$container-lg:   1024px;
+$container-xl:   1280px;

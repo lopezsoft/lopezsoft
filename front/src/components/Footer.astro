@@ -1,0 +1,85 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Componente Footer
+// ==========================================================================
+import type { Locale } from "@i18n/config";
+import {
+  getLocaleFromUrl,
+  useTranslations,
+  getLocalizedPath,
+} from "@i18n/utils";
+
+const locale: Locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+
+const year = new Date().getFullYear();
+
+const navLinks = [
+  { key: "nav.home", href: getLocalizedPath("/", locale) },
+  { key: "nav.services", href: getLocalizedPath("/servicios", locale) },
+  { key: "nav.about", href: getLocalizedPath("/nosotros", locale) },
+  { key: "nav.contact", href: getLocalizedPath("/contacto", locale) },
+];
+
+const legalLinks = [
+  { key: "footer.links.privacy", href: "#" },
+  { key: "footer.links.terms", href: "#" },
+];
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <!-- Marca -->
+      <div class="footer__brand">
+        <img
+          src="/images/logo/logo-horizontal.png"
+          alt="LOPEZSOFT SAS"
+          class="footer__logo"
+          width="140"
+          height="35"
+          loading="lazy"
+        />
+        <p class="footer__slogan">{t("footer.slogan")}</p>
+      </div>
+
+      <!-- Navegación -->
+      <div>
+        <h3 class="footer__heading">{t("nav.home")}</h3>
+        <ul class="footer__links">
+          {
+            navLinks.map(({ key, href }) => (
+              <li>
+                <a href={href} class="footer__link">
+                  {t(key)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3 class="footer__heading">Legal</h3>
+        <ul class="footer__links">
+          {
+            legalLinks.map(({ key, href }) => (
+              <li>
+                <a href={href} class="footer__link">
+                  {t(key)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p class="footer__copy">
+      &copy; {year} LOPEZSOFT SAS. {t("footer.rights")}
+    </p>
+  </div>
+</footer>

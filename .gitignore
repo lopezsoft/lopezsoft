@@ -1,0 +1,45 @@
+# ==========================================================================
+# LOPEZSOFT SAS — Monorepo .gitignore
+# ==========================================================================
+
+# Dependencias
+node_modules/
+
+# Build outputs
+front/dist/
+backend/dist/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Cache
+.cache/
+.astro/
+.turbo/
+
+# Testing
+coverage/
+
+# Temp
+tmp/
+temp/

@@ -1,0 +1,104 @@
+{
+  "site": {
+    "title": "LOPEZSOFT SAS — Su Aliado Tecnológico",
+    "description": "Ecosistema tecnológico enfocado en soluciones B2B. Facturación electrónica, ERP, integración DIAN, agentes de IA y software académico."
+  },
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "about": "Nosotros",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "slogan": "SU ALIADO TECNOLÓGICO",
+    "subtitle": "Ecosistema de soluciones empresariales B2B diseñadas para potenciar la transformación digital de su organización.",
+    "cta": "Conozca nuestros servicios",
+    "cta_contact": "Contáctenos"
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Soluciones tecnológicas integrales para empresas que buscan eficiencia operativa y cumplimiento normativo.",
+    "matias_erp": {
+      "name": "MATIAS ERP",
+      "description": "Sistema integral de planificación empresarial: facturación electrónica, nómina, inventarios y contabilidad. Todo en una sola plataforma.",
+      "features": [
+        "Facturación electrónica",
+        "Nómina electrónica",
+        "Gestión de inventarios",
+        "Contabilidad integrada"
+      ]
+    },
+    "matias_api": {
+      "name": "MATIAS API",
+      "description": "Integración directa con la DIAN para facturación electrónica y documentos soporte. API robusta y certificada.",
+      "features": [
+        "Integración DIAN",
+        "Facturación electrónica",
+        "Documentos soporte",
+        "Nómina electrónica"
+      ]
+    },
+    "matias_impulso": {
+      "name": "MATIAS IMPULSO",
+      "description": "Agentes de Inteligencia Artificial que automatizan procesos empresariales y potencian la toma de decisiones.",
+      "features": [
+        "Agentes de IA",
+        "Automatización",
+        "Análisis predictivo",
+        "Asistentes virtuales"
+      ]
+    },
+    "asaie_exodo": {
+      "name": "ASAIE ÉXODO",
+      "description": "Software académico integral para instituciones educativas. Gestión de matrículas, notas, asistencia y reportes.",
+      "features": [
+        "Gestión académica",
+        "Matrículas",
+        "Boletines de notas",
+        "Reportes institucionales"
+      ]
+    }
+  },
+  "about": {
+    "title": "Nosotros",
+    "subtitle": "Somos un ecosistema tecnológico comprometido con la innovación empresarial.",
+    "mission": {
+      "title": "Misión",
+      "text": "Proveer soluciones tecnológicas de alta calidad que simplifiquen los procesos empresariales de nuestros clientes, garantizando eficiencia, seguridad y cumplimiento normativo."
+    },
+    "vision": {
+      "title": "Visión",
+      "text": "Ser el aliado tecnológico preferido de las empresas colombianas, liderando la transformación digital con innovación, calidad y compromiso."
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Listo para transformar su empresa? Hablemos.",
+    "form": {
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "company": "Empresa",
+      "message": "Mensaje",
+      "submit": "Enviar mensaje",
+      "success": "¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.",
+      "error": "Hubo un error al enviar el mensaje. Por favor, intente nuevamente."
+    }
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "slogan": "Su Aliado Tecnológico",
+    "links": {
+      "privacy": "Política de privacidad",
+      "terms": "Términos y condiciones"
+    }
+  },
+  "theme": {
+    "light": "Modo claro",
+    "dark": "Modo oscuro",
+    "toggle": "Cambiar tema"
+  },
+  "language": {
+    "switch": "Cambiar idioma",
+    "current": "Español"
+  }
+}

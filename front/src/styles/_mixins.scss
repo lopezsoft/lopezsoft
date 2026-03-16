@@ -1,0 +1,136 @@
+// ==========================================================================
+// LOPEZSOFT SAS — Mixins del Sistema de Diseño
+// ==========================================================================
+@use 'sass:list';
+@use 'variables' as *;
+
+// --------------------------------------------------------------------------
+// Breakpoints Mobile-First (solo min-width)
+// --------------------------------------------------------------------------
+@mixin breakpoint($size) {
+  @if $size == sm  { @media (min-width: $breakpoint-sm)  { @content; } }
+  @else if $size == md  { @media (min-width: $breakpoint-md)  { @content; } }
+  @else if $size == lg  { @media (min-width: $breakpoint-lg)  { @content; } }
+  @else if $size == xl  { @media (min-width: $breakpoint-xl)  { @content; } }
+  @else if $size == 2xl { @media (min-width: $breakpoint-2xl) { @content; } }
+}
+
+// --------------------------------------------------------------------------
+// Tipografía responsiva
+// --------------------------------------------------------------------------
+@mixin font-size-responsive($mobile, $tablet: null, $desktop: null) {
+  font-size: $mobile;
+
+  @if $tablet {
+    @include breakpoint(md) {
+      font-size: $tablet;
+    }
+  }
+
+  @if $desktop {
+    @include breakpoint(lg) {
+      font-size: $desktop;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
+// Container centrado con padding responsive
+// --------------------------------------------------------------------------
+@mixin container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: $spacing-4;
+
+  @include breakpoint(sm) {
+    max-width: $container-sm;
+  }
+
+  @include breakpoint(md) {
+    max-width: $container-md;
+    padding-inline: $spacing-6;
+  }
+
+  @include breakpoint(lg) {
+    max-width: $container-lg;
+  }
+
+  @include breakpoint(xl) {
+    max-width: $container-xl;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Flexbox helpers
+// --------------------------------------------------------------------------
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// --------------------------------------------------------------------------
+// Transiciones con theme token
+// --------------------------------------------------------------------------
+@mixin theme-transition($properties: (background-color, color, border-color)) {
+  $transitions: ();
+
+  @each $prop in $properties {
+    $transitions: list.append($transitions, $prop $transition-normal, comma);
+  }
+
+  transition: $transitions;
+}
+
+// --------------------------------------------------------------------------
+// Focus visible accesible
+// --------------------------------------------------------------------------
+@mixin focus-visible {
+  &:focus-visible {
+    outline: $border-width-2 solid var(--accent);
+    outline-offset: 2px;
+    border-radius: $border-radius-sm;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Visually hidden (accesibilidad)
+// --------------------------------------------------------------------------
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// --------------------------------------------------------------------------
+// Truncar texto
+// --------------------------------------------------------------------------
+@mixin text-truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

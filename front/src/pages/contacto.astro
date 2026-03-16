@@ -1,0 +1,17 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Página Contacto (ES)
+// ==========================================================================
+import MainLayout from "@layouts/MainLayout.astro";
+import { useTranslations } from "@i18n/utils";
+import { DEFAULT_LOCALE } from "@i18n/config";
+
+const t = useTranslations(DEFAULT_LOCALE);
+---
+
+<MainLayout title={`${t("contact.title")} — LOPEZSOFT SAS`}>
+  <section class="container" style="padding-block: 4rem;">
+    <h1>{t("contact.title")}</h1>
+    <p>{t("contact.subtitle")}</p>
+  </section>
+</MainLayout>

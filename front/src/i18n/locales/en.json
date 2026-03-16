@@ -1,0 +1,104 @@
+{
+  "site": {
+    "title": "LOPEZSOFT SAS — Your Technology Partner",
+    "description": "Technology ecosystem focused on B2B solutions. Electronic invoicing, ERP, DIAN integration, AI agents and academic software."
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "slogan": "YOUR TECHNOLOGY PARTNER",
+    "subtitle": "An ecosystem of B2B enterprise solutions designed to power your organization's digital transformation.",
+    "cta": "Explore our services",
+    "cta_contact": "Contact us"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive technology solutions for businesses seeking operational efficiency and regulatory compliance.",
+    "matias_erp": {
+      "name": "MATIAS ERP",
+      "description": "Comprehensive enterprise resource planning system: electronic invoicing, payroll, inventory and accounting. All in one platform.",
+      "features": [
+        "Electronic invoicing",
+        "Electronic payroll",
+        "Inventory management",
+        "Integrated accounting"
+      ]
+    },
+    "matias_api": {
+      "name": "MATIAS API",
+      "description": "Direct integration with DIAN for electronic invoicing and support documents. Robust and certified API.",
+      "features": [
+        "DIAN integration",
+        "Electronic invoicing",
+        "Support documents",
+        "Electronic payroll"
+      ]
+    },
+    "matias_impulso": {
+      "name": "MATIAS IMPULSO",
+      "description": "Artificial Intelligence agents that automate business processes and enhance decision-making.",
+      "features": [
+        "AI Agents",
+        "Automation",
+        "Predictive analytics",
+        "Virtual assistants"
+      ]
+    },
+    "asaie_exodo": {
+      "name": "ASAIE ÉXODO",
+      "description": "Comprehensive academic software for educational institutions. Enrollment, grades, attendance and report management.",
+      "features": [
+        "Academic management",
+        "Enrollment",
+        "Report cards",
+        "Institutional reports"
+      ]
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "We are a technology ecosystem committed to business innovation.",
+    "mission": {
+      "title": "Mission",
+      "text": "To provide high-quality technology solutions that simplify our clients' business processes, ensuring efficiency, security and regulatory compliance."
+    },
+    "vision": {
+      "title": "Vision",
+      "text": "To be the preferred technology partner for Colombian businesses, leading digital transformation with innovation, quality and commitment."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Ready to transform your business? Let's talk.",
+    "form": {
+      "name": "Full name",
+      "email": "Email address",
+      "company": "Company",
+      "message": "Message",
+      "submit": "Send message",
+      "success": "Message sent successfully! We will get in touch soon.",
+      "error": "There was an error sending the message. Please try again."
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "slogan": "Your Technology Partner",
+    "links": {
+      "privacy": "Privacy policy",
+      "terms": "Terms and conditions"
+    }
+  },
+  "theme": {
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "toggle": "Toggle theme"
+  },
+  "language": {
+    "switch": "Switch language",
+    "current": "English"
+  }
+}

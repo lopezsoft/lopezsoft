@@ -1,0 +1,147 @@
+// ==========================================================================
+// Header — Estilos del componente
+// ==========================================================================
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: $border-width-default solid var(--border-default);
+  @include theme-transition((background-color, border-color));
+
+  &__inner {
+    @include container;
+    @include flex-between;
+    height: 4rem;
+
+    @include breakpoint(md) {
+      height: 4.5rem;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Logo
+  // ------------------------------------------------------------------
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  &__logo-img {
+    height: 2rem;
+    width: auto;
+
+    @include breakpoint(md) {
+      height: 2.5rem;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Navegación
+  // ------------------------------------------------------------------
+  &__nav {
+    // Mobile: menú oculto, pantalla completa
+    display: none;
+    position: fixed;
+    inset: 4rem 0 0 0;
+    background-color: var(--bg-primary);
+    padding: $spacing-6 $spacing-4;
+    flex-direction: column;
+    gap: $spacing-4;
+    z-index: $z-overlay;
+    @include theme-transition((background-color));
+
+    &.is-open {
+      display: flex;
+    }
+
+    // Desktop: inline
+    @include breakpoint(md) {
+      display: flex;
+      position: static;
+      flex-direction: row;
+      align-items: center;
+      gap: $spacing-6;
+      padding: 0;
+      background-color: transparent;
+    }
+  }
+
+  &__nav-link {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: var(--nav-text);
+    text-decoration: none;
+    padding: $spacing-2 0;
+    @include theme-transition((color));
+    @include focus-visible;
+
+    &:hover,
+    &--active {
+      color: var(--nav-text-hover);
+    }
+
+    // Mobile: más grande
+    @include breakpoint(md) {
+      font-size: $font-size-sm;
+      padding: $spacing-1 0;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Acciones (theme toggle, lang switcher)
+  // ------------------------------------------------------------------
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+  }
+
+  // ------------------------------------------------------------------
+  // Hamburger button (mobile only)
+  // ------------------------------------------------------------------
+  &__hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    @include focus-visible;
+
+    @include breakpoint(md) {
+      display: none;
+    }
+
+    &-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      pointer-events: none;
+    }
+
+    &-icon--close {
+      display: none;
+    }
+
+    &.is-open {
+      .header__hamburger-icon--menu {
+        display: none;
+      }
+
+      .header__hamburger-icon--close {
+        display: block;
+      }
+    }
+  }
+}

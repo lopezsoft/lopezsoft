@@ -1,0 +1,37 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Componente Hero Section
+// ==========================================================================
+import Button from "@components/Button.astro";
+import type { Locale } from "@i18n/config";
+import { useTranslations, getLocalizedPath } from "@i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="hero container">
+  <span class="hero__badge">LOPEZSOFT SAS</span>
+  <h1 class="hero__title">{t("hero.slogan")}</h1>
+  <p class="hero__subtitle">{t("hero.subtitle")}</p>
+  <div class="hero__actions">
+    <Button
+      variant="primary"
+      size="lg"
+      href={getLocalizedPath("/servicios", lang)}
+    >
+      {t("hero.cta")}
+    </Button>
+    <Button
+      variant="secondary"
+      size="lg"
+      href={getLocalizedPath("/contacto", lang)}
+    >
+      {t("hero.cta_contact")}
+    </Button>
+  </div>
+</section>

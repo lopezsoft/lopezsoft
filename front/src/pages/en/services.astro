@@ -1,0 +1,16 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Página Services (EN)
+// ==========================================================================
+import MainLayout from "@layouts/MainLayout.astro";
+import { useTranslations } from "@i18n/utils";
+
+const t = useTranslations("en");
+---
+
+<MainLayout title={`${t("services.title")} — LOPEZSOFT SAS`}>
+  <section class="container" style="padding-block: 4rem;">
+    <h1>{t("services.title")}</h1>
+    <p>{t("services.subtitle")}</p>
+  </section>
+</MainLayout>

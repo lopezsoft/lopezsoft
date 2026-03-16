@@ -1,0 +1,41 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Componente Language Switcher
+// ==========================================================================
+import { LOCALES, LOCALE_CODES } from "@i18n/config";
+import type { Locale } from "@i18n/config";
+import {
+  getLocaleFromUrl,
+  getLocalizedPath,
+  useTranslations,
+} from "@i18n/utils";
+
+const currentLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currentLocale);
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="lang-switcher" aria-label={t("language.switch")}>
+  {
+    LOCALE_CODES.map((code, index) => (
+      <>
+        <a
+          href={getLocalizedPath(currentPath, code)}
+          class:list={[
+            "lang-switcher__link",
+            { "lang-switcher__link--active": code === currentLocale },
+          ]}
+          aria-current={code === currentLocale ? "page" : undefined}
+          hreflang={code}
+        >
+          {LOCALES[code].label}
+        </a>
+        {index < LOCALE_CODES.length - 1 && (
+          <span class="lang-switcher__separator" aria-hidden="true">
+            |
+          </span>
+        )}
+      </>
+    ))
+  }
+</nav>
