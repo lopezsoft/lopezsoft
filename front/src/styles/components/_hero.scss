@@ -103,6 +103,12 @@
     }
   }
 
+  &__meta {
+    font-size: $font-size-sm;
+    color: rgba($color-white, 0.6);
+    font-weight: $font-weight-medium;
+  }
+
   &__actions {
     display: flex;
     flex-wrap: wrap;

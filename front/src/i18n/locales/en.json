@@ -241,6 +241,15 @@
   "contact": {
     "title": "Contact",
     "subtitle": "Ready to transform your business? Let's talk.",
+    "info_title": "Contact Information",
+    "info_text": "You can reach us through any of the following channels. Our team will be happy to assist you.",
+    "email_label": "Email",
+    "support_label": "Technical support",
+    "sales_label": "Sales",
+    "location_label": "Location",
+    "schedule_label": "Business hours",
+    "schedule_value": "Monday to Friday, 8:00 AM – 6:00 PM",
+    "form_title": "Send Us a Message",
     "form": {
       "name": "Full name",
       "email": "Email address",
@@ -273,8 +282,8 @@
   "privacy": {
     "title": "Privacy Policy",
     "subtitle": "Learn how we protect your personal information.",
-    "last_updated": "Last updated: January 2025",
-    "intro": "LOPEZSOFT SAS (hereinafter \"the Company\") is committed to protecting the privacy of its users. This Privacy Policy describes how we collect, use, store and protect your personal information when you use our services and visit our website.",
+    "last_updated": "Last updated: June 2026",
+    "intro": "LOPEZSOFT SAS (hereinafter \"the Company\"), based in Dosquebradas, Risaralda, Colombia, is committed to protecting the privacy of its users. This Privacy Policy describes how we collect, use, store and protect your personal information when you use our services and visit our website.",
     "collection": {
       "title": "Information We Collect",
       "text": "We collect information that you provide directly to us when using our services, including:",
@@ -313,21 +322,22 @@
     },
     "contact": {
       "title": "Contact",
-      "text": "To exercise your rights or make inquiries about this policy, you can contact us at info@lopezsoft.com."
+      "text": "To exercise your rights or make inquiries about this policy, you can contact us at gerencia@lopezsoft.net.co or by calling +57 310 843 5431."
     }
   },
   "data_protection": {
     "title": "Personal Data Protection",
     "subtitle": "Personal data processing policy in accordance with Law 1581 of 2012.",
-    "last_updated": "Last updated: January 2025",
+    "last_updated": "Last updated: June 2026",
     "intro": "In compliance with Statutory Law 1581 of 2012 and its Regulatory Decree 1377 of 2013, LOPEZSOFT SAS adopts this Personal Data Processing Policy to guarantee the constitutional right of all individuals to know, update and rectify the information collected about them.",
     "responsible": {
       "title": "Data Controller",
       "text": "LOPEZSOFT SAS, a Colombian commercial company, is responsible for processing the personal data it collects in the course of its activities.",
       "details": [
         "Company name: LOPEZSOFT SAS",
-        "Email: info@lopezsoft.com",
-        "Country: Colombia"
+        "Email: gerencia@lopezsoft.net.co",
+        "Phone: +57 310 843 5431",
+        "Location: Dosquebradas, Risaralda, Colombia"
       ]
     },
     "principles": {
@@ -372,7 +382,7 @@
     },
     "contact": {
       "title": "Support Channels",
-      "text": "To exercise the aforementioned rights or make inquiries and claims, you can contact us at info@lopezsoft.com."
+      "text": "To exercise the aforementioned rights or make inquiries and claims, you can contact us at gerencia@lopezsoft.net.co or by calling +57 310 843 5431."
     }
   },
   "theme": {

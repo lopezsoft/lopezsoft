@@ -241,6 +241,15 @@
   "contact": {
     "title": "Contacto",
     "subtitle": "¿Listo para transformar su empresa? Hablemos.",
+    "info_title": "Información de Contacto",
+    "info_text": "Puede comunicarse con nosotros a través de cualquiera de los siguientes canales. Nuestro equipo estará encantado de atenderle.",
+    "email_label": "Correo electrónico",
+    "support_label": "Soporte técnico",
+    "sales_label": "Ventas",
+    "location_label": "Ubicación",
+    "schedule_label": "Horario",
+    "schedule_value": "Lunes a Viernes, 8:00 AM – 6:00 PM",
+    "form_title": "Envíenos un Mensaje",
     "form": {
       "name": "Nombre completo",
       "email": "Correo electrónico",
@@ -273,8 +282,8 @@
   "privacy": {
     "title": "Política de Privacidad",
     "subtitle": "Conozca cómo protegemos su información personal.",
-    "last_updated": "Última actualización: enero 2025",
-    "intro": "LOPEZSOFT SAS (en adelante \"la Empresa\") se compromete a proteger la privacidad de sus usuarios. Esta Política de Privacidad describe cómo recopilamos, usamos, almacenamos y protegemos su información personal cuando utiliza nuestros servicios y visita nuestro sitio web.",
+    "last_updated": "Última actualización: junio 2026",
+    "intro": "LOPEZSOFT SAS (en adelante \"la Empresa\"), con domicilio en Dosquebradas, Risaralda, Colombia, se compromete a proteger la privacidad de sus usuarios. Esta Política de Privacidad describe cómo recopilamos, usamos, almacenamos y protegemos su información personal cuando utiliza nuestros servicios y visita nuestro sitio web.",
     "collection": {
       "title": "Información que Recopilamos",
       "text": "Recopilamos información que usted nos proporciona directamente al utilizar nuestros servicios, incluyendo:",
@@ -313,21 +322,22 @@
     },
     "contact": {
       "title": "Contacto",
-      "text": "Para ejercer sus derechos o realizar consultas sobre esta política, puede contactarnos a través de info@lopezsoft.com."
+      "text": "Para ejercer sus derechos o realizar consultas sobre esta política, puede contactarnos a través de gerencia@lopezsoft.net.co o llamando al +57 310 843 5431."
     }
   },
   "data_protection": {
     "title": "Protección de Datos Personales",
     "subtitle": "Política de tratamiento de datos personales conforme a la Ley 1581 de 2012.",
-    "last_updated": "Última actualización: enero 2025",
+    "last_updated": "Última actualización: junio 2026",
     "intro": "En cumplimiento de la Ley Estatutaria 1581 de 2012 y su Decreto Reglamentario 1377 de 2013, LOPEZSOFT SAS adopta la presente Política de Tratamiento de Datos Personales para garantizar el derecho constitucional que tienen todas las personas a conocer, actualizar y rectificar las informaciones que se hayan recogido sobre ellas.",
     "responsible": {
       "title": "Responsable del Tratamiento",
       "text": "LOPEZSOFT SAS, sociedad comercial colombiana, es responsable del tratamiento de los datos personales que recopila en el desarrollo de sus actividades.",
       "details": [
         "Razón social: LOPEZSOFT SAS",
-        "Correo electrónico: info@lopezsoft.com",
-        "País: Colombia"
+        "Correo electrónico: gerencia@lopezsoft.net.co",
+        "Teléfono: +57 310 843 5431",
+        "Ubicación: Dosquebradas, Risaralda, Colombia"
       ]
     },
     "principles": {
@@ -372,7 +382,7 @@
     },
     "contact": {
       "title": "Canales de Atención",
-      "text": "Para ejercer los derechos mencionados o realizar consultas y reclamos, puede contactarnos a través de info@lopezsoft.com."
+      "text": "Para ejercer los derechos mencionados o realizar consultas y reclamos, puede contactarnos a través de gerencia@lopezsoft.net.co o llamando al +57 310 843 5431."
     }
   },
   "theme": {
