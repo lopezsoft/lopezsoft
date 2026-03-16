@@ -12,15 +12,19 @@
   "hero": {
     "slogan": "YOUR TECHNOLOGY PARTNER",
     "subtitle": "An ecosystem of B2B enterprise solutions designed to power your organization's digital transformation.",
-    "cta": "Explore our services",
+    "cta": "View our products",
     "cta_contact": "Contact us"
   },
-  "services": {
-    "title": "Our Services",
-    "subtitle": "Comprehensive technology solutions for businesses seeking operational efficiency and regulatory compliance.",
+  "products": {
+    "title": "Our Products",
+    "subtitle": "Enterprise SaaS platforms designed to boost productivity and regulatory compliance for your organization.",
+    "cta": "Learn about our services",
+    "visit_site": "Visit site",
+    "coming_soon": "Coming soon",
     "matias_erp": {
       "name": "MATIAS ERP",
       "description": "Comprehensive enterprise resource planning system: electronic invoicing, payroll, inventory and accounting. All in one platform.",
+      "url": "https://matiaserp.com",
       "features": [
         "Electronic invoicing",
         "Electronic payroll",
@@ -31,6 +35,7 @@
     "matias_api": {
       "name": "MATIAS API",
       "description": "Direct integration with DIAN for electronic invoicing and support documents. Robust and certified API.",
+      "url": "https://matiasapi.com",
       "features": [
         "DIAN integration",
         "Electronic invoicing",
@@ -41,6 +46,7 @@
     "matias_impulso": {
       "name": "MATIAS IMPULSO",
       "description": "Artificial Intelligence agents that automate business processes and enhance decision-making.",
+      "url": "",
       "features": [
         "AI Agents",
         "Automation",
@@ -51,12 +57,47 @@
     "asaie_exodo": {
       "name": "ASAIE ÉXODO",
       "description": "Comprehensive academic software for educational institutions. Enrollment, grades, attendance and report management.",
+      "url": "https://asaie.co",
       "features": [
         "Academic management",
         "Enrollment",
         "Report cards",
         "Institutional reports"
       ]
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive technology solutions for businesses seeking operational efficiency and digital transformation.",
+    "custom_software": {
+      "name": "Custom Software Development",
+      "description": "We create tailor-made applications adapted to your specific business needs, from web systems to mobile applications.",
+      "icon": "code"
+    },
+    "consulting": {
+      "name": "Technology Consulting",
+      "description": "Expert advice to optimize your digital processes, evaluate infrastructure and define your company's technology strategy.",
+      "icon": "lightbulb"
+    },
+    "electronic_invoicing": {
+      "name": "Electronic Invoicing",
+      "description": "Implementation and support of electronic invoicing in compliance with DIAN regulations. Certified integration with your existing systems.",
+      "icon": "document"
+    },
+    "systems_implementation": {
+      "name": "Systems Implementation",
+      "description": "We help implement technology tools that boost your organization's productivity with comprehensive support.",
+      "icon": "server"
+    },
+    "software_maintenance": {
+      "name": "Software Maintenance",
+      "description": "Ongoing support, updates and evolution of your applications to ensure proper functionality and security.",
+      "icon": "wrench"
+    },
+    "training": {
+      "name": "Training & Education",
+      "description": "We train your team in the use of new technologies, tools and best practices to maximize your return on investment.",
+      "icon": "academic"
     }
   },
   "about": {

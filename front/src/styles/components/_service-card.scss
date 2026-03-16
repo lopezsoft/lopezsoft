@@ -1,0 +1,86 @@
+// ==========================================================================
+// Service Card — Estilos del componente
+// ==========================================================================
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.service-card {
+  @include flex-column;
+  align-items: flex-start;
+  gap: $spacing-4;
+  padding: $spacing-6;
+  background-color: var(--surface);
+  border: $border-width-default solid var(--border-default);
+  border-radius: $border-radius-xl;
+  @include theme-transition((background-color, border-color, box-shadow));
+
+  @include breakpoint(md) {
+    padding: $spacing-8;
+  }
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    border-color: var(--accent);
+  }
+
+  // ------------------------------------------------------------------
+  // Icon
+  // ------------------------------------------------------------------
+  &__icon-wrapper {
+    @include flex-center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: $border-radius-lg;
+    background-color: var(--bg-tertiary);
+    color: var(--accent);
+    @include theme-transition((background-color, color));
+  }
+
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  // ------------------------------------------------------------------
+  // Text
+  // ------------------------------------------------------------------
+  &__name {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: var(--text-primary);
+    margin-bottom: 0;
+
+    @include breakpoint(md) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+    line-height: $line-height-relaxed;
+    margin-bottom: 0;
+
+    @include breakpoint(md) {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// ==========================================================================
+// Services grid — 3 columns on large screens
+// ==========================================================================
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-6;
+
+  @include breakpoint(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-8;
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -3,55 +3,49 @@
 // LOPEZSOFT SAS — Página Servicios (ES)
 // ==========================================================================
 import MainLayout from "@layouts/MainLayout.astro";
-import ProductCard from "@components/ProductCard.astro";
-import { useTranslations } from "@i18n/utils";
+import ServiceCard from "@components/ServiceCard.astro";
+import Button from "@components/Button.astro";
+import { useTranslations, getLocalizedPath } from "@i18n/utils";
 import { DEFAULT_LOCALE } from "@i18n/config";
 
 const t = useTranslations(DEFAULT_LOCALE);
 
-const products = [
-  {
-    key: "matias_erp",
-    image: "/images/products/erp-500.png",
-  },
-  {
-    key: "matias_api",
-    image: "/images/products/api-500.png",
-  },
-  {
-    key: "matias_impulso",
-    image: "/images/products/impulso-500.png",
-  },
-  {
-    key: "asaie_exodo",
-    image: "/images/products/asaie-exodo-icon.png",
-  },
+const services = [
+  "custom_software",
+  "consulting",
+  "electronic_invoicing",
+  "systems_implementation",
+  "software_maintenance",
+  "training",
 ];
 ---
 
 <MainLayout title={`${t("services.title")} — LOPEZSOFT SAS`}>
   <section class="section">
     <div class="container">
-      <div class="section__header">
+      <div class="section__header reveal">
         <h1 class="section__title">{t("services.title")}</h1>
         <p class="section__subtitle">{t("services.subtitle")}</p>
       </div>
-      <div class="section__grid">
+      <div class="services-grid">
         {
-          products.map(({ key, image }) => (
-            <ProductCard
+          services.map((key) => (
+            <ServiceCard
               name={t(`services.${key}.name`)}
               description={t(`services.${key}.description`)}
-              features={[
-                t(`services.${key}.features.0`),
-                t(`services.${key}.features.1`),
-                t(`services.${key}.features.2`),
-                t(`services.${key}.features.3`),
-              ]}
-              image={image}
+              icon={t(`services.${key}.icon`)}
             />
           ))
         }
+      </div>
+      <div class="section__cta">
+        <Button
+          variant="warm"
+          size="lg"
+          href={getLocalizedPath("/contact", DEFAULT_LOCALE)}
+        >
+          {t("hero.cta_contact")}
+        </Button>
       </div>
     </div>
   </section>

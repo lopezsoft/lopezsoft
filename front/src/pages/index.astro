@@ -22,28 +22,34 @@ const products = [
 <MainLayout>
 	<Hero lang={DEFAULT_LOCALE} />
 
-	<!-- Sección Servicios Preview -->
-	<section class="section section--alt">
+	<!-- Sección Productos -->
+	<section id="products" class="section section--alt">
 		<div class="container">
 			<div class="section__header reveal">
-				<h2 class="section__title">{t("services.title")}</h2>
-				<p class="section__subtitle">{t("services.subtitle")}</p>
+				<h2 class="section__title">{t("products.title")}</h2>
+				<p class="section__subtitle">{t("products.subtitle")}</p>
 			</div>
 			<div class="section__grid">
 				{
-					products.map(({ key, image }) => (
-						<ProductCard
-							name={t(`services.${key}.name`)}
-							description={t(`services.${key}.description`)}
-							features={[
-								t(`services.${key}.features.0`),
-								t(`services.${key}.features.1`),
-								t(`services.${key}.features.2`),
-								t(`services.${key}.features.3`),
-							]}
-							image={image}
-						/>
-					))
+					products.map(({ key, image }) => {
+						const productUrl = t(`products.${key}.url`);
+						return (
+							<ProductCard
+								name={t(`products.${key}.name`)}
+								description={t(`products.${key}.description`)}
+								features={[
+									t(`products.${key}.features.0`),
+									t(`products.${key}.features.1`),
+									t(`products.${key}.features.2`),
+									t(`products.${key}.features.3`),
+								]}
+								image={image}
+								url={productUrl || undefined}
+								urlLabel={t("products.visit_site")}
+								comingSoonLabel={!productUrl ? t("products.coming_soon") : undefined}
+							/>
+						);
+					})
 				}
 			</div>
 			<div class="section__cta">
@@ -52,7 +58,7 @@ const products = [
 					size="lg"
 					href={getLocalizedPath("/services", DEFAULT_LOCALE)}
 				>
-					{t("hero.cta")}
+					{t("products.cta")}
 				</Button>
 			</div>
 		</div>

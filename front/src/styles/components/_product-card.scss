@@ -93,4 +93,45 @@
     width: 1rem;
     height: 1rem;
   }
+
+  // ------------------------------------------------------------------
+  // External link
+  // ------------------------------------------------------------------
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    margin-top: auto;
+    padding-top: $spacing-4;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--accent);
+    text-decoration: none;
+    @include theme-transition((color));
+
+    &:hover,
+    &:focus-visible {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Coming soon badge
+  // ------------------------------------------------------------------
+  &__coming-soon {
+    display: inline-flex;
+    align-items: center;
+    margin-top: auto;
+    padding-top: $spacing-4;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
 }

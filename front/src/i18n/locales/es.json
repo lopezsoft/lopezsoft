@@ -12,15 +12,19 @@
   "hero": {
     "slogan": "SU ALIADO TECNOLÓGICO",
     "subtitle": "Ecosistema de soluciones empresariales B2B diseñadas para potenciar la transformación digital de su organización.",
-    "cta": "Conozca nuestros servicios",
+    "cta": "Ver nuestros productos",
     "cta_contact": "Contáctenos"
   },
-  "services": {
-    "title": "Nuestros Servicios",
-    "subtitle": "Soluciones tecnológicas integrales para empresas que buscan eficiencia operativa y cumplimiento normativo.",
+  "products": {
+    "title": "Nuestros Productos",
+    "subtitle": "Plataformas SaaS empresariales diseñadas para potenciar la productividad y el cumplimiento normativo de su organización.",
+    "cta": "Conocer nuestros servicios",
+    "visit_site": "Visitar sitio",
+    "coming_soon": "Próximamente",
     "matias_erp": {
       "name": "MATIAS ERP",
       "description": "Sistema integral de planificación empresarial: facturación electrónica, nómina, inventarios y contabilidad. Todo en una sola plataforma.",
+      "url": "https://matiaserp.com",
       "features": [
         "Facturación electrónica",
         "Nómina electrónica",
@@ -31,6 +35,7 @@
     "matias_api": {
       "name": "MATIAS API",
       "description": "Integración directa con la DIAN para facturación electrónica y documentos soporte. API robusta y certificada.",
+      "url": "https://matiasapi.com",
       "features": [
         "Integración DIAN",
         "Facturación electrónica",
@@ -41,6 +46,7 @@
     "matias_impulso": {
       "name": "MATIAS IMPULSO",
       "description": "Agentes de Inteligencia Artificial que automatizan procesos empresariales y potencian la toma de decisiones.",
+      "url": "",
       "features": [
         "Agentes de IA",
         "Automatización",
@@ -51,12 +57,47 @@
     "asaie_exodo": {
       "name": "ASAIE ÉXODO",
       "description": "Software académico integral para instituciones educativas. Gestión de matrículas, notas, asistencia y reportes.",
+      "url": "https://asaie.co",
       "features": [
         "Gestión académica",
         "Matrículas",
         "Boletines de notas",
         "Reportes institucionales"
       ]
+    }
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Soluciones tecnológicas integrales para empresas que buscan eficiencia operativa y transformación digital.",
+    "custom_software": {
+      "name": "Desarrollo de Software Personalizado",
+      "description": "Creamos aplicaciones a medida adaptadas a las necesidades específicas de su negocio, desde sistemas web hasta aplicaciones móviles.",
+      "icon": "code"
+    },
+    "consulting": {
+      "name": "Consultoría Tecnológica",
+      "description": "Asesoría experta para optimizar sus procesos digitales, evaluar infraestructura y definir la estrategia tecnológica de su empresa.",
+      "icon": "lightbulb"
+    },
+    "electronic_invoicing": {
+      "name": "Facturación Electrónica",
+      "description": "Implementación y soporte de facturación electrónica conforme a la normativa DIAN. Integración certificada con sus sistemas existentes.",
+      "icon": "document"
+    },
+    "systems_implementation": {
+      "name": "Implementación de Sistemas",
+      "description": "Ayudamos a implementar herramientas tecnológicas que potencien la productividad de su organización con acompañamiento integral.",
+      "icon": "server"
+    },
+    "software_maintenance": {
+      "name": "Mantenimiento de Software",
+      "description": "Soporte continuo, actualizaciones y evolución de sus aplicaciones para garantizar su correcto funcionamiento y seguridad.",
+      "icon": "wrench"
+    },
+    "training": {
+      "name": "Formación y Capacitación",
+      "description": "Capacitamos a su equipo en el uso de nuevas tecnologías, herramientas y mejores prácticas para maximizar el retorno de su inversión.",
+      "icon": "academic"
     }
   },
   "about": {
