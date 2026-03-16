@@ -16,6 +16,8 @@
 @use 'components/product-card';
 @use 'components/language-switcher';
 @use 'components/theme-toggle';
+@use 'components/section';
+@use 'components/contact-form';
 
 // Tailwind CSS (solo utilidades de layout/spacing)
 @import "tailwindcss";

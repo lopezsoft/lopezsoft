@@ -1,0 +1,96 @@
+// ==========================================================================
+// Contact Form — Estilos del componente
+// ==========================================================================
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.contact-form {
+  @include flex-column;
+  gap: $spacing-5;
+  max-width: 40rem;
+  width: 100%;
+
+  // ------------------------------------------------------------------
+  // Grupo (label + input + error)
+  // ------------------------------------------------------------------
+  &__group {
+    @include flex-column;
+    gap: $spacing-2;
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--text-primary);
+  }
+
+  // ------------------------------------------------------------------
+  // Inputs
+  // ------------------------------------------------------------------
+  &__input {
+    width: 100%;
+    padding: $spacing-3 $spacing-4;
+    font-size: $font-size-base;
+    color: var(--text-primary);
+    background-color: var(--surface);
+    border: $border-width-default solid var(--border-default);
+    border-radius: $border-radius-lg;
+    @include theme-transition((background-color, border-color, color));
+    @include focus-visible;
+
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    &:focus {
+      border-color: var(--accent);
+    }
+
+    &--textarea {
+      resize: vertical;
+      min-height: 8rem;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Errores de validación
+  // ------------------------------------------------------------------
+  &__error {
+    display: none;
+    font-size: $font-size-xs;
+    color: var(--error);
+
+    &.is-visible {
+      display: block;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Submit
+  // ------------------------------------------------------------------
+  &__submit {
+    align-self: flex-start;
+  }
+
+  // ------------------------------------------------------------------
+  // Feedback (success / error)
+  // ------------------------------------------------------------------
+  &__feedback {
+    padding: $spacing-3 $spacing-4;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    border-radius: $border-radius-lg;
+
+    &--success {
+      color: $color-success;
+      background-color: rgba($color-success, 0.1);
+      border: $border-width-default solid rgba($color-success, 0.3);
+    }
+
+    &--error {
+      color: $color-error;
+      background-color: rgba($color-error, 0.1);
+      border: $border-width-default solid rgba($color-error, 0.3);
+    }
+  }
+}

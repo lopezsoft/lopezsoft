@@ -1,0 +1,105 @@
+// ==========================================================================
+// Page Section — Estilos reutilizables para secciones de contenido
+// ==========================================================================
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.section {
+  padding-block: $spacing-12;
+
+  @include breakpoint(md) {
+    padding-block: $spacing-16;
+  }
+
+  @include breakpoint(lg) {
+    padding-block: $spacing-20;
+  }
+
+  &--alt {
+    background-color: var(--bg-secondary);
+    @include theme-transition((background-color));
+  }
+
+  // ------------------------------------------------------------------
+  // Header de sección (título + subtítulo)
+  // ------------------------------------------------------------------
+  &__header {
+    text-align: center;
+    max-width: 48rem;
+    margin-inline: auto;
+    margin-bottom: $spacing-10;
+
+    @include breakpoint(md) {
+      margin-bottom: $spacing-12;
+    }
+  }
+
+  &__title {
+    margin-bottom: $spacing-4;
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+
+    @include breakpoint(md) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Grid de contenido
+  // ------------------------------------------------------------------
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-6;
+
+    @include breakpoint(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-8;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Bloque de contenido (Misión, Visión, etc.)
+  // ------------------------------------------------------------------
+  &__block {
+    @include flex-column;
+    gap: $spacing-3;
+    padding: $spacing-6;
+    background-color: var(--surface);
+    border: $border-width-default solid var(--border-default);
+    border-radius: $border-radius-xl;
+    @include theme-transition((background-color, border-color));
+  }
+
+  &__block-icon {
+    width: 3rem;
+    height: 3rem;
+    color: var(--accent);
+  }
+
+  &__block-title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: var(--text-primary);
+    margin-bottom: 0;
+  }
+
+  &__block-text {
+    font-size: $font-size-base;
+    color: var(--text-secondary);
+    line-height: $line-height-relaxed;
+    margin-bottom: 0;
+  }
+
+  // ------------------------------------------------------------------
+  // CTA inline
+  // ------------------------------------------------------------------
+  &__cta {
+    @include flex-center;
+    margin-top: $spacing-8;
+  }
+}

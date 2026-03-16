@@ -1,8 +1,99 @@
 ---
+// ==========================================================================
+// LOPEZSOFT SAS — Página Home (EN)
+// ==========================================================================
 import MainLayout from "@layouts/MainLayout.astro";
 import Hero from "@components/Hero.astro";
+import ProductCard from "@components/ProductCard.astro";
+import Button from "@components/Button.astro";
+import { useTranslations, getLocalizedPath } from "@i18n/utils";
+
+const t = useTranslations("en");
+
+const products = [
+  { key: "matias_erp", image: "/images/products/erp-500.png" },
+  { key: "matias_api", image: "/images/products/api-500.png" },
+  { key: "matias_impulso", image: "/images/products/impulso-500.png" },
+  { key: "asaie_exodo", image: "/images/products/asaie-exodo-icon.png" },
+];
 ---
 
 <MainLayout>
   <Hero lang="en" />
+
+  <!-- Services Preview -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">{t("services.title")}</h2>
+        <p class="section__subtitle">{t("services.subtitle")}</p>
+      </div>
+      <div class="section__grid">
+        {products.map(({ key, image }) => (
+          <ProductCard
+            name={t(`services.${key}.name`)}
+            description={t(`services.${key}.description`)}
+            features={[
+              t(`services.${key}.features.0`),
+              t(`services.${key}.features.1`),
+              t(`services.${key}.features.2`),
+              t(`services.${key}.features.3`),
+            ]}
+            image={image}
+          />
+        ))}
+      </div>
+      <div class="section__cta">
+        <Button variant="primary" size="lg" href={getLocalizedPath("/servicios", "en")}>
+          {t("hero.cta")}
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">{t("about.title")}</h2>
+        <p class="section__subtitle">{t("about.subtitle")}</p>
+      </div>
+      <div class="section__grid">
+        <div class="section__block">
+          <svg class="section__block-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+          </svg>
+          <h3 class="section__block-title">{t("about.mission.title")}</h3>
+          <p class="section__block-text">{t("about.mission.text")}</p>
+        </div>
+        <div class="section__block">
+          <svg class="section__block-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+          <h3 class="section__block-title">{t("about.vision.title")}</h3>
+          <p class="section__block-text">{t("about.vision.text")}</p>
+        </div>
+      </div>
+      <div class="section__cta">
+        <Button variant="secondary" size="lg" href={getLocalizedPath("/nosotros", "en")}>
+          {t("nav.about")}
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">{t("contact.title")}</h2>
+        <p class="section__subtitle">{t("contact.subtitle")}</p>
+      </div>
+      <div class="section__cta">
+        <Button variant="warm" size="lg" href={getLocalizedPath("/contacto", "en")}>
+          {t("hero.cta_contact")}
+        </Button>
+      </div>
+    </div>
+  </section>
 </MainLayout>

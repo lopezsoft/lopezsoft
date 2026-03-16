@@ -3,14 +3,53 @@
 // LOPEZSOFT SAS — Página Services (EN)
 // ==========================================================================
 import MainLayout from "@layouts/MainLayout.astro";
+import ProductCard from "@components/ProductCard.astro";
 import { useTranslations } from "@i18n/utils";
 
 const t = useTranslations("en");
+
+const products = [
+  {
+    key: "matias_erp",
+    image: "/images/products/erp-500.png",
+  },
+  {
+    key: "matias_api",
+    image: "/images/products/api-500.png",
+  },
+  {
+    key: "matias_impulso",
+    image: "/images/products/impulso-500.png",
+  },
+  {
+    key: "asaie_exodo",
+    image: "/images/products/asaie-exodo-icon.png",
+  },
+];
 ---
 
 <MainLayout title={`${t("services.title")} — LOPEZSOFT SAS`}>
-  <section class="container" style="padding-block: 4rem;">
-    <h1>{t("services.title")}</h1>
-    <p>{t("services.subtitle")}</p>
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <h1 class="section__title">{t("services.title")}</h1>
+        <p class="section__subtitle">{t("services.subtitle")}</p>
+      </div>
+      <div class="section__grid">
+        {products.map(({ key, image }) => (
+          <ProductCard
+            name={t(`services.${key}.name`)}
+            description={t(`services.${key}.description`)}
+            features={[
+              t(`services.${key}.features.0`),
+              t(`services.${key}.features.1`),
+              t(`services.${key}.features.2`),
+              t(`services.${key}.features.3`),
+            ]}
+            image={image}
+          />
+        ))}
+      </div>
+    </div>
   </section>
 </MainLayout>

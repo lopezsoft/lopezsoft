@@ -1,0 +1,160 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Componente Formulario de Contacto
+// ==========================================================================
+import type { Locale } from "@i18n/config";
+import { useTranslations } from "@i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<form class="contact-form" id="contact-form" novalidate>
+  <div class="contact-form__group">
+    <label class="contact-form__label" for="cf-name">
+      {t("contact.form.name")}
+    </label>
+    <input
+      class="contact-form__input"
+      type="text"
+      id="cf-name"
+      name="name"
+      required
+      minlength="2"
+      maxlength="100"
+      autocomplete="name"
+    />
+    <span class="contact-form__error" data-error="name"></span>
+  </div>
+
+  <div class="contact-form__group">
+    <label class="contact-form__label" for="cf-email">
+      {t("contact.form.email")}
+    </label>
+    <input
+      class="contact-form__input"
+      type="email"
+      id="cf-email"
+      name="email"
+      required
+      autocomplete="email"
+    />
+    <span class="contact-form__error" data-error="email"></span>
+  </div>
+
+  <div class="contact-form__group">
+    <label class="contact-form__label" for="cf-company">
+      {t("contact.form.company")}
+    </label>
+    <input
+      class="contact-form__input"
+      type="text"
+      id="cf-company"
+      name="company"
+      maxlength="100"
+      autocomplete="organization"
+    />
+  </div>
+
+  <div class="contact-form__group">
+    <label class="contact-form__label" for="cf-message">
+      {t("contact.form.message")}
+    </label>
+    <textarea
+      class="contact-form__input contact-form__input--textarea"
+      id="cf-message"
+      name="message"
+      required
+      minlength="10"
+      maxlength="2000"
+      rows="5"
+    ></textarea>
+    <span class="contact-form__error" data-error="message"></span>
+  </div>
+
+  <button class="btn btn--primary btn--lg contact-form__submit" type="submit">
+    {t("contact.form.submit")}
+  </button>
+
+  <div class="contact-form__feedback contact-form__feedback--success" id="cf-success" hidden>
+    {t("contact.form.success")}
+  </div>
+  <div class="contact-form__feedback contact-form__feedback--error" id="cf-error" hidden>
+    {t("contact.form.error")}
+  </div>
+</form>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    if (!form) return;
+
+    const showError = (field: string, message: string) => {
+      const el = form.querySelector(`[data-error="${field}"]`);
+      if (el) {
+        el.textContent = message;
+        el.classList.add("is-visible");
+      }
+    };
+
+    const clearErrors = () => {
+      form.querySelectorAll(".contact-form__error").forEach((el) => {
+        el.textContent = "";
+        el.classList.remove("is-visible");
+      });
+    };
+
+    const validateField = (input: HTMLInputElement | HTMLTextAreaElement): boolean => {
+      const { name, value, type } = input;
+      const trimmed = value.trim();
+
+      if (input.required && !trimmed) {
+        showError(name, input.type === "email" ? "Email is required" : "This field is required");
+        return false;
+      }
+
+      if (type === "email" && trimmed) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(trimmed)) {
+          showError(name, "Please enter a valid email");
+          return false;
+        }
+      }
+
+      const min = input.getAttribute("minlength");
+      if (min && trimmed.length < parseInt(min, 10)) {
+        showError(name, `Minimum ${min} characters`);
+        return false;
+      }
+
+      return true;
+    };
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      clearErrors();
+      document.getElementById("cf-success")?.setAttribute("hidden", "");
+      document.getElementById("cf-error")?.setAttribute("hidden", "");
+
+      const inputs = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+        "input, textarea"
+      );
+
+      let isValid = true;
+      inputs.forEach((input) => {
+        if (!validateField(input)) isValid = false;
+      });
+
+      if (!isValid) return;
+
+      // Show success (backend integration in Sprint 5)
+      document.getElementById("cf-success")?.removeAttribute("hidden");
+      form.reset();
+    });
+  });
+</script>
