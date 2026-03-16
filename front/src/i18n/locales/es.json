@@ -194,6 +194,36 @@
     "vision": {
       "title": "Visión",
       "text": "Ser el aliado tecnológico preferido de las empresas colombianas, liderando la transformación digital con innovación, calidad y compromiso."
+    },
+    "values_title": "Nuestros Valores",
+    "values_subtitle": "Los principios que guían cada línea de código y cada decisión.",
+    "values": {
+      "quality": {
+        "name": "Calidad",
+        "description": "Aplicamos principios SOLID, Clean Code y buenas prácticas en cada proyecto para entregar software robusto y mantenible.",
+        "icon": "shield"
+      },
+      "innovation": {
+        "name": "Innovación",
+        "description": "Nos mantenemos a la vanguardia tecnológica, adoptando herramientas y metodologías modernas como IA, microservicios y cloud native.",
+        "icon": "sparkles"
+      },
+      "commitment": {
+        "name": "Compromiso",
+        "description": "Más de 10 años de experiencia nos respaldan. Cada proyecto recibe dedicación total hasta alcanzar los resultados esperados.",
+        "icon": "heart"
+      },
+      "agility": {
+        "name": "Agilidad",
+        "description": "Trabajamos con metodologías ágiles como Scrum, entregas iterativas y comunicación constante para maximizar el valor entregado.",
+        "icon": "bolt"
+      }
+    },
+    "stats": {
+      "experience": { "value": "+10", "label": "Años de experiencia" },
+      "projects": { "value": "+50", "label": "Proyectos entregados" },
+      "technologies": { "value": "+30", "label": "Tecnologías dominadas" },
+      "clients": { "value": "+20", "label": "Clientes satisfechos" }
     }
   },
   "contact": {

@@ -1,0 +1,48 @@
+// ==========================================================================
+// Stats Bar — Estilos del componente de estadísticas
+// ==========================================================================
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-6;
+
+  @include breakpoint(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &__item {
+    text-align: center;
+    padding: $spacing-6;
+    background-color: var(--surface);
+    border: $border-width-default solid var(--border-default);
+    border-radius: $border-radius-xl;
+    @include theme-transition((background-color, border-color, box-shadow));
+
+    &:hover {
+      box-shadow: $shadow-lg;
+      border-color: var(--accent);
+    }
+  }
+
+  &__value {
+    display: block;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-extrabold;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: $spacing-2;
+
+    @include breakpoint(md) {
+      font-size: $font-size-4xl;
+    }
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+    font-weight: $font-weight-medium;
+  }
+}

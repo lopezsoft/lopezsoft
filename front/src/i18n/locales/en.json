@@ -194,6 +194,36 @@
     "vision": {
       "title": "Vision",
       "text": "To be the preferred technology partner for Colombian businesses, leading digital transformation with innovation, quality and commitment."
+    },
+    "values_title": "Our Values",
+    "values_subtitle": "The principles that guide every line of code and every decision.",
+    "values": {
+      "quality": {
+        "name": "Quality",
+        "description": "We apply SOLID principles, Clean Code and best practices in every project to deliver robust and maintainable software.",
+        "icon": "shield"
+      },
+      "innovation": {
+        "name": "Innovation",
+        "description": "We stay at the forefront of technology, adopting modern tools and methodologies like AI, microservices and cloud native.",
+        "icon": "sparkles"
+      },
+      "commitment": {
+        "name": "Commitment",
+        "description": "Over 10 years of experience back us up. Every project receives full dedication until the expected results are achieved.",
+        "icon": "heart"
+      },
+      "agility": {
+        "name": "Agility",
+        "description": "We work with agile methodologies like Scrum, iterative deliveries and constant communication to maximize delivered value.",
+        "icon": "bolt"
+      }
+    },
+    "stats": {
+      "experience": { "value": "+10", "label": "Years of experience" },
+      "projects": { "value": "+50", "label": "Projects delivered" },
+      "technologies": { "value": "+30", "label": "Technologies mastered" },
+      "clients": { "value": "+20", "label": "Satisfied clients" }
     }
   },
   "contact": {
