@@ -89,8 +89,11 @@
     "slogan": "Su Aliado Tecnológico",
     "description": "Ecosistema tecnológico enfocado en soluciones B2B para empresas colombianas. Facturación electrónica, ERP, integración DIAN, agentes de IA y software académico.",
     "contact_title": "Contacto",
-    "email": "info@lopezsoft.com",
-    "phone": "+57 (601) 555-0100",
+    "email": "gerencia@lopezsoft.net.co",
+    "phone_support": "+57 310 843 5431",
+    "phone_support_label": "Soporte",
+    "phone_sales": "+57 304 433 8104",
+    "phone_sales_label": "Ventas",
     "address": "Colombia",
     "links": {
       "privacy": "Política de privacidad",
