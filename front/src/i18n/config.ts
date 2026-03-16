@@ -18,9 +18,9 @@ export const LOCALE_CODES = Object.keys(LOCALES) as Locale[];
  * Permite traducir las URLs sin duplicar archivos .astro
  */
 export const ROUTE_SLUGS: Record<string, Record<Locale, string>> = {
-  services: { es: 'servicios', en: 'services' },
-  contact: { es: 'contacto', en: 'contact' },
-  about: { es: 'nosotros', en: 'about' },
-  privacy: { es: 'privacidad', en: 'privacy' },
-  'data-protection': { es: 'proteccion-datos', en: 'data-protection' },
+  services: { es: 'services', en: 'services' },
+  contact: { es: 'contact', en: 'contact' },
+  about: { es: 'about', en: 'about' },
+  privacy: { es: 'privacy', en: 'privacy' },
+  'data-protection': { es: 'data-protection', en: 'data-protection' },
 };
