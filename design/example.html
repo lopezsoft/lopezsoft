@@ -1,0 +1,354 @@
+import React, { useState } from 'react';
+import { Globe, ChevronRight, Terminal, Database, Bot, GraduationCap, Mail,
+Phone, MapPin, Menu, X } from 'lucide-react';
+
+// 1. SIMULACIÓN DE DICCIONARIOS JSON (i18n)
+// En Astro, estos serían tus archivos es.json y en.json independientes.
+const dictionaries = {
+es: {
+nav: {
+home: "Inicio",
+services: "Soluciones B2B",
+about: "Nosotros",
+contact: "Contacto",
+lang: "EN"
+},
+hero: {
+title: "El ecosistema tecnológico que respalda su desarrollo",
+subtitle:
+"Minimalismo tecnológico y solidez institucional para soluciones B2B de alto nivel.",
+cta: "Explorar Soluciones",
+secondaryCta: "Hablemos"
+},
+products: {
+sectionTitle: "Nuestras Soluciones",
+sectionDesc:
+"Actuamos como la firma holding que avala la calidad técnica de cada aplicación desarrollada.",
+items: {
+erp: {
+title: "MATIAS ERP",
+desc:
+"Facturación electrónica, nómina, documento soporte, contabilidad e inventario 100% en la nube."
+},
+api: {
+title: "MATIAS API",
+desc:
+"Integración nativa con la DIAN para emisión ilimitada de documentos electrónicos desde cualquier software."
+},
+impulso: {
+title: "MATIAS IMPULSO",
+desc:
+"Plataforma de creación de agentes de Inteligencia Artificial multicanal con tecnología RAG."
+},
+asaie: {
+title: "ASAIE EXODO",
+desc:
+"Software integral para la gestión académica, administrativa e institucional de colegios."
+}
+}
+},
+contact: {
+title: "SU ALIADO TECNOLÓGICO",
+desc:
+"¿Listo para llevar su infraestructura tecnológica al siguiente nivel? Contáctenos hoy.",
+address: "Calle 66 Nro. 18-23, Dosquebradas, Risaralda",
+rights: "Todos los derechos reservados."
+}
+},
+en: {
+nav: {
+home: "Home",
+services: "B2B Solutions",
+about: "About Us",
+contact: "Contact",
+lang: "ES"
+},
+hero: {
+title: "The technological ecosystem backing your development",
+subtitle:
+"Technological minimalism and institutional solidity for high-level B2B solutions.",
+cta: "Explore Solutions",
+secondaryCta: "Let's Talk"
+},
+products: {
+sectionTitle: "Our Solutions",
+sectionDesc:
+"We act as the holding firm that guarantees the technical quality of every developed application.",
+items: {
+erp: {
+title: "MATIAS ERP",
+desc:
+"Electronic invoicing, payroll, accounting, and inventory 100% in the cloud."
+},
+api: {
+title: "MATIAS API",
+desc:
+"Native DIAN integration for unlimited emission of electronic documents from any software."
+},
+impulso: {
+title: "MATIAS IMPULSO",
+desc:
+"Multichannel Artificial Intelligence agent creation platform with RAG technology."
+},
+asaie: {
+title: "ASAIE EXODO",
+desc:
+"Comprehensive software for academic, administrative, and institutional school management."
+}
+}
+},
+contact: {
+title: "YOUR TECHNOLOGICAL ALLY",
+desc:
+"Ready to take your technological infrastructure to the next level? Contact us today.",
+address: "66th Street #18-23, Dosquebradas, Risaralda",
+rights: "All rights reserved."
+}
+}
+};
+
+export default function App() {
+const [lang, setLang] = useState('es');
+const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+// Utilidad de traducción (Clean Code)
+// Permite acceder a claves anidadas, ej: t('hero.title')
+const t = (path) => {
+return path.split('.').reduce((obj, key) => (obj && obj[key] !== undefined ?
+obj[key] : path), dictionaries[lang]);
+};
+
+const toggleLanguage = () => {
+setLang(lang === 'es' ? 'en' : 'es');
+};
+
+// Paleta de colores Corporativa:
+// Fondo/Oscuro: #0F172A (Tailwind slate-900)
+// Azul Rey: #2563EB (Tailwind blue-600)
+// Acento Cálido: #F59E0B (Tailwind amber-500)
+
+return (
+<div
+  className="min-h-screen bg-[#0F172A] text-slate-200 font-sans selection:bg-[#2563EB] selection:text-white flex flex-col">
+
+  {/* NAVBAR */}
+  <header
+    className="sticky top-0 z-50 bg-[#0F172A]/90 backdrop-blur-md border-b border-slate-800">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-between items-center h-20">
+        {/* Logo / Monograma LS */}
+        <div className="flex items-center gap-3 cursor-pointer">
+          <div
+            className="w-10 h-10 rounded-full bg-[#2563EB] flex items-center justify-center font-bold text-xl tracking-tighter text-white shadow-lg shadow-blue-900/20">
+            LS
+          </div>
+          <div className="hidden sm:block">
+            <span
+              className="font-black text-xl tracking-tight text-white">LOPEZ</span>
+            <span
+              className="font-bold text-xl tracking-tight text-[#2563EB]">SOFT</span>
+            <span
+              className="text-[10px] font-semibold text-slate-400 ml-1">S.A.S</span>
+          </div>
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8">
+          <a href="#"
+            className="text-sm font-medium hover:text-white transition-colors">{t('nav.home')}</a>
+          <a href="#soluciones"
+            className="text-sm font-medium hover:text-white transition-colors">{t('nav.services')}</a>
+          <a href="#contacto"
+            className="text-sm font-medium hover:text-white transition-colors">{t('nav.contact')}</a>
+
+          <div className="h-5 w-px bg-slate-700 mx-2"></div>
+
+          {/* Botón de i18n */}
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 text-sm font-semibold bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-full transition-colors border border-slate-700">
+            <globe className="w-4 h-4 text-[#F59E0B]" />
+            {t('nav.lang')}
+          </button>
+        </nav>
+
+        {/* Mobile menu button */}
+        <button className="md:hidden text-slate-300" onClick={() =>
+          setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? <x className="w-6 h-6" /> : <menu
+            className="w-6 h-6" />}
+        </button>
+      </div>
+    </div>
+
+    {/* Mobile Navigation */}
+    {isMenuOpen && (
+    <div
+      className="md:hidden bg-[#0F172A] border-b border-slate-800 px-4 py-4 space-y-4">
+      <a href="#"
+        className="block text-sm font-medium hover:text-white">{t('nav.home')}</a>
+      <a href="#soluciones"
+        className="block text-sm font-medium hover:text-white">{t('nav.services')}</a>
+      <a href="#contacto"
+        className="block text-sm font-medium hover:text-white">{t('nav.contact')}</a>
+      <button onClick={toggleLanguage}
+        className="flex items-center gap-2 text-sm font-semibold text-[#F59E0B]">
+        <globe className="w-4 h-4" /> Cambiar a {t('nav.lang')}
+      </button>
+    </div>
+    )}
+  </header>
+
+  {/* HERO SECTION */}
+  <main className="flex-grow">
+    <section
+      className="relative overflow-hidden py-20 sm:py-32 lg:pb-32 xl:pb-36">
+      {/* Trama hexagonal sutil de fondo (simulada con CSS) */}
+      <div
+        className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20"></div>
+
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <h1
+          className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
+          {t('hero.title')}
+        </h1>
+        <p className="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto">
+          {t('hero.subtitle')}
+        </p>
+        <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#soluciones"
+            className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#2563EB] px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/30">
+            {t('hero.cta')}
+            <chevronright className="w-4 h-4" />
+          </a>
+          <a href="#contacto"
+            className="inline-flex justify-center items-center gap-2 rounded-lg bg-slate-800 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-700 transition-colors border border-slate-700">
+            {t('hero.secondaryCta')}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* PRODUCTS / SERVICES SECTION */}
+    <section id="soluciones"
+      className="py-20 bg-slate-900/50 border-y border-slate-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2
+            className="text-3xl font-bold text-white mb-4">{t('products.sectionTitle')}</h2>
+          <p
+            className="text-slate-400 max-w-2xl mx-auto">{t('products.sectionDesc')}</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Product 1: ERP */}
+          <div
+            className="bg-[#0F172A] border border-slate-800 p-6 rounded-2xl hover:border-[#2563EB] transition-colors group">
+            <div
+              className="w-12 h-12 bg-blue-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563EB] transition-colors">
+              <database
+                className="w-6 h-6 text-[#2563EB] group-hover:text-white" />
+            </div>
+            <h3
+              className="text-xl font-bold text-white mb-3">{t('products.items.erp.title')}</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              {t('products.items.erp.desc')}
+            </p>
+          </div>
+
+          {/* Product 2: API */}
+          <div
+            className="bg-[#0F172A] border border-slate-800 p-6 rounded-2xl hover:border-[#F59E0B] transition-colors group">
+            <div
+              className="w-12 h-12 bg-amber-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#F59E0B] transition-colors">
+              <terminal
+                className="w-6 h-6 text-[#F59E0B] group-hover:text-white" />
+            </div>
+            <h3
+              className="text-xl font-bold text-white mb-3">{t('products.items.api.title')}</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              {t('products.items.api.desc')}
+            </p>
+          </div>
+
+          {/* Product 3: IMPULSO */}
+          <div
+            className="bg-[#0F172A] border border-slate-800 p-6 rounded-2xl hover:border-[#2563EB] transition-colors group">
+            <div
+              className="w-12 h-12 bg-blue-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563EB] transition-colors">
+              <bot className="w-6 h-6 text-[#2563EB] group-hover:text-white" />
+            </div>
+            <h3
+              className="text-xl font-bold text-white mb-3">{t('products.items.impulso.title')}</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              {t('products.items.impulso.desc')}
+            </p>
+          </div>
+
+          {/* Product 4: ASAIE */}
+          <div
+            className="bg-[#0F172A] border border-slate-800 p-6 rounded-2xl hover:border-slate-500 transition-colors group">
+            <div
+              className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center mb-6 group-hover:bg-slate-600 transition-colors">
+              <graduationcap
+                className="w-6 h-6 text-slate-300 group-hover:text-white" />
+            </div>
+            <h3
+              className="text-xl font-bold text-white mb-3">{t('products.items.asaie.title')}</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              {t('products.items.asaie.desc')}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  {/* FOOTER & CONTACT */}
+  <footer id="contacto"
+    className="bg-[#0F172A] pt-16 pb-8 border-t border-slate-800">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+        <div>
+          <div className="flex items-center gap-2 mb-6">
+            <div
+              className="w-8 h-8 rounded-full bg-[#2563EB] flex items-center justify-center font-bold text-sm text-white">LS</div>
+            <span className="font-black text-lg text-white">LOPEZSOFT</span>
+          </div>
+          <p className="text-slate-400 max-w-sm mb-6">
+            {t('contact.desc')}
+          </p>
+          <div
+            className="inline-block border border-slate-700 px-4 py-2 rounded-md text-xs font-bold tracking-widest text-[#F59E0B]">
+            {t('contact.title')}
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div className="flex items-start gap-4">
+            <mappin className="w-5 h-5 text-[#2563EB] mt-1 shrink-0" />
+            <span className="text-slate-300">{t('contact.address')}</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <mail className="w-5 h-5 text-[#2563EB] shrink-0" />
+            <a href="mailto:gerencia@lopezsoft.net.co"
+              className="text-slate-300 hover:text-white">gerencia@lopezsoft.net.co</a>
+          </div>
+          <div className="flex items-center gap-4">
+            <phone className="w-5 h-5 text-[#2563EB] shrink-0" />
+            <a href="tel:+573108435431"
+              className="text-slate-300 hover:text-white">+57 310 843 5431</a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
+        &copy; {new Date().getFullYear()} LOPEZSOFT S.A.S. {t('contact.rights')}
+      </div>
+    </div>
+  </footer>
+</div>
+);
+}

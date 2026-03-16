@@ -19,6 +19,8 @@ export const LOCALE_CODES = Object.keys(LOCALES) as Locale[];
  */
 export const ROUTE_SLUGS: Record<string, Record<Locale, string>> = {
   services: { es: 'servicios', en: 'services' },
-  contact:  { es: 'contacto',  en: 'contact' },
-  about:    { es: 'nosotros',  en: 'about' },
+  contact: { es: 'contacto', en: 'contact' },
+  about: { es: 'nosotros', en: 'about' },
+  privacy: { es: 'privacidad', en: 'privacy' },
+  'data-protection': { es: 'proteccion-datos', en: 'data-protection' },
 };

@@ -87,9 +87,122 @@
   "footer": {
     "rights": "Todos los derechos reservados.",
     "slogan": "Su Aliado Tecnológico",
+    "description": "Ecosistema tecnológico enfocado en soluciones B2B para empresas colombianas. Facturación electrónica, ERP, integración DIAN, agentes de IA y software académico.",
+    "contact_title": "Contacto",
+    "email": "info@lopezsoft.com",
+    "phone": "+57 (601) 555-0100",
+    "address": "Colombia",
     "links": {
       "privacy": "Política de privacidad",
-      "terms": "Términos y condiciones"
+      "terms": "Protección de datos"
+    },
+    "social": {
+      "title": "Síguenos"
+    }
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "subtitle": "Conozca cómo protegemos su información personal.",
+    "last_updated": "Última actualización: enero 2025",
+    "intro": "LOPEZSOFT SAS (en adelante \"la Empresa\") se compromete a proteger la privacidad de sus usuarios. Esta Política de Privacidad describe cómo recopilamos, usamos, almacenamos y protegemos su información personal cuando utiliza nuestros servicios y visita nuestro sitio web.",
+    "collection": {
+      "title": "Información que Recopilamos",
+      "text": "Recopilamos información que usted nos proporciona directamente al utilizar nuestros servicios, incluyendo:",
+      "items": [
+        "Nombre completo y datos de contacto (correo electrónico, teléfono)",
+        "Información de la empresa u organización",
+        "Datos necesarios para la prestación de servicios (NIT, razón social)",
+        "Información técnica de navegación (cookies, dirección IP, tipo de navegador)"
+      ]
+    },
+    "use": {
+      "title": "Uso de la Información",
+      "text": "Utilizamos su información personal para los siguientes fines:",
+      "items": [
+        "Prestar y mejorar nuestros servicios tecnológicos",
+        "Procesar solicitudes de contacto y brindar soporte técnico",
+        "Enviar comunicaciones relevantes sobre actualizaciones de productos",
+        "Cumplir con obligaciones legales y regulatorias",
+        "Garantizar la seguridad de nuestras plataformas"
+      ]
+    },
+    "cookies": {
+      "title": "Cookies y Tecnologías de Seguimiento",
+      "text": "Nuestro sitio web utiliza cookies esenciales para su correcto funcionamiento, como la preferencia de tema (claro/oscuro) y el idioma seleccionado. No utilizamos cookies de seguimiento publicitario ni compartimos datos con redes publicitarias de terceros."
+    },
+    "rights": {
+      "title": "Sus Derechos",
+      "text": "De acuerdo con la legislación colombiana, usted tiene derecho a:",
+      "items": [
+        "Conocer, actualizar y rectificar sus datos personales",
+        "Solicitar prueba de la autorización otorgada",
+        "Ser informado sobre el uso que se ha dado a sus datos",
+        "Revocar la autorización y/o solicitar la supresión de sus datos",
+        "Presentar quejas ante la Superintendencia de Industria y Comercio"
+      ]
+    },
+    "contact": {
+      "title": "Contacto",
+      "text": "Para ejercer sus derechos o realizar consultas sobre esta política, puede contactarnos a través de info@lopezsoft.com."
+    }
+  },
+  "data_protection": {
+    "title": "Protección de Datos Personales",
+    "subtitle": "Política de tratamiento de datos personales conforme a la Ley 1581 de 2012.",
+    "last_updated": "Última actualización: enero 2025",
+    "intro": "En cumplimiento de la Ley Estatutaria 1581 de 2012 y su Decreto Reglamentario 1377 de 2013, LOPEZSOFT SAS adopta la presente Política de Tratamiento de Datos Personales para garantizar el derecho constitucional que tienen todas las personas a conocer, actualizar y rectificar las informaciones que se hayan recogido sobre ellas.",
+    "responsible": {
+      "title": "Responsable del Tratamiento",
+      "text": "LOPEZSOFT SAS, sociedad comercial colombiana, es responsable del tratamiento de los datos personales que recopila en el desarrollo de sus actividades.",
+      "details": [
+        "Razón social: LOPEZSOFT SAS",
+        "Correo electrónico: info@lopezsoft.com",
+        "País: Colombia"
+      ]
+    },
+    "principles": {
+      "title": "Principios Rectores",
+      "text": "El tratamiento de datos personales se rige por los siguientes principios:",
+      "items": [
+        "Legalidad: el tratamiento se sujeta a las disposiciones legales vigentes",
+        "Finalidad: el tratamiento obedece a una finalidad legítima",
+        "Libertad: solo se pueden tratar datos con consentimiento previo, expreso e informado del titular",
+        "Veracidad: la información sujeta a tratamiento debe ser veraz, completa y actualizada",
+        "Transparencia: se garantiza el derecho a obtener información sobre datos que le conciernan",
+        "Seguridad: la información se maneja con las medidas técnicas y administrativas necesarias",
+        "Confidencialidad: todas las personas que intervengan en el tratamiento están obligadas a garantizar la reserva de la información"
+      ]
+    },
+    "treatment": {
+      "title": "Finalidades del Tratamiento",
+      "text": "Los datos personales son tratados para las siguientes finalidades:",
+      "items": [
+        "Ejecutar la relación contractual con clientes y proveedores",
+        "Realizar actividades de facturación electrónica y cumplimiento tributario",
+        "Brindar soporte técnico y atención al cliente",
+        "Enviar información sobre productos, servicios y actualizaciones",
+        "Cumplir con obligaciones legales ante entidades de control (DIAN, SIC)"
+      ]
+    },
+    "rights": {
+      "title": "Derechos de los Titulares",
+      "text": "Los titulares de datos personales tienen los siguientes derechos:",
+      "items": [
+        "Acceder de forma gratuita a los datos proporcionados",
+        "Conocer, actualizar y rectificar los datos personales",
+        "Solicitar prueba de la autorización otorgada",
+        "Presentar ante la SIC quejas por infracciones a la ley",
+        "Revocar la autorización y/o solicitar la supresión de datos",
+        "Acceder en forma gratuita a los datos personales tratados"
+      ]
+    },
+    "security": {
+      "title": "Medidas de Seguridad",
+      "text": "LOPEZSOFT SAS implementa medidas técnicas, humanas y administrativas para otorgar seguridad a los datos personales, evitando su adulteración, pérdida, consulta, uso o acceso no autorizado o fraudulento."
+    },
+    "contact": {
+      "title": "Canales de Atención",
+      "text": "Para ejercer los derechos mencionados o realizar consultas y reclamos, puede contactarnos a través de info@lopezsoft.com."
     }
   },
   "theme": {

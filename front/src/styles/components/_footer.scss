@@ -33,14 +33,51 @@
   }
 
   &__logo {
-    height: 2rem;
+    height: 2.5rem;
     width: auto;
   }
 
   &__slogan {
     font-size: $font-size-sm;
     color: var(--text-secondary);
+    font-weight: $font-weight-medium;
     margin-bottom: 0;
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    color: var(--text-tertiary);
+    line-height: $line-height-relaxed;
+    margin-bottom: 0;
+    max-width: 32ch;
+  }
+
+  // ------------------------------------------------------------------
+  // Contacto
+  // ------------------------------------------------------------------
+  &__contact {
+    @include flex-column;
+    gap: $spacing-2;
+    margin-top: $spacing-2;
+  }
+
+  &__contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+    text-decoration: none;
+    @include theme-transition((color));
+
+    svg {
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    &:hover {
+      color: var(--accent);
+    }
   }
 
   // ------------------------------------------------------------------

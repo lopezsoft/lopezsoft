@@ -1,0 +1,64 @@
+// ==========================================================================
+// Legal Pages — Estilos para páginas de privacidad y protección de datos
+// ==========================================================================
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.legal {
+  &__date {
+    font-size: $font-size-sm;
+    color: var(--text-tertiary);
+    margin-top: $spacing-2;
+  }
+
+  &__content {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  &__intro {
+    font-size: $font-size-lg;
+    color: var(--text-secondary);
+    line-height: $line-height-relaxed;
+    margin-bottom: $spacing-8;
+
+    @include breakpoint(md) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__section {
+    margin-bottom: $spacing-8;
+
+    h2 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      color: var(--text-primary);
+      margin-bottom: $spacing-3;
+
+      @include breakpoint(md) {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    p {
+      color: var(--text-secondary);
+      line-height: $line-height-relaxed;
+      margin-bottom: $spacing-3;
+    }
+
+    ul {
+      padding-left: $spacing-6;
+      color: var(--text-secondary);
+
+      li {
+        margin-bottom: $spacing-2;
+        line-height: $line-height-relaxed;
+
+        &::marker {
+          color: var(--accent);
+        }
+      }
+    }
+  }
+}

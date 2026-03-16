@@ -18,6 +18,8 @@
 @use 'components/theme-toggle';
 @use 'components/section';
 @use 'components/contact-form';
+@use 'components/legal';
+@use 'components/animations';
 
 // Tailwind CSS (solo utilidades de layout/spacing)
 @import "tailwindcss";

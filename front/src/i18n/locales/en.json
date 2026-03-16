@@ -87,9 +87,122 @@
   "footer": {
     "rights": "All rights reserved.",
     "slogan": "Your Technology Partner",
+    "description": "Technology ecosystem focused on B2B solutions for Colombian businesses. Electronic invoicing, ERP, DIAN integration, AI agents and academic software.",
+    "contact_title": "Contact",
+    "email": "info@lopezsoft.com",
+    "phone": "+57 (601) 555-0100",
+    "address": "Colombia",
     "links": {
       "privacy": "Privacy policy",
-      "terms": "Terms and conditions"
+      "terms": "Data protection"
+    },
+    "social": {
+      "title": "Follow us"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "Learn how we protect your personal information.",
+    "last_updated": "Last updated: January 2025",
+    "intro": "LOPEZSOFT SAS (hereinafter \"the Company\") is committed to protecting the privacy of its users. This Privacy Policy describes how we collect, use, store and protect your personal information when you use our services and visit our website.",
+    "collection": {
+      "title": "Information We Collect",
+      "text": "We collect information that you provide directly to us when using our services, including:",
+      "items": [
+        "Full name and contact details (email, phone number)",
+        "Company or organization information",
+        "Data necessary for service delivery (tax ID, business name)",
+        "Technical browsing information (cookies, IP address, browser type)"
+      ]
+    },
+    "use": {
+      "title": "Use of Information",
+      "text": "We use your personal information for the following purposes:",
+      "items": [
+        "Provide and improve our technology services",
+        "Process contact requests and provide technical support",
+        "Send relevant communications about product updates",
+        "Comply with legal and regulatory obligations",
+        "Ensure the security of our platforms"
+      ]
+    },
+    "cookies": {
+      "title": "Cookies and Tracking Technologies",
+      "text": "Our website uses essential cookies for proper functionality, such as theme preference (light/dark) and selected language. We do not use advertising tracking cookies nor share data with third-party advertising networks."
+    },
+    "rights": {
+      "title": "Your Rights",
+      "text": "In accordance with Colombian law, you have the right to:",
+      "items": [
+        "Know, update and rectify your personal data",
+        "Request proof of the authorization granted",
+        "Be informed about the use of your data",
+        "Revoke authorization and/or request data deletion",
+        "File complaints with the Superintendency of Industry and Commerce"
+      ]
+    },
+    "contact": {
+      "title": "Contact",
+      "text": "To exercise your rights or make inquiries about this policy, you can contact us at info@lopezsoft.com."
+    }
+  },
+  "data_protection": {
+    "title": "Personal Data Protection",
+    "subtitle": "Personal data processing policy in accordance with Law 1581 of 2012.",
+    "last_updated": "Last updated: January 2025",
+    "intro": "In compliance with Statutory Law 1581 of 2012 and its Regulatory Decree 1377 of 2013, LOPEZSOFT SAS adopts this Personal Data Processing Policy to guarantee the constitutional right of all individuals to know, update and rectify the information collected about them.",
+    "responsible": {
+      "title": "Data Controller",
+      "text": "LOPEZSOFT SAS, a Colombian commercial company, is responsible for processing the personal data it collects in the course of its activities.",
+      "details": [
+        "Company name: LOPEZSOFT SAS",
+        "Email: info@lopezsoft.com",
+        "Country: Colombia"
+      ]
+    },
+    "principles": {
+      "title": "Guiding Principles",
+      "text": "Personal data processing is governed by the following principles:",
+      "items": [
+        "Legality: processing is subject to current legal provisions",
+        "Purpose: processing serves a legitimate purpose",
+        "Freedom: data can only be processed with prior, express and informed consent",
+        "Accuracy: information subject to processing must be truthful, complete and up-to-date",
+        "Transparency: the right to obtain information about personal data is guaranteed",
+        "Security: information is handled with necessary technical and administrative measures",
+        "Confidentiality: all persons involved in processing must guarantee information confidentiality"
+      ]
+    },
+    "treatment": {
+      "title": "Processing Purposes",
+      "text": "Personal data is processed for the following purposes:",
+      "items": [
+        "Execute contractual relationships with clients and suppliers",
+        "Carry out electronic invoicing and tax compliance activities",
+        "Provide technical support and customer service",
+        "Send information about products, services and updates",
+        "Comply with legal obligations before control entities (DIAN, SIC)"
+      ]
+    },
+    "rights": {
+      "title": "Data Subject Rights",
+      "text": "Personal data subjects have the following rights:",
+      "items": [
+        "Access provided data free of charge",
+        "Know, update and rectify personal data",
+        "Request proof of authorization granted",
+        "File complaints with the SIC for legal violations",
+        "Revoke authorization and/or request data deletion",
+        "Access personal data processed free of charge"
+      ]
+    },
+    "security": {
+      "title": "Security Measures",
+      "text": "LOPEZSOFT SAS implements technical, human and administrative measures to ensure the security of personal data, preventing its alteration, loss, consultation, unauthorized or fraudulent use or access."
+    },
+    "contact": {
+      "title": "Support Channels",
+      "text": "To exercise the aforementioned rights or make inquiries and claims, you can contact us at info@lopezsoft.com."
     }
   },
   "theme": {

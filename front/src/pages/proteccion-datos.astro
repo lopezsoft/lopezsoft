@@ -1,0 +1,85 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Página Protección de Datos (ES)
+// ==========================================================================
+import MainLayout from "@layouts/MainLayout.astro";
+import { useTranslations } from "@i18n/utils";
+import { DEFAULT_LOCALE } from "@i18n/config";
+
+const t = useTranslations(DEFAULT_LOCALE);
+---
+
+<MainLayout title={`${t("data_protection.title")} — LOPEZSOFT SAS`}>
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <h1 class="section__title">{t("data_protection.title")}</h1>
+        <p class="section__subtitle">{t("data_protection.subtitle")}</p>
+        <p class="legal__date">{t("data_protection.last_updated")}</p>
+      </div>
+
+      <div class="legal__content">
+        <p class="legal__intro">{t("data_protection.intro")}</p>
+
+        <div class="legal__section">
+          <h2>{t("data_protection.responsible.title")}</h2>
+          <p>{t("data_protection.responsible.text")}</p>
+          <ul>
+            <li>{t("data_protection.responsible.details.0")}</li>
+            <li>{t("data_protection.responsible.details.1")}</li>
+            <li>{t("data_protection.responsible.details.2")}</li>
+          </ul>
+        </div>
+
+        <div class="legal__section">
+          <h2>{t("data_protection.principles.title")}</h2>
+          <p>{t("data_protection.principles.text")}</p>
+          <ul>
+            <li>{t("data_protection.principles.items.0")}</li>
+            <li>{t("data_protection.principles.items.1")}</li>
+            <li>{t("data_protection.principles.items.2")}</li>
+            <li>{t("data_protection.principles.items.3")}</li>
+            <li>{t("data_protection.principles.items.4")}</li>
+            <li>{t("data_protection.principles.items.5")}</li>
+            <li>{t("data_protection.principles.items.6")}</li>
+          </ul>
+        </div>
+
+        <div class="legal__section">
+          <h2>{t("data_protection.treatment.title")}</h2>
+          <p>{t("data_protection.treatment.text")}</p>
+          <ul>
+            <li>{t("data_protection.treatment.items.0")}</li>
+            <li>{t("data_protection.treatment.items.1")}</li>
+            <li>{t("data_protection.treatment.items.2")}</li>
+            <li>{t("data_protection.treatment.items.3")}</li>
+            <li>{t("data_protection.treatment.items.4")}</li>
+          </ul>
+        </div>
+
+        <div class="legal__section">
+          <h2>{t("data_protection.rights.title")}</h2>
+          <p>{t("data_protection.rights.text")}</p>
+          <ul>
+            <li>{t("data_protection.rights.items.0")}</li>
+            <li>{t("data_protection.rights.items.1")}</li>
+            <li>{t("data_protection.rights.items.2")}</li>
+            <li>{t("data_protection.rights.items.3")}</li>
+            <li>{t("data_protection.rights.items.4")}</li>
+            <li>{t("data_protection.rights.items.5")}</li>
+          </ul>
+        </div>
+
+        <div class="legal__section">
+          <h2>{t("data_protection.security.title")}</h2>
+          <p>{t("data_protection.security.text")}</p>
+        </div>
+
+        <div class="legal__section">
+          <h2>{t("data_protection.contact.title")}</h2>
+          <p>{t("data_protection.contact.text")}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

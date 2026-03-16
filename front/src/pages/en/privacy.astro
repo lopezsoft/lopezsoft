@@ -1,0 +1,70 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Privacy Policy Page (EN)
+// ==========================================================================
+import MainLayout from "@layouts/MainLayout.astro";
+import { useTranslations } from "@i18n/utils";
+
+const t = useTranslations("en");
+---
+
+<MainLayout title={`${t("privacy.title")} — LOPEZSOFT SAS`}>
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <h1 class="section__title">{t("privacy.title")}</h1>
+        <p class="section__subtitle">{t("privacy.subtitle")}</p>
+        <p class="legal__date">{t("privacy.last_updated")}</p>
+      </div>
+
+      <div class="legal__content">
+        <p class="legal__intro">{t("privacy.intro")}</p>
+
+        <div class="legal__section">
+          <h2>{t("privacy.collection.title")}</h2>
+          <p>{t("privacy.collection.text")}</p>
+          <ul>
+            <li>{t("privacy.collection.items.0")}</li>
+            <li>{t("privacy.collection.items.1")}</li>
+            <li>{t("privacy.collection.items.2")}</li>
+            <li>{t("privacy.collection.items.3")}</li>
+          </ul>
+        </div>
+
+        <div class="legal__section">
+          <h2>{t("privacy.use.title")}</h2>
+          <p>{t("privacy.use.text")}</p>
+          <ul>
+            <li>{t("privacy.use.items.0")}</li>
+            <li>{t("privacy.use.items.1")}</li>
+            <li>{t("privacy.use.items.2")}</li>
+            <li>{t("privacy.use.items.3")}</li>
+            <li>{t("privacy.use.items.4")}</li>
+          </ul>
+        </div>
+
+        <div class="legal__section">
+          <h2>{t("privacy.cookies.title")}</h2>
+          <p>{t("privacy.cookies.text")}</p>
+        </div>
+
+        <div class="legal__section">
+          <h2>{t("privacy.rights.title")}</h2>
+          <p>{t("privacy.rights.text")}</p>
+          <ul>
+            <li>{t("privacy.rights.items.0")}</li>
+            <li>{t("privacy.rights.items.1")}</li>
+            <li>{t("privacy.rights.items.2")}</li>
+            <li>{t("privacy.rights.items.3")}</li>
+            <li>{t("privacy.rights.items.4")}</li>
+          </ul>
+        </div>
+
+        <div class="legal__section">
+          <h2>{t("privacy.contact.title")}</h2>
+          <p>{t("privacy.contact.text")}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
