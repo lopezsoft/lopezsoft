@@ -9,7 +9,10 @@
   "background_color": "#ffffff",
   "theme_color": "#0F172A",
   "orientation": "any",
-  "categories": ["business", "productivity"],
+  "categories": [
+    "business",
+    "productivity"
+  ],
   "icons": [
     {
       "src": "/images/logo/logo-circle.png",
