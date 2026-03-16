@@ -1,0 +1,78 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Componente SEO Head
+// Inyecta meta tags dinámicos, Open Graph, Twitter Card, canonical y hreflang
+// ==========================================================================
+import type { Locale } from "@i18n/config";
+import { LOCALE_CODES } from "@i18n/config";
+import { getLocalizedPath } from "@i18n/utils";
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  pathname: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+}
+
+const SITE_URL = import.meta.env.SITE || "https://lopezsoft.com";
+
+const {
+  title,
+  description,
+  locale,
+  pathname,
+  ogImage = "/images/logo/logo-horizontal.png",
+  ogType = "website",
+  noindex = false,
+} = Astro.props;
+
+// Canonical URL (siempre la URL actual sin trailing slash extra)
+const canonicalURL = new URL(pathname, SITE_URL).href;
+
+// Generar hreflang alternates para i18n
+const hreflangs = LOCALE_CODES.map((lang) => {
+  const localizedPath = getLocalizedPath(pathname, lang);
+  return {
+    lang,
+    href: new URL(localizedPath, SITE_URL).href,
+  };
+});
+
+// OpenGraph locale format
+const ogLocale = locale === "es" ? "es_CO" : "en_US";
+const ogLocaleAlternate = locale === "es" ? "en_US" : "es_CO";
+---
+
+<!-- SEO Meta -->
+<meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Canonical -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Hreflang alternates -->
+{hreflangs.map(({ lang, href }) => (
+  <link rel="alternate" hreflang={lang} href={href} />
+))}
+<link rel="alternate" hreflang="x-default" href={new URL("/", SITE_URL).href} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:site_name" content="LOPEZSOFT SAS" />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:locale:alternate" content={ogLocaleAlternate} />
+<meta property="og:image" content={new URL(ogImage, SITE_URL).href} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(ogImage, SITE_URL).href} />

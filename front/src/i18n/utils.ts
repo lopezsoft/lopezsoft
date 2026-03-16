@@ -90,7 +90,7 @@ export function getLocalizedPath(path: string, targetLocale: Locale): string {
 
   // Si el idioma destino es el default, no añadir prefijo
   if (targetLocale === DEFAULT_LOCALE) {
-    return `/${translatedPath}` || '/';
+    return translatedPath ? `/${translatedPath}` : '/';
   }
 
   return translatedPath ? `/${targetLocale}/${translatedPath}` : `/${targetLocale}`;

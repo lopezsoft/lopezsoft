@@ -27,8 +27,9 @@ const t = useTranslations(lang);
       minlength="2"
       maxlength="100"
       autocomplete="name"
+      aria-describedby="cf-name-error"
     />
-    <span class="contact-form__error" data-error="name"></span>
+    <span class="contact-form__error" id="cf-name-error" data-error="name" role="alert"></span>
   </div>
 
   <div class="contact-form__group">
@@ -42,8 +43,9 @@ const t = useTranslations(lang);
       name="email"
       required
       autocomplete="email"
+      aria-describedby="cf-email-error"
     />
-    <span class="contact-form__error" data-error="email"></span>
+    <span class="contact-form__error" id="cf-email-error" data-error="email" role="alert"></span>
   </div>
 
   <div class="contact-form__group">
@@ -72,25 +74,39 @@ const t = useTranslations(lang);
       minlength="10"
       maxlength="2000"
       rows="5"
-    ></textarea>
-    <span class="contact-form__error" data-error="message"></span>
+      aria-describedby="cf-message-error"></textarea>
+    <span class="contact-form__error" id="cf-message-error" data-error="message" role="alert"></span>
   </div>
 
   <button class="btn btn--primary btn--lg contact-form__submit" type="submit">
     {t("contact.form.submit")}
   </button>
 
-  <div class="contact-form__feedback contact-form__feedback--success" id="cf-success" hidden>
+  <div
+    class="contact-form__feedback contact-form__feedback--success"
+    id="cf-success"
+    role="status"
+    aria-live="polite"
+    hidden
+  >
     {t("contact.form.success")}
   </div>
-  <div class="contact-form__feedback contact-form__feedback--error" id="cf-error" hidden>
+  <div
+    class="contact-form__feedback contact-form__feedback--error"
+    id="cf-error"
+    role="alert"
+    aria-live="assertive"
+    hidden
+  >
     {t("contact.form.error")}
   </div>
 </form>
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    const form = document.getElementById(
+      "contact-form",
+    ) as HTMLFormElement | null;
     if (!form) return;
 
     const showError = (field: string, message: string) => {
@@ -108,12 +124,19 @@ const t = useTranslations(lang);
       });
     };
 
-    const validateField = (input: HTMLInputElement | HTMLTextAreaElement): boolean => {
+    const validateField = (
+      input: HTMLInputElement | HTMLTextAreaElement,
+    ): boolean => {
       const { name, value, type } = input;
       const trimmed = value.trim();
 
       if (input.required && !trimmed) {
-        showError(name, input.type === "email" ? "Email is required" : "This field is required");
+        showError(
+          name,
+          input.type === "email"
+            ? "Email is required"
+            : "This field is required",
+        );
         return false;
       }
 
@@ -141,9 +164,9 @@ const t = useTranslations(lang);
       document.getElementById("cf-success")?.setAttribute("hidden", "");
       document.getElementById("cf-error")?.setAttribute("hidden", "");
 
-      const inputs = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
-        "input, textarea"
-      );
+      const inputs = form.querySelectorAll<
+        HTMLInputElement | HTMLTextAreaElement
+      >("input, textarea");
 
       let isValid = true;
       inputs.forEach((input) => {

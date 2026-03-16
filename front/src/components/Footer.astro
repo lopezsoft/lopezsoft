@@ -44,7 +44,7 @@ const legalLinks = [
       </div>
 
       <!-- Navegación -->
-      <div>
+      <nav aria-label={locale === "es" ? "Enlaces del pie de página" : "Footer navigation"}>
         <h3 class="footer__heading">{t("nav.home")}</h3>
         <ul class="footer__links">
           {
@@ -57,7 +57,7 @@ const legalLinks = [
             ))
           }
         </ul>
-      </div>
+      </nav>
 
       <!-- Legal -->
       <div>

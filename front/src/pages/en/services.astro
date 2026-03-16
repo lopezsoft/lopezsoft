@@ -36,19 +36,21 @@ const products = [
         <p class="section__subtitle">{t("services.subtitle")}</p>
       </div>
       <div class="section__grid">
-        {products.map(({ key, image }) => (
-          <ProductCard
-            name={t(`services.${key}.name`)}
-            description={t(`services.${key}.description`)}
-            features={[
-              t(`services.${key}.features.0`),
-              t(`services.${key}.features.1`),
-              t(`services.${key}.features.2`),
-              t(`services.${key}.features.3`),
-            ]}
-            image={image}
-          />
-        ))}
+        {
+          products.map(({ key, image }) => (
+            <ProductCard
+              name={t(`services.${key}.name`)}
+              description={t(`services.${key}.description`)}
+              features={[
+                t(`services.${key}.features.0`),
+                t(`services.${key}.features.1`),
+                t(`services.${key}.features.2`),
+                t(`services.${key}.features.3`),
+              ]}
+              image={image}
+            />
+          ))
+        }
       </div>
     </div>
   </section>

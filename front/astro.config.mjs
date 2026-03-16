@@ -2,9 +2,13 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://lopezsoft.com',
   output: 'static',
+
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],
@@ -12,6 +16,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+
   vite: {
     plugins: [tailwindcss()],
     css: {
@@ -34,4 +39,16 @@ export default defineConfig({
       },
     },
   },
+
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'es',
+        locales: {
+          es: 'es-CO',
+          en: 'en-US',
+        },
+      },
+    }),
+  ],
 });
