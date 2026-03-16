@@ -19,6 +19,12 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 300,
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {
