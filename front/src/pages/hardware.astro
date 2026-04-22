@@ -1,0 +1,145 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Página Hardware & Soporte Premium (ES)
+// ==========================================================================
+import MainLayout from "@layouts/MainLayout.astro";
+import ServiceCard from "@components/ServiceCard.astro";
+import Button from "@components/Button.astro";
+import { useTranslations, getLocalizedPath } from "@i18n/utils";
+import { DEFAULT_LOCALE } from "@i18n/config";
+
+const t = useTranslations(DEFAULT_LOCALE);
+
+const services = ["diagnosis", "licensing", "onsite"];
+
+const whatsappNumber = t("hardware.phone").replace(/\s+/g, "").replace("+", "");
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola, me interesa el servicio de soporte de hardware.")}`;
+---
+
+<MainLayout
+  title={`${t("hardware.title")} — LOPEZSOFT SAS`}
+  description={t("hardware.seo_description")}
+>
+  <!-- Hero de Hardware -->
+  <div class="hero-wrapper hero-wrapper--warm">
+    <section class="hero container">
+      <span class="hero__badge">{t("hardware.hero_badge")}</span>
+      <h1 class="hero__title">{t("hardware.title")}</h1>
+      <p class="hero__subtitle">{t("hardware.subtitle")}</p>
+      <div class="hero__actions">
+        <Button
+          variant="warm"
+          size="lg"
+          href={whatsappUrl}
+        >
+          {t("hardware.cta")}
+        </Button>
+        <Button
+          variant="secondary"
+          size="lg"
+          href={getLocalizedPath("/contact", DEFAULT_LOCALE)}
+          class="btn--ghost"
+        >
+          {t("contact.title")}
+        </Button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Servicios de Hardware -->
+  <section class="section">
+    <div class="container">
+      <div class="services-grid services-grid--3">
+        {
+          services.map((key) => (
+            <ServiceCard
+              name={t(`hardware.${key}.name`)}
+              description={t(`hardware.${key}.description`)}
+              icon={t(`hardware.${key}.icon`)}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Cobertura -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2 class="section__title">{t("hardware.coverage_title")}</h2>
+        <p class="section__subtitle">{t("hardware.coverage_text")}</p>
+      </div>
+      <div class="section__grid">
+        <div class="section__block reveal reveal--delay-1 hover-lift">
+          <svg
+            class="section__block-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
+          </svg>
+          <h3 class="section__block-title">Pereira & Dosquebradas</h3>
+          <p class="section__block-text">
+            Servicio en taller y a domicilio para empresas y particulares en el Área Metropolitana del Eje Cafetero.
+          </p>
+        </div>
+        <div class="section__block reveal reveal--delay-2 hover-lift">
+          <svg
+            class="section__block-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <h3 class="section__block-title">Horario de Atención</h3>
+          <p class="section__block-text">
+            Lunes a Viernes, 8:00 AM – 6:00 PM. Sábados con cita previa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA con WhatsApp -->
+  <section class="section section--gradient">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2 class="section__title">{t("hardware.cta")}</h2>
+        <p class="section__subtitle">
+          {t("hardware.phone_label")}: {t("hardware.phone")}
+        </p>
+      </div>
+      <div class="section__cta">
+        <Button
+          variant="warm"
+          size="lg"
+          href={whatsappUrl}
+        >
+          💬 WhatsApp
+        </Button>
+        <Button
+          variant="secondary"
+          size="lg"
+          href={getLocalizedPath("/contact", DEFAULT_LOCALE)}
+          class="btn--ghost"
+        >
+          {t("contact.title")}
+        </Button>
+      </div>
+    </div>
+  </section>
+</MainLayout>

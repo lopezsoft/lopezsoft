@@ -91,4 +91,10 @@
   @include breakpoint(lg) {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  &--3 {
+    @include breakpoint(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 }

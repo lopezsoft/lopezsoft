@@ -26,24 +26,25 @@
   "nav": {
     "home": "Inicio",
     "services": "Servicios",
+    "hardware": "Soporte & Hardware",
     "about": "Nosotros",
     "contact": "Contacto"
   },
   "hero": {
-    "slogan": "SU ALIADO TECNOLÓGICO",
-    "subtitle": "Ecosistema de soluciones empresariales B2B diseñadas para potenciar la transformación digital de su organización.",
-    "cta": "Ver nuestros productos",
-    "cta_contact": "Contáctenos"
+    "slogan": "Software a Medida. Infraestructura de Precisión.",
+    "subtitle": "Delega la complejidad tecnológica en expertos. Desde integración oficial con la DIAN hasta diagnóstico electrónico avanzado para tus equipos. Todo respaldado por más de 10 años de Arquitectura de Software.",
+    "cta": "Explorar Ecosistema SaaS",
+    "cta_contact": "Agendar Soporte Técnico"
   },
   "products": {
     "title": "Nuestros Productos",
     "subtitle": "Plataformas SaaS empresariales diseñadas para potenciar la productividad y el cumplimiento normativo de su organización.",
-    "cta": "Conocer nuestros servicios",
-    "visit_site": "Visitar sitio",
+    "cta": "Ver todos los servicios",
+    "visit_site": "Conocer plataforma",
     "coming_soon": "Próximamente",
     "matias_erp": {
       "name": "MATIAS ERP",
-      "description": "Sistema integral de planificación empresarial: facturación electrónica, nómina, inventarios y contabilidad. Todo en una sola plataforma.",
+      "description": "Automatiza tu facturación electrónica y nómina en conexión directa con la DIAN. Reduce errores contables a cero y céntrate en crecer.",
       "url": "https://matias.com.co/",
       "features": [
         "Facturación electrónica",
@@ -65,7 +66,7 @@
     },
     "matias_impulso": {
       "name": "MATIAS IMPULSO",
-      "description": "Agentes de Inteligencia Artificial que automatizan procesos empresariales y potencian la toma de decisiones.",
+      "description": "Tus agentes de IA entrenados con los datos de tu empresa para atención al cliente y soporte 24/7.",
       "url": "",
       "features": [
         "Agentes de IA",
@@ -76,7 +77,7 @@
     },
     "asaie_exodo": {
       "name": "ASAIE ÉXODO",
-      "description": "Software académico integral para instituciones educativas. Gestión de matrículas, notas, asistencia y reportes.",
+      "description": "Control total académico y administrativo. La plataforma en la nube que transforma la gestión de tu institución educativa.",
       "url": "https://asaie.co",
       "features": [
         "Gestión académica",
@@ -84,6 +85,15 @@
         "Boletines de notas",
         "Reportes institucionales"
       ]
+    }
+  },
+  "social_proof": {
+    "title": "Confianza demostrada en código y en placa",
+    "stats": {
+      "clients": { "value": "+260", "label": "Empresas confían en nosotros" },
+      "api_clients": { "value": "+500", "label": "Clientes vía MATIAS API" },
+      "experience": { "value": "+10", "label": "Años de trayectoria" },
+      "hardware_lab": { "value": "✓", "label": "Laboratorio de diagnóstico avanzado" }
     }
   },
   "services": {
@@ -256,6 +266,35 @@
         "value": "+30",
         "label": "Tecnologías dominadas"
       }
+    }
+  },
+  "hardware": {
+    "title": "Soporte & Hardware Premium",
+    "subtitle": "No adivinamos; diagnosticamos. Infraestructura física con la misma excelencia que nuestro software.",
+    "cta": "Agendar Diagnóstico en Pereira / Dosquebradas",
+    "phone": "+57 321 843 3198",
+    "phone_label": "WhatsApp Hardware",
+    "preview_title": "Infraestructura & Soporte Premium",
+    "preview_subtitle": "Tu empresa merece hardware que funcione tan bien como tu software.",
+    "preview_cta": "Conocer servicios de Hardware",
+    "seo_description": "Soporte técnico de hardware avanzado en Pereira y Dosquebradas. Diagnóstico térmico, microelectrónica, licenciamiento original y soporte a domicilio.",
+    "hero_badge": "NUEVA UNIDAD DE NEGOCIO",
+    "coverage_title": "Cobertura Local",
+    "coverage_text": "Atendemos empresas y particulares en Pereira, Dosquebradas y el Área Metropolitana del Eje Cafetero. Servicio en taller y a domicilio.",
+    "diagnosis": {
+      "name": "Diagnóstico Avanzado de Hardware",
+      "description": "Uso de cámara térmica y microelectrónica para recuperar la vida de tus laptops y workstations. Servicio en taller y a domicilio.",
+      "icon": "cpu"
+    },
+    "licensing": {
+      "name": "Licenciamiento Original",
+      "description": "Software 100% legal (Windows, Office, Antivirus) instalado por expertos. Protege la información de tu empresa de vulnerabilidades piratas.",
+      "icon": "shield"
+    },
+    "onsite": {
+      "name": "Soporte a Domicilio",
+      "description": "Diagnóstico y reparación directamente en la sede de tu empresa en Pereira y Dosquebradas. Sin desplazamientos innecesarios.",
+      "icon": "truck"
     }
   },
   "contact": {

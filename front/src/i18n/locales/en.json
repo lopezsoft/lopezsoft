@@ -26,24 +26,25 @@
   "nav": {
     "home": "Home",
     "services": "Services",
+    "hardware": "Support & Hardware",
     "about": "About",
     "contact": "Contact"
   },
   "hero": {
-    "slogan": "YOUR TECHNOLOGY PARTNER",
-    "subtitle": "An ecosystem of B2B enterprise solutions designed to power your organization's digital transformation.",
-    "cta": "View our products",
-    "cta_contact": "Contact us"
+    "slogan": "Custom Software. Precision Infrastructure.",
+    "subtitle": "Delegate technology complexity to experts. From official DIAN integration to advanced electronic diagnostics for your equipment. All backed by over 10 years of Software Architecture.",
+    "cta": "Explore SaaS Ecosystem",
+    "cta_contact": "Schedule Technical Support"
   },
   "products": {
     "title": "Our Products",
     "subtitle": "Enterprise SaaS platforms designed to boost productivity and regulatory compliance for your organization.",
-    "cta": "Learn about our services",
-    "visit_site": "Visit site",
+    "cta": "View all services",
+    "visit_site": "Learn more",
     "coming_soon": "Coming soon",
     "matias_erp": {
       "name": "MATIAS ERP",
-      "description": "Comprehensive enterprise resource planning system: electronic invoicing, payroll, inventory and accounting. All in one platform.",
+      "description": "Automate your electronic invoicing and payroll with direct DIAN integration. Reduce accounting errors to zero and focus on growing.",
       "url": "https://matias.com.co/",
       "features": [
         "Electronic invoicing",
@@ -65,7 +66,7 @@
     },
     "matias_impulso": {
       "name": "MATIAS IMPULSO",
-      "description": "Artificial Intelligence agents that automate business processes and enhance decision-making.",
+      "description": "Your AI agents trained with your company data for 24/7 customer service and support.",
       "url": "",
       "features": [
         "AI Agents",
@@ -76,7 +77,7 @@
     },
     "asaie_exodo": {
       "name": "ASAIE ÉXODO",
-      "description": "Comprehensive academic software for educational institutions. Enrollment, grades, attendance and report management.",
+      "description": "Full academic and administrative control. The cloud platform that transforms your educational institution's management.",
       "url": "https://asaie.co",
       "features": [
         "Academic management",
@@ -84,6 +85,15 @@
         "Report cards",
         "Institutional reports"
       ]
+    }
+  },
+  "social_proof": {
+    "title": "Trust proven in code and in hardware",
+    "stats": {
+      "clients": { "value": "+260", "label": "Businesses trust us" },
+      "api_clients": { "value": "+500", "label": "Clients via MATIAS API" },
+      "experience": { "value": "+10", "label": "Years of experience" },
+      "hardware_lab": { "value": "✓", "label": "Advanced diagnostics lab" }
     }
   },
   "services": {
@@ -256,6 +266,35 @@
         "value": "+30",
         "label": "Technologies mastered"
       }
+    }
+  },
+  "hardware": {
+    "title": "Support & Premium Hardware",
+    "subtitle": "We don't guess; we diagnose. Physical infrastructure with the same excellence as our software.",
+    "cta": "Schedule Diagnosis in Pereira / Dosquebradas",
+    "phone": "+57 321 843 3198",
+    "phone_label": "WhatsApp Hardware",
+    "preview_title": "Infrastructure & Premium Support",
+    "preview_subtitle": "Your business deserves hardware that works as well as your software.",
+    "preview_cta": "Explore Hardware services",
+    "seo_description": "Advanced hardware technical support in Pereira and Dosquebradas. Thermal diagnostics, microelectronics, original licensing and on-site support.",
+    "hero_badge": "NEW BUSINESS UNIT",
+    "coverage_title": "Local Coverage",
+    "coverage_text": "We serve businesses and individuals in Pereira, Dosquebradas and the Coffee Region Metropolitan Area. In-shop and on-site service.",
+    "diagnosis": {
+      "name": "Advanced Hardware Diagnostics",
+      "description": "Using thermal cameras and microelectronics to bring your laptops and workstations back to life. In-shop and on-site service.",
+      "icon": "cpu"
+    },
+    "licensing": {
+      "name": "Original Licensing",
+      "description": "100% legal software (Windows, Office, Antivirus) installed by experts. Protect your business data from piracy vulnerabilities.",
+      "icon": "shield"
+    },
+    "onsite": {
+      "name": "On-Site Support",
+      "description": "Diagnostics and repairs directly at your business premises in Pereira and Dosquebradas. No unnecessary commutes.",
+      "icon": "truck"
     }
   },
   "contact": {

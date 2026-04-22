@@ -1,0 +1,304 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Social Proof Bar (Autoridad)
+// Componente premium con glassmorphism, contadores animados y gradiente.
+// Usa scoped styles para blindarse contra el reset de Tailwind CSS v4.
+// ==========================================================================
+import type { Locale } from "@i18n/config";
+import { useTranslations } from "@i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const stats = [
+  {
+    value: t("social_proof.stats.clients.value"),
+    label: t("social_proof.stats.clients.label"),
+    icon: "users",
+  },
+  {
+    value: t("social_proof.stats.api_clients.value"),
+    label: t("social_proof.stats.api_clients.label"),
+    icon: "api",
+  },
+  {
+    value: t("social_proof.stats.experience.value"),
+    label: t("social_proof.stats.experience.label"),
+    icon: "calendar",
+  },
+  {
+    value: t("social_proof.stats.hardware_lab.value"),
+    label: t("social_proof.stats.hardware_lab.label"),
+    icon: "wrench",
+  },
+];
+
+const iconPaths: Record<string, string> = {
+  users:
+    "M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z",
+  api: "M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5",
+  calendar:
+    "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5",
+  wrench:
+    "M11.42 15.17l-4.655 4.655a2.625 2.625 0 11-3.712-3.712l4.655-4.655M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.625 2.625 0 11-3.712-3.712l5.653-4.655m2.422-1.322A4.5 4.5 0 0116.5 3.773c1.26 0 2.384.522 3.19 1.36M15.053 7.11l.14-.14a2.25 2.25 0 013.182 0l.14.14",
+};
+---
+
+<section class="sp-bar" aria-label={t("social_proof.title")}>
+  <div class="sp-bar__container">
+    {
+      stats.map(({ value, label, icon }, i) => (
+        <div class="sp-bar__card" style={`--delay: ${i * 100}ms`}>
+          <div class="sp-bar__icon-ring">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d={iconPaths[icon]} />
+            </svg>
+          </div>
+          <div class="sp-bar__content">
+            <span class="sp-bar__value" data-target={value}>
+              {value}
+            </span>
+            <span class="sp-bar__label">{label}</span>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  // Animated counter on scroll
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters =
+      document.querySelectorAll<HTMLSpanElement>(".sp-bar__value");
+    if (!counters.length) return;
+
+    const animate = (el: HTMLSpanElement) => {
+      const raw = el.dataset.target || el.textContent || "";
+      const match = raw.match(/(\+?)(\d+)/);
+      if (!match) return;
+
+      const prefix = match[1];
+      const target = parseInt(match[2], 10);
+      const suffix = raw.replace(/\+?\d+/, "");
+      const duration = 1600;
+      const start = performance.now();
+
+      const step = (now: number) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease-out cubic
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(target * ease);
+        el.textContent = `${prefix}${current}${suffix}`;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      counters.forEach(animate);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animate(entry.target as HTMLSpanElement);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
+
+    counters.forEach((el) => observer.observe(el));
+  });
+</script>
+
+<style lang="scss">
+  @use "../styles/variables" as *;
+  @use "../styles/mixins" as *;
+
+  .sp-bar {
+    position: relative;
+    z-index: 2;
+    margin-top: -2.5rem;
+    padding-bottom: 1rem;
+
+    @include breakpoint(md) {
+      margin-top: -3rem;
+      padding-bottom: 1.5rem;
+    }
+
+    // ------------------------------------------------------------------
+    // Container (grilla principal)
+    // ------------------------------------------------------------------
+    &__container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      width: 100%;
+      margin-inline: auto;
+      padding-inline: 1rem;
+
+      @include breakpoint(sm) {
+        max-width: $container-sm;
+      }
+
+      @include breakpoint(md) {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        max-width: $container-md;
+        padding-inline: 1.5rem;
+      }
+
+      @include breakpoint(lg) {
+        max-width: $container-lg;
+      }
+
+      @include breakpoint(xl) {
+        max-width: $container-xl;
+      }
+    }
+
+    // ------------------------------------------------------------------
+    // Card individual
+    // ------------------------------------------------------------------
+    &__card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.125rem;
+      background: var(--surface);
+      border: 1px solid var(--border-default);
+      border-radius: $border-radius-xl;
+      box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.04);
+      transition:
+        transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 300ms ease,
+        border-color 300ms ease;
+
+      // Animación de entrada escalonada
+      opacity: 0;
+      transform: translateY(16px);
+      animation: sp-card-in 0.5s ease-out forwards;
+      animation-delay: var(--delay, 0ms);
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 32px -6px rgba(0, 0, 0, 0.12),
+          0 2px 6px rgba(0, 0, 0, 0.06);
+        border-color: var(--accent);
+      }
+
+      @include breakpoint(md) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem 1rem;
+        gap: 0.5rem;
+      }
+    }
+
+    // ------------------------------------------------------------------
+    // Icono
+    // ------------------------------------------------------------------
+    &__icon-ring {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      border-radius: 50%;
+      background: linear-gradient(
+        135deg,
+        var(--accent) 0%,
+        var(--accent-warm) 100%
+      );
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+      flex-shrink: 0;
+
+      svg {
+        display: block;
+        width: 1.25rem;
+        height: 1.25rem;
+        color: #fff;
+        flex-shrink: 0;
+      }
+    }
+
+    // ------------------------------------------------------------------
+    // Contenido textual
+    // ------------------------------------------------------------------
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+      min-width: 0;
+
+      @include breakpoint(md) {
+        align-items: center;
+      }
+    }
+
+    &__value {
+      font-family: $font-primary;
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+
+      @include breakpoint(md) {
+        font-size: 1.875rem;
+      }
+    }
+
+    &__label {
+      font-family: $font-primary;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+
+      @include breakpoint(md) {
+        font-size: 0.8125rem;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Animación de entrada
+  // ------------------------------------------------------------------
+  @keyframes sp-card-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

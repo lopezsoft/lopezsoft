@@ -1,0 +1,108 @@
+// ==========================================================================
+// Social Proof Bar — Barra de confianza/autoridad bajo el Hero
+// ==========================================================================
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.social-proof {
+  position: relative;
+  z-index: 1;
+  margin-top: -2rem;
+  padding-bottom: $spacing-8;
+
+  @include breakpoint(md) {
+    margin-top: -2.5rem;
+  }
+
+  // ------------------------------------------------------------------
+  // Grid
+  // ------------------------------------------------------------------
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-4;
+
+    @include breakpoint(md) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: $spacing-6;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Cada item
+  // ------------------------------------------------------------------
+  &__item {
+    @include flex-column;
+    align-items: center;
+    text-align: center;
+    gap: $spacing-2;
+    padding: $spacing-5 $spacing-4;
+    background: var(--surface);
+    border: $border-width-default solid var(--border-default);
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-md;
+    @include theme-transition((background-color, border-color, box-shadow));
+
+    // Glassmorphism sutil
+    backdrop-filter: blur(8px);
+
+    &:hover {
+      box-shadow: $shadow-lg;
+      transform: translateY(-2px);
+    }
+
+    transition: transform $transition-normal, box-shadow $transition-normal,
+      background-color $transition-normal, border-color $transition-normal;
+  }
+
+  // ------------------------------------------------------------------
+  // Icono
+  // ------------------------------------------------------------------
+  &__icon-wrapper {
+    @include flex-center;
+    width: 2.75rem;
+    height: 2.75rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+    border-radius: $border-radius-lg;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  &__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    min-width: 1.25rem;
+    min-height: 1.25rem;
+    max-width: 1.25rem;
+    max-height: 1.25rem;
+    color: $color-white;
+    flex-shrink: 0;
+  }
+
+  // ------------------------------------------------------------------
+  // Valor numérico
+  // ------------------------------------------------------------------
+  &__value {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-extrabold;
+    color: var(--text-primary);
+    line-height: 1;
+    letter-spacing: -0.02em;
+
+    @include breakpoint(md) {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Etiqueta
+  // ------------------------------------------------------------------
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--text-secondary);
+    line-height: $line-height-tight;
+  }
+}

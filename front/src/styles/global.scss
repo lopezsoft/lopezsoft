@@ -17,6 +17,7 @@
 @use 'components/service-card';
 @use 'components/tech-stack';
 @use 'components/stats-bar';
+// social-proof: styles are scoped inside SocialProofBar.astro
 @use 'components/language-switcher';
 @use 'components/theme-toggle';
 @use 'components/section';

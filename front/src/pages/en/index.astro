@@ -4,7 +4,9 @@
 // ==========================================================================
 import MainLayout from "@layouts/MainLayout.astro";
 import Hero from "@components/Hero.astro";
+import SocialProofBar from "@components/SocialProofBar.astro";
 import ProductCard from "@components/ProductCard.astro";
+import ServiceCard from "@components/ServiceCard.astro";
 import Button from "@components/Button.astro";
 import { useTranslations, getLocalizedPath } from "@i18n/utils";
 
@@ -16,10 +18,15 @@ const products = [
   { key: "matias_impulso", image: "/images/products/impulso-500.png" },
   { key: "asaie_exodo", image: "/images/products/asaie-exodo-icon.png" },
 ];
+
+const hardwareServices = ["diagnosis", "licensing", "onsite"];
 ---
 
 <MainLayout description={t("seo.home.description")}>
   <Hero lang="en" />
+
+  <!-- Social Proof / Authority Bar -->
+  <SocialProofBar lang="en" />
 
   <!-- Products Section -->
   <section id="products" class="section section--alt">
@@ -63,8 +70,38 @@ const products = [
     </div>
   </section>
 
+  <!-- Hardware Preview Section -->
+  <section id="hardware-preview" class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2 class="section__title">{t("hardware.preview_title")}</h2>
+        <p class="section__subtitle">{t("hardware.preview_subtitle")}</p>
+      </div>
+      <div class="services-grid services-grid--3">
+        {
+          hardwareServices.map((key) => (
+            <ServiceCard
+              name={t(`hardware.${key}.name`)}
+              description={t(`hardware.${key}.description`)}
+              icon={t(`hardware.${key}.icon`)}
+            />
+          ))
+        }
+      </div>
+      <div class="section__cta">
+        <Button
+          variant="warm"
+          size="lg"
+          href={getLocalizedPath("/hardware", "en")}
+        >
+          {t("hardware.preview_cta")}
+        </Button>
+      </div>
+    </div>
+  </section>
+
   <!-- About Preview -->
-  <section class="section">
+  <section class="section section--alt">
     <div class="container">
       <div class="section__header reveal">
         <h2 class="section__title">{t("about.title")}</h2>

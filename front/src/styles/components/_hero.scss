@@ -71,6 +71,15 @@
     .hero__subtitle {
       color: rgba($color-white, 0.8);
     }
+
+    // Variante cálida para Hardware
+    &--warm {
+      background: linear-gradient(135deg, $color-gray-900 0%, $color-amber-600 100%);
+
+      [data-theme='dark'] & {
+        background: linear-gradient(135deg, $color-gray-900 0%, rgba($color-amber-600, 0.6) 100%);
+      }
+    }
   }
 
   // ------------------------------------------------------------------
@@ -90,7 +99,7 @@
   }
 
   &__title {
-    max-width: 48rem;
+    max-width: 56rem;
   }
 
   &__subtitle {
