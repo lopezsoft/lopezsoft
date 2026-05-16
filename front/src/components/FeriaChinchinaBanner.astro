@@ -193,18 +193,21 @@ const habeasDataText =
     console.log('[Feria] 📦 Datos válidos listos para enviar:', formData);
 
     // 1. Enviar a Webhook
-    const payload = JSON.stringify({ ...formData, source: 'feria-chinchina-2026' });
+    const payloadData = { ...formData, source: 'feria-chinchina-2026' };
+    const payloadParams = new URLSearchParams(payloadData);
+    
     if (webhookUrl) {
       console.log('[Feria] 📤 Enviando a webhook:', webhookUrl);
       if (navigator.sendBeacon) {
-        const sent = navigator.sendBeacon(webhookUrl, payload);
+        // Al pasar URLSearchParams, sendBeacon usa application/x-www-form-urlencoded automáticamente
+        const sent = navigator.sendBeacon(webhookUrl, payloadParams);
         console.log('[Feria] sendBeacon status:', sent);
       } else {
         fetch(webhookUrl, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: payload
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: payloadParams
         }).then(() => console.log('[Feria] fetch enviado'));
       }
     } else {
@@ -214,12 +217,12 @@ const habeasDataText =
     // 2. Abrir WhatsApp
     if (waNumber) {
       const msg = [
-        '🎪 *Nuevo Lead — Feria Caldas Más Digital*',
-        `👤 Nombre: ${formData.fullName}`,
-        `🏪 Negocio: ${formData.businessName}`,
-        `📱 Celular: ${formData.phone}`,
-        `🕐 Registrado: ${new Date().toLocaleString('es-CO')}`,
-        '💡 Interesado en Demo Matias ERP 3.0',
+        '\u26FA *Nuevo Lead — Feria Caldas Más Digital*',
+        `\uD83D\uDC64 Nombre: ${formData.fullName}`,
+        `\uD83C\uDFEA Negocio: ${formData.businessName}`,
+        `\uD83D\uDCF1 Celular: ${formData.phone}`,
+        `\uD83D\uDD50 Registrado: ${new Date().toLocaleString('es-CO')}`,
+        '\uD83D\uDCA1 Interesado en Demo Matias ERP 3.0',
       ].join('\n');
       window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
     }
