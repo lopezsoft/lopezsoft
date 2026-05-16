@@ -159,10 +159,10 @@ const habeasDataText =
       if (!webhookUrl) return;
       try {
         fetch(webhookUrl, {
-          method: 'POST', mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify({ ...data, source: 'feria-chinchina-2026' }),
-        });
+        }).catch(() => { /* fire-and-forget */ });
       } catch { /* fire-and-forget */ }
     };
 
