@@ -1,10 +1,18 @@
 {
-  "name": "front",
+  "name": "lopezsoft",
+  "version": "1.0.0",
   "type": "module",
-  "version": "0.0.1",
+  "author": "LopezSoft",
+  "description": "LopezSoft front",
+  "license": "PRIVATE",
   "engines": {
     "node": ">=22.12.0"
   },
+  "keywords": [
+    "lopezsoft",
+    "front"
+  ],
+  "repository": "https://github.com/lopezsoft/lopezsoft",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
