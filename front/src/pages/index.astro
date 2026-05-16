@@ -15,26 +15,12 @@ import { DEFAULT_LOCALE } from "@i18n/config";
 
 const t = useTranslations(DEFAULT_LOCALE);
 
-// --- Lógica de 3 estados: Feria Chinchiná 2026 ---------------------------
-// Estado 1: Pre-evento (countdown visible + hero normal)
-// Estado 2: Durante evento (banner con formulario, 27-28 mayo)
-// Estado 3: Post-evento (hero normal, sin countdown)
-const FERIA_START = new Date('2026-05-27T09:00:00-05:00');
-const FERIA_END = new Date('2026-05-29T00:00:00-05:00');
-
-const feriaActiva =
-	import.meta.env.PUBLIC_FERIA_ACTIVA === "true" ||
-	(() => {
-		const now = new Date(
-			new Date().toLocaleString("en-US", { timeZone: "America/Bogota" }),
-		);
-		const year = now.getFullYear();
-		const month = now.getMonth();
-		const day = now.getDate();
-		return year === 2026 && month === 4 && (day === 27 || day === 28);
-	})();
-
-const isPreEvent = !feriaActiva && new Date() < FERIA_START;
+// --- Feria Caldas Más Digital 2026 ----------------------------------------
+// Lógica 100% client-side: los 3 estados se renderizan en el HTML estático.
+// Un script decide cuál mostrar según la fecha del visitante o env override.
+const FERIA_START = '2026-05-27T09:00:00-05:00';
+const FERIA_END = '2026-05-29T00:00:00-05:00';
+const envOverride = import.meta.env.PUBLIC_FERIA_ACTIVA === "true";
 
 const products = [
 	{ key: "matias_erp", image: "/images/products/erp-500.png" },
@@ -47,8 +33,58 @@ const hardwareServices = ["diagnosis", "licensing", "onsite"];
 ---
 
 <MainLayout description={t("seo.home.description")}>
-	{isPreEvent && <FeriaCountdown targetDate={FERIA_START.toISOString()} />}
-	{feriaActiva ? <FeriaChinchinaBanner /> : <Hero lang={DEFAULT_LOCALE} />}
+	{/* === Feria: 3 estados renderizados, JS decide visibilidad === */}
+	<div
+		id="feria-controller"
+		data-override={String(envOverride)}
+		data-start={FERIA_START}
+		data-end={FERIA_END}
+	>
+		<div id="feria-state-countdown" style="display:none">
+			<FeriaCountdown targetDate={FERIA_START} />
+		</div>
+		<div id="feria-state-banner" style="display:none">
+			<FeriaChinchinaBanner />
+		</div>
+		<div id="feria-state-hero">
+			<Hero lang={DEFAULT_LOCALE} />
+		</div>
+	</div>
+	<script>
+		(() => {
+			const ctrl = document.getElementById('feria-controller');
+			if (!ctrl) return;
+
+			const override = ctrl.dataset.override === 'true';
+			const start = new Date(ctrl.dataset.start || '').getTime();
+			const end = new Date(ctrl.dataset.end || '').getTime();
+			const now = Date.now();
+
+			const isFeriaDate = now >= start && now < end;
+			const feriaActiva = override || isFeriaDate;
+			const isPreEvent = !feriaActiva && now < start;
+
+			const $countdown = document.getElementById('feria-state-countdown');
+			const $banner = document.getElementById('feria-state-banner');
+			const $hero = document.getElementById('feria-state-hero');
+
+			if (feriaActiva) {
+				// Estado 2: Banner activo con formulario
+				if ($banner) $banner.style.display = '';
+				if ($hero) $hero.style.display = 'none';
+				if ($countdown) $countdown.style.display = 'none';
+			} else if (isPreEvent) {
+				// Estado 1: Countdown + Hero
+				if ($countdown) $countdown.style.display = '';
+				if ($hero) $hero.style.display = '';
+				if ($banner) $banner.style.display = 'none';
+			} else {
+				// Estado 3: Post-evento, solo Hero (ya visible por defecto)
+				if ($countdown) $countdown.style.display = 'none';
+				if ($banner) $banner.style.display = 'none';
+			}
+		})();
+	</script>
 
 	<!-- Barra de Prueba Social / Autoridad -->
 	<SocialProofBar lang={DEFAULT_LOCALE} />

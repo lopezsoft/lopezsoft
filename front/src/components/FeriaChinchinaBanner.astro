@@ -1,20 +1,10 @@
 ---
 // ==========================================================================
-// LOPEZSOFT SAS — Banner Temporal: Feria Chinchiná 2026
+// LOPEZSOFT SAS — Banner Temporal: Feria Caldas Más Digital 2026
 // --------------------------------------------------------------------------
 // Flujo: Formulario → Webhook Google Sheets → WhatsApp → Demo Sandbox
+// La visibilidad del componente la controla index.astro vía JS client-side.
 // ==========================================================================
-
-const envOverride = import.meta.env.PUBLIC_FERIA_ACTIVA === 'true';
-
-const isEventDate = (() => {
-  const now = new Date(
-    new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' }),
-  );
-  return now.getFullYear() === 2026 && now.getMonth() === 4 && (now.getDate() === 27 || now.getDate() === 28);
-})();
-
-const isActive = envOverride || isEventDate;
 
 const whatsappNumber = '573108435431';
 const webhookUrl = import.meta.env.PUBLIC_LEADS_WEBHOOK || '';
@@ -28,8 +18,7 @@ const habeasDataText =
   'Autorizo a LOPEZSOFT SAS el tratamiento de mis datos personales conforme a la Ley 1581 de 2012 y su Política de Privacidad, con fines comerciales y de contacto.';
 ---
 
-{isActive && (
-  <section class="fb" aria-label="Banner Feria Chinchiná 2026">
+<section class="fb" aria-label="Banner Feria Caldas Más Digital 2026">
     <div class="fb__bg-orb fb__bg-orb--1" aria-hidden="true"></div>
     <div class="fb__bg-orb fb__bg-orb--2" aria-hidden="true"></div>
 
@@ -136,101 +125,89 @@ const habeasDataText =
       </div>
     </div>
   </section>
-)}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('feria-lead-form') as HTMLFormElement | null;
+    if (!form) return;
 
-{isActive && (
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('feria-lead-form') as HTMLFormElement | null;
-      if (!form) return;
+    const webhookUrl = form.dataset.webhook || '';
+    const waNumber = form.dataset.wa || '';
 
-      const webhookUrl = form.dataset.webhook || '';
-      const waNumber = form.dataset.wa || '';
-
-      const showError = (field: string, msg: string): void => {
-        const el = form.querySelector(`[data-error="${field}"]`);
-        if (el) { el.textContent = msg; el.classList.add('is-visible'); }
-      };
-      const clearErrors = (): void => {
-        form.querySelectorAll('.fb__err').forEach((el) => {
-          el.textContent = ''; el.classList.remove('is-visible');
-        });
-      };
-      const validateField = (input: HTMLInputElement): boolean => {
-        const { name, value } = input;
-        const trimmed = value.trim();
-        if (input.required && !trimmed) { showError(name, 'Este campo es obligatorio.'); return false; }
-        const min = input.getAttribute('minlength');
-        if (min && trimmed.length < parseInt(min, 10)) { showError(name, `Mínimo ${min} caracteres.`); return false; }
-        if (name === 'phone' && trimmed) {
-          const digits = trimmed.replace(/\D/g, '');
-          if (digits.length < 7 || digits.length > 15) { showError(name, 'Ingrese un número válido.'); return false; }
-        }
-        return true;
-      };
-
-      // Enviar lead al webhook (fire-and-forget)
-      const sendToWebhook = (data: Record<string, string>): void => {
-        if (!webhookUrl) return;
-        try {
-          fetch(webhookUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...data, source: 'feria-chinchina-2026' }),
-          });
-        } catch { /* fire-and-forget */ }
-      };
-
-      // Abrir WhatsApp con datos del lead
-      const openWhatsApp = (data: Record<string, string>): void => {
-        if (!waNumber) return;
-        const msg = [
-          '🎪 *Nuevo Lead — Feria Chinchiná 2026*',
-          `👤 Nombre: ${data.fullName}`,
-          `🏪 Negocio: ${data.businessName}`,
-          `📱 Celular: ${data.phone}`,
-          `🕐 Registrado: ${new Date().toLocaleString('es-CO')}`,
-          '💡 Interesado en Demo Matias ERP 3.0',
-        ].join('\n');
-        window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
-      };
-
-      form.addEventListener('submit', (e: Event) => {
-        e.preventDefault();
-        clearErrors();
-        document.getElementById('fl-error')?.setAttribute('hidden', '');
-
-        const inputs = form.querySelectorAll<HTMLInputElement>("input:not([type='checkbox'])");
-        let isValid = true;
-        inputs.forEach((input) => { if (!validateField(input)) isValid = false; });
-
-        const consent = form.querySelector<HTMLInputElement>('#fl-consent');
-        if (consent && !consent.checked) { showError('consent', consent.dataset.errorMsg || 'Requerido'); isValid = false; }
-
-        if (!isValid) { document.getElementById('fl-error')?.removeAttribute('hidden'); return; }
-
-        // Recoger datos
-        const formData: Record<string, string> = {};
-        inputs.forEach((input) => { formData[input.name] = input.value.trim(); });
-
-        // 1. Enviar al webhook (async, no bloquea)
-        sendToWebhook(formData);
-
-        // 2. Abrir WhatsApp
-        openWhatsApp(formData);
-
-        // 3. Mostrar panel de demo sandbox
-        document.getElementById('feria-form-panel')?.setAttribute('hidden', '');
-        const successPanel = document.getElementById('feria-success-panel');
-        if (successPanel) {
-          successPanel.removeAttribute('hidden');
-          successPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
+    const showError = (field: string, msg: string): void => {
+      const el = form.querySelector(`[data-error="${field}"]`);
+      if (el) { el.textContent = msg; el.classList.add('is-visible'); }
+    };
+    const clearErrors = (): void => {
+      form.querySelectorAll('.fb__err').forEach((el) => {
+        el.textContent = ''; el.classList.remove('is-visible');
       });
+    };
+    const validateField = (input: HTMLInputElement): boolean => {
+      const { name, value } = input;
+      const trimmed = value.trim();
+      if (input.required && !trimmed) { showError(name, 'Este campo es obligatorio.'); return false; }
+      const min = input.getAttribute('minlength');
+      if (min && trimmed.length < parseInt(min, 10)) { showError(name, `Mínimo ${min} caracteres.`); return false; }
+      if (name === 'phone' && trimmed) {
+        const digits = trimmed.replace(/\D/g, '');
+        if (digits.length < 7 || digits.length > 15) { showError(name, 'Ingrese un número válido.'); return false; }
+      }
+      return true;
+    };
+
+    const sendToWebhook = (data: Record<string, string>): void => {
+      if (!webhookUrl) return;
+      try {
+        fetch(webhookUrl, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...data, source: 'feria-chinchina-2026' }),
+        });
+      } catch { /* fire-and-forget */ }
+    };
+
+    const openWhatsApp = (data: Record<string, string>): void => {
+      if (!waNumber) return;
+      const msg = [
+        '🎪 *Nuevo Lead — Feria Caldas Más Digital*',
+        `👤 Nombre: ${data.fullName}`,
+        `🏪 Negocio: ${data.businessName}`,
+        `📱 Celular: ${data.phone}`,
+        `🕐 Registrado: ${new Date().toLocaleString('es-CO')}`,
+        '💡 Interesado en Demo Matias ERP 3.0',
+      ].join('\n');
+      window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+    };
+
+    form.addEventListener('submit', (e: Event) => {
+      e.preventDefault();
+      clearErrors();
+      document.getElementById('fl-error')?.setAttribute('hidden', '');
+
+      const inputs = form.querySelectorAll<HTMLInputElement>("input:not([type='checkbox'])");
+      let isValid = true;
+      inputs.forEach((input) => { if (!validateField(input)) isValid = false; });
+
+      const consent = form.querySelector<HTMLInputElement>('#fl-consent');
+      if (consent && !consent.checked) { showError('consent', consent.dataset.errorMsg || 'Requerido'); isValid = false; }
+
+      if (!isValid) { document.getElementById('fl-error')?.removeAttribute('hidden'); return; }
+
+      const formData: Record<string, string> = {};
+      inputs.forEach((input) => { formData[input.name] = input.value.trim(); });
+
+      sendToWebhook(formData);
+      openWhatsApp(formData);
+
+      document.getElementById('feria-form-panel')?.setAttribute('hidden', '');
+      const successPanel = document.getElementById('feria-success-panel');
+      if (successPanel) {
+        successPanel.removeAttribute('hidden');
+        successPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     });
-  </script>
-)}
+  });
+</script>
 
 <style>
   @keyframes fb-fadeUp {
