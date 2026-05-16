@@ -2,9 +2,7 @@
 // ==========================================================================
 // LOPEZSOFT SAS — Banner Temporal: Feria Chinchiná 2026
 // --------------------------------------------------------------------------
-// Componente condicional que reemplaza al Hero estándar durante el evento.
-// Se activa por: PUBLIC_FERIA_ACTIVA=true ó fechas 27-28 mayo 2026 (COT).
-// Estilos scoped para evitar conflictos con Tailwind CSS 4.
+// Flujo: Formulario → Webhook Google Sheets → WhatsApp → Demo Sandbox
 // ==========================================================================
 
 const envOverride = import.meta.env.PUBLIC_FERIA_ACTIVA === 'true';
@@ -13,19 +11,18 @@ const isEventDate = (() => {
   const now = new Date(
     new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' }),
   );
-  const year = now.getFullYear();
-  const month = now.getMonth();
-  const day = now.getDate();
-  return year === 2026 && month === 4 && (day === 27 || day === 28);
+  return now.getFullYear() === 2026 && now.getMonth() === 4 && (now.getDate() === 27 || now.getDate() === 28);
 })();
 
 const isActive = envOverride || isEventDate;
 
 const whatsappNumber = '573108435431';
-const whatsappMessage = encodeURIComponent(
-  'Hola, visito su stand en Chinchiná y deseo más información',
-);
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+const webhookUrl = import.meta.env.PUBLIC_LEADS_WEBHOOK || '';
+
+// Demo Sandbox
+const demoUrl = 'https://apps.matias.com.co/#/auth/login';
+const demoEmail = 'demo@matias.com.co';
+const demoPass = 'DEMO123456';
 
 const habeasDataText =
   'Autorizo a LOPEZSOFT SAS el tratamiento de mis datos personales conforme a la Ley 1581 de 2012 y su Política de Privacidad, con fines comerciales y de contacto.';
@@ -33,88 +30,105 @@ const habeasDataText =
 
 {isActive && (
   <section class="fb" aria-label="Banner Feria Chinchiná 2026">
-    {/* Decoradores de fondo */}
     <div class="fb__bg-orb fb__bg-orb--1" aria-hidden="true"></div>
     <div class="fb__bg-orb fb__bg-orb--2" aria-hidden="true"></div>
 
     <div class="fb__inner container">
       {/* === Columna Izquierda === */}
       <div class="fb__content">
-        <span class="fb__badge">
-          🎪 Feria Chinchiná 2026
-        </span>
-
+        <span class="fb__badge">🎪 Feria Chinchiná 2026</span>
         <h1 class="fb__title">
           ¡Bienvenido a la Feria Chinchiná!
           <span class="fb__title-gold">Optimice su negocio hoy.</span>
         </h1>
-
         <p class="fb__desc">
-          Descubra cómo nuestro ecosistema tecnológico transforma la gestión
-          de su empresa con soluciones ERP, facturación electrónica y
-          soporte técnico especializado.
+          Facture electrónicamente ante la DIAN, controle su caja y gestione
+          inventario con <strong>Matias ERP 3.0</strong> — la solución para
+          comerciantes que quieren crecer.
         </p>
-
         <div class="fb__ctas">
-          <a id="feria-cta-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="fb__btn fb__btn--wa">
+          <a id="feria-cta-whatsapp" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola, visito su stand en Chinchiná y deseo más información sobre Matias ERP')}`} target="_blank" rel="noopener noreferrer" class="fb__btn fb__btn--wa">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Hablar con un Asesor
           </a>
-          <a id="feria-cta-ecosystem" href="#products" class="fb__btn fb__btn--ghost">
-            Conocer Ecosistema LOPEZSOFT
+          <a id="feria-cta-demo" href={demoUrl} target="_blank" rel="noopener noreferrer" class="fb__btn fb__btn--ghost">
+            Ver Demo Matias ERP
           </a>
         </div>
       </div>
 
-      {/* === Columna Derecha — Formulario === */}
+      {/* === Columna Derecha — Formulario + Panel Demo === */}
       <div class="fb__card">
         <div class="fb__card-glow" aria-hidden="true"></div>
-        <h2 class="fb__card-title">
-          🚀 Activa tu Demo Gratis
-        </h2>
-        <p class="fb__card-desc">
-          Completa tus datos y un asesor te contactará.
-        </p>
 
-        <form class="fb__form" id="feria-lead-form" novalidate>
-          <div class="fb__field">
-            <label class="fb__label" for="fl-name">Nombre Completo *</label>
-            <input class="fb__input" type="text" id="fl-name" name="fullName" required minlength="2" maxlength="100" autocomplete="name" placeholder="Ej: Carlos Rodríguez" aria-describedby="fl-name-error" />
-            <span class="fb__err" id="fl-name-error" data-error="fullName" role="alert"></span>
-          </div>
+        {/* --- Panel del formulario (visible inicialmente) --- */}
+        <div id="feria-form-panel">
+          <h2 class="fb__card-title">🚀 Activa tu Demo de Matias ERP</h2>
+          <p class="fb__card-desc">Registra tus datos y accede al sistema de inmediato.</p>
 
-          <div class="fb__field">
-            <label class="fb__label" for="fl-business">Nombre del Negocio *</label>
-            <input class="fb__input" type="text" id="fl-business" name="businessName" required minlength="2" maxlength="100" autocomplete="organization" placeholder="Ej: Café del Valle S.A.S" aria-describedby="fl-business-error" />
-            <span class="fb__err" id="fl-business-error" data-error="businessName" role="alert"></span>
-          </div>
+          <form class="fb__form" id="feria-lead-form" novalidate
+            data-webhook={webhookUrl}
+            data-wa={whatsappNumber}
+            data-demo-url={demoUrl}>
+            <div class="fb__field">
+              <label class="fb__label" for="fl-name">Nombre Completo *</label>
+              <input class="fb__input" type="text" id="fl-name" name="fullName" required minlength="2" maxlength="100" autocomplete="name" placeholder="Ej: Carlos Rodríguez" aria-describedby="fl-name-error" />
+              <span class="fb__err" id="fl-name-error" data-error="fullName" role="alert"></span>
+            </div>
+            <div class="fb__field">
+              <label class="fb__label" for="fl-business">Nombre del Negocio *</label>
+              <input class="fb__input" type="text" id="fl-business" name="businessName" required minlength="2" maxlength="100" autocomplete="organization" placeholder="Ej: Café del Valle S.A.S" aria-describedby="fl-business-error" />
+              <span class="fb__err" id="fl-business-error" data-error="businessName" role="alert"></span>
+            </div>
+            <div class="fb__field">
+              <label class="fb__label" for="fl-phone">Celular / WhatsApp *</label>
+              <input class="fb__input" type="tel" id="fl-phone" name="phone" required minlength="7" maxlength="15" autocomplete="tel" placeholder="Ej: 300 123 4567" inputmode="tel" aria-describedby="fl-phone-error" />
+              <span class="fb__err" id="fl-phone-error" data-error="phone" role="alert"></span>
+            </div>
+            <div class="fb__field fb__field--check">
+              <label class="fb__check-label" for="fl-consent">
+                <input class="fb__checkbox" type="checkbox" id="fl-consent" name="consent" required aria-describedby="fl-consent-error" data-error-msg="Debe autorizar el tratamiento de datos." />
+                <span class="fb__check-text">{habeasDataText}</span>
+              </label>
+              <span class="fb__err" id="fl-consent-error" data-error="consent" role="alert"></span>
+            </div>
+            <button id="feria-submit-btn" class="fb__submit" type="submit">
+              Activar Demo Gratis
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+            <div class="fb__msg fb__msg--fail" id="fl-error" role="alert" aria-live="assertive" hidden>
+              ⚠️ Revisa los campos marcados e intenta de nuevo.
+            </div>
+          </form>
+        </div>
 
-          <div class="fb__field">
-            <label class="fb__label" for="fl-phone">Celular / WhatsApp *</label>
-            <input class="fb__input" type="tel" id="fl-phone" name="phone" required minlength="7" maxlength="15" autocomplete="tel" placeholder="Ej: 300 123 4567" inputmode="tel" aria-describedby="fl-phone-error" />
-            <span class="fb__err" id="fl-phone-error" data-error="phone" role="alert"></span>
-          </div>
+        {/* --- Panel de éxito + Demo Sandbox (oculto inicialmente) --- */}
+        <div id="feria-success-panel" class="fb__success" hidden>
+          <div class="fb__success-check">✅</div>
+          <h2 class="fb__card-title">¡Registro Exitoso!</h2>
+          <p class="fb__card-desc">Un asesor te contactará por WhatsApp. Mientras tanto, prueba Matias ERP ahora mismo:</p>
 
-          <div class="fb__field fb__field--check">
-            <label class="fb__check-label" for="fl-consent">
-              <input class="fb__checkbox" type="checkbox" id="fl-consent" name="consent" required aria-describedby="fl-consent-error" data-error-msg="Debe autorizar el tratamiento de datos." />
-              <span class="fb__check-text">{habeasDataText}</span>
-            </label>
-            <span class="fb__err" id="fl-consent-error" data-error="consent" role="alert"></span>
+          <div class="fb__demo-box">
+            <h3 class="fb__demo-title">🖥️ Acceso Demo Matias ERP 3.0</h3>
+            <div class="fb__demo-cred">
+              <div class="fb__demo-row">
+                <span class="fb__demo-lbl">Usuario:</span>
+                <code class="fb__demo-val">{demoEmail}</code>
+              </div>
+              <div class="fb__demo-row">
+                <span class="fb__demo-lbl">Contraseña:</span>
+                <code class="fb__demo-val">{demoPass}</code>
+              </div>
+            </div>
+            <a href={demoUrl} target="_blank" rel="noopener noreferrer" class="fb__demo-btn" id="feria-demo-link">
+              Ingresar al Demo →
+            </a>
+            <p class="fb__demo-note">
+              Versión de demostración con datos de prueba. Para su cuenta privada
+              con 15 días gratis y conexión real a la DIAN, un asesor lo contactará.
+            </p>
           </div>
-
-          <button id="feria-submit-btn" class="fb__submit" type="submit">
-            Activar Demo Gratis
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </button>
-
-          <div class="fb__msg fb__msg--ok" id="fl-success" role="status" aria-live="polite" hidden>
-            ✅ ¡Registro exitoso! Un asesor se comunicará contigo pronto.
-          </div>
-          <div class="fb__msg fb__msg--fail" id="fl-error" role="alert" aria-live="assertive" hidden>
-            ⚠️ Revisa los campos marcados e intenta de nuevo.
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </section>
@@ -126,17 +140,18 @@ const habeasDataText =
       const form = document.getElementById('feria-lead-form') as HTMLFormElement | null;
       if (!form) return;
 
+      const webhookUrl = form.dataset.webhook || '';
+      const waNumber = form.dataset.wa || '';
+
       const showError = (field: string, msg: string): void => {
         const el = form.querySelector(`[data-error="${field}"]`);
         if (el) { el.textContent = msg; el.classList.add('is-visible'); }
       };
-
       const clearErrors = (): void => {
         form.querySelectorAll('.fb__err').forEach((el) => {
           el.textContent = ''; el.classList.remove('is-visible');
         });
       };
-
       const validateField = (input: HTMLInputElement): boolean => {
         const { name, value } = input;
         const trimmed = value.trim();
@@ -150,10 +165,36 @@ const habeasDataText =
         return true;
       };
 
+      // Enviar lead al webhook (fire-and-forget)
+      const sendToWebhook = (data: Record<string, string>): void => {
+        if (!webhookUrl) return;
+        try {
+          fetch(webhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...data, source: 'feria-chinchina-2026' }),
+          });
+        } catch { /* fire-and-forget */ }
+      };
+
+      // Abrir WhatsApp con datos del lead
+      const openWhatsApp = (data: Record<string, string>): void => {
+        if (!waNumber) return;
+        const msg = [
+          '🎪 *Nuevo Lead — Feria Chinchiná 2026*',
+          `👤 Nombre: ${data.fullName}`,
+          `🏪 Negocio: ${data.businessName}`,
+          `📱 Celular: ${data.phone}`,
+          `🕐 Registrado: ${new Date().toLocaleString('es-CO')}`,
+          '💡 Interesado en Demo Matias ERP 3.0',
+        ].join('\n');
+        window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+      };
+
       form.addEventListener('submit', (e: Event) => {
         e.preventDefault();
         clearErrors();
-        document.getElementById('fl-success')?.setAttribute('hidden', '');
         document.getElementById('fl-error')?.setAttribute('hidden', '');
 
         const inputs = form.querySelectorAll<HTMLInputElement>("input:not([type='checkbox'])");
@@ -165,21 +206,29 @@ const habeasDataText =
 
         if (!isValid) { document.getElementById('fl-error')?.removeAttribute('hidden'); return; }
 
-        document.getElementById('fl-success')?.removeAttribute('hidden');
-        form.reset();
-        document.getElementById('fl-success')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        // Recoger datos
+        const formData: Record<string, string> = {};
+        inputs.forEach((input) => { formData[input.name] = input.value.trim(); });
+
+        // 1. Enviar al webhook (async, no bloquea)
+        sendToWebhook(formData);
+
+        // 2. Abrir WhatsApp
+        openWhatsApp(formData);
+
+        // 3. Mostrar panel de demo sandbox
+        document.getElementById('feria-form-panel')?.setAttribute('hidden', '');
+        const successPanel = document.getElementById('feria-success-panel');
+        if (successPanel) {
+          successPanel.removeAttribute('hidden');
+          successPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       });
     });
   </script>
 )}
 
 <style>
-  /* ================================================================
-     Feria Chinchiná Banner — Estilos Scoped (Astro)
-     Evita conflictos con Tailwind CSS 4 Vite plugin
-     ================================================================ */
-
-  /* --- Keyframes --- */
   @keyframes fb-fadeUp {
     from { opacity: 0; transform: translateY(1.5rem); }
     to   { opacity: 1; transform: translateY(0); }
@@ -193,365 +242,100 @@ const habeasDataText =
     50%      { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
   }
 
-  /* --- Root --- */
   .fb {
     position: relative;
     overflow: hidden;
     background: linear-gradient(155deg, #0F172A 0%, #0d1f4a 40%, #1e40af 100%);
     padding: 1.5rem 0 3rem;
   }
-  @media (min-width: 768px) {
-    .fb { padding: 3rem 0 4.5rem; }
-  }
-  @media (min-width: 1024px) {
-    .fb { padding: 4rem 0 6rem; }
-  }
+  @media (min-width: 768px) { .fb { padding: 3rem 0 4.5rem; } }
+  @media (min-width: 1024px) { .fb { padding: 4rem 0 6rem; } }
 
-  /* --- Orbs decorativos --- */
-  .fb__bg-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-  }
-  .fb__bg-orb--1 {
-    width: 300px; height: 300px;
-    background: rgba(37, 99, 235, 0.25);
-    top: -80px; left: -60px;
-    animation: fb-glow 6s ease-in-out infinite;
-  }
-  .fb__bg-orb--2 {
-    width: 250px; height: 250px;
-    background: rgba(245, 158, 11, 0.12);
-    bottom: -50px; right: -40px;
-    animation: fb-glow 6s ease-in-out 3s infinite;
-  }
+  .fb__bg-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+  .fb__bg-orb--1 { width: 300px; height: 300px; background: rgba(37,99,235,0.25); top: -80px; left: -60px; animation: fb-glow 6s ease-in-out infinite; }
+  .fb__bg-orb--2 { width: 250px; height: 250px; background: rgba(245,158,11,0.12); bottom: -50px; right: -40px; animation: fb-glow 6s ease-in-out 3s infinite; }
 
-  /* --- Inner layout --- */
-  .fb__inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .fb__inner {
-      flex-direction: row;
-      align-items: center;
-      gap: 2.5rem;
-    }
-  }
-  @media (min-width: 1024px) {
-    .fb__inner { gap: 3.5rem; }
-  }
+  .fb__inner { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.5rem; }
+  @media (min-width: 768px) { .fb__inner { flex-direction: row; align-items: center; gap: 2.5rem; } }
+  @media (min-width: 1024px) { .fb__inner { gap: 3.5rem; } }
 
-  /* --- Columna contenido --- */
-  .fb__content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    animation: fb-fadeUp 0.6s ease both;
-  }
-  @media (min-width: 768px) {
-    .fb__content { flex: 1; gap: 1rem; }
-  }
+  .fb__content { display: flex; flex-direction: column; gap: 0.75rem; animation: fb-fadeUp 0.6s ease both; }
+  @media (min-width: 768px) { .fb__content { flex: 1; gap: 1rem; } }
 
-  /* Badge */
-  .fb__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    width: fit-content;
-    padding: 0.375rem 0.875rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #F59E0B;
-    background: rgba(245, 158, 11, 0.12);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    border-radius: 9999px;
-    backdrop-filter: blur(8px);
-  }
+  .fb__badge { display: inline-flex; align-items: center; gap: 0.375rem; width: fit-content; padding: 0.375rem 0.875rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #F59E0B; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); border-radius: 9999px; backdrop-filter: blur(8px); }
 
-  /* Title */
-  .fb__title {
-    color: #FFFFFF;
-    font-size: 1.625rem;
-    font-weight: 800;
-    line-height: 1.2;
-    max-width: 34rem;
-    margin: 0;
-  }
-  @media (min-width: 640px) {
-    .fb__title { font-size: 2rem; }
-  }
-  @media (min-width: 768px) {
-    .fb__title { font-size: 2.25rem; }
-  }
-  @media (min-width: 1024px) {
-    .fb__title { font-size: 2.75rem; }
-  }
+  .fb__title { color: #FFFFFF; font-size: 1.625rem; font-weight: 800; line-height: 1.2; max-width: 34rem; margin: 0; }
+  @media (min-width: 640px) { .fb__title { font-size: 2rem; } }
+  @media (min-width: 768px) { .fb__title { font-size: 2.25rem; } }
+  @media (min-width: 1024px) { .fb__title { font-size: 2.75rem; } }
+  .fb__title-gold { display: block; color: #F59E0B; margin-top: 0.25rem; }
 
-  .fb__title-gold {
-    display: block;
-    color: #F59E0B;
-    margin-top: 0.25rem;
-  }
+  .fb__desc { color: rgba(255,255,255,0.7); font-size: 0.85rem; line-height: 1.6; max-width: 30rem; margin: 0; }
+  .fb__desc strong { color: #F59E0B; font-weight: 700; }
+  @media (min-width: 768px) { .fb__desc { font-size: 0.95rem; } }
 
-  /* Desc */
-  .fb__desc {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    max-width: 30rem;
-    margin: 0;
-  }
-  @media (min-width: 768px) {
-    .fb__desc { font-size: 0.95rem; }
-  }
+  .fb__ctas { display: flex; flex-direction: column; gap: 0.625rem; margin-top: 0.25rem; }
+  @media (min-width: 480px) { .fb__ctas { flex-direction: row; flex-wrap: wrap; } }
 
-  /* CTAs */
-  .fb__ctas {
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-    margin-top: 0.25rem;
-  }
-  @media (min-width: 480px) {
-    .fb__ctas { flex-direction: row; flex-wrap: wrap; }
-  }
-
-  .fb__btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    line-height: 1.25;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .fb__btn--wa {
-    background-color: #2563EB;
-    color: #FFFFFF;
-    border-color: #2563EB;
-  }
-  .fb__btn--wa:hover {
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
-    color: #FFFFFF;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-  }
-  .fb__btn--ghost {
-    background: transparent;
-    color: rgba(255, 255, 255, 0.85);
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-  .fb__btn--ghost:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.6);
-    color: #FFFFFF;
-  }
-
+  .fb__btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; font-family: 'Inter', system-ui, sans-serif; font-size: 0.9rem; font-weight: 600; line-height: 1.25; text-decoration: none; border-radius: 0.5rem; border: 2px solid transparent; cursor: pointer; transition: all 0.2s ease; }
+  .fb__btn--wa { background-color: #2563EB; color: #FFF; border-color: #2563EB; }
+  .fb__btn--wa:hover { background-color: #1d4ed8; border-color: #1d4ed8; color: #FFF; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(37,99,235,0.4); }
+  .fb__btn--ghost { background: transparent; color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.3); }
+  .fb__btn--ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); color: #FFF; }
   .fb__btn svg { flex-shrink: 0; }
 
-  /* --- Card del formulario --- */
-  .fb__card {
-    position: relative;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    animation: fb-fadeUp 0.6s ease 0.15s both;
-  }
-  @media (min-width: 768px) {
-    .fb__card {
-      flex: 0 0 340px;
-      max-width: 380px;
-      padding: 1.5rem;
-      gap: 1rem;
-    }
-  }
-  @media (min-width: 1024px) {
-    .fb__card {
-      flex: 0 0 400px;
-      max-width: 420px;
-      padding: 1.75rem;
-    }
-  }
+  /* --- Card --- */
+  .fb__card { position: relative; width: 100%; background: rgba(255,255,255,0.06); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; animation: fb-fadeUp 0.6s ease 0.15s both; }
+  @media (min-width: 768px) { .fb__card { flex: 0 0 340px; max-width: 380px; padding: 1.5rem; gap: 1rem; } }
+  @media (min-width: 1024px) { .fb__card { flex: 0 0 400px; max-width: 420px; padding: 1.75rem; } }
 
-  /* Glow detrás del card */
-  .fb__card-glow {
-    position: absolute;
-    inset: -2px;
-    border-radius: 1rem;
-    background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(245,158,11,0.2));
-    z-index: -1;
-    filter: blur(20px);
-    opacity: 0.5;
-    animation: fb-glow 4s ease-in-out infinite;
-  }
+  .fb__card-glow { position: absolute; inset: -2px; border-radius: 1rem; background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(245,158,11,0.2)); z-index: -1; filter: blur(20px); opacity: 0.5; animation: fb-glow 4s ease-in-out infinite; }
 
-  .fb__card-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  @media (min-width: 768px) {
-    .fb__card-title { font-size: 1.25rem; }
-  }
-
-  .fb__card-desc {
-    font-size: 0.75rem;
-    color: rgba(255,255,255, 0.55);
-    margin: 0;
-    line-height: 1.5;
-  }
+  .fb__card-title { font-size: 1.1rem; font-weight: 700; color: #FFF; margin: 0; display: flex; align-items: center; gap: 0.5rem; }
+  @media (min-width: 768px) { .fb__card-title { font-size: 1.25rem; } }
+  .fb__card-desc { font-size: 0.75rem; color: rgba(255,255,255,0.55); margin: 0; line-height: 1.5; }
 
   /* --- Form --- */
-  .fb__form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-  @media (min-width: 768px) {
-    .fb__form { gap: 0.75rem; }
-  }
+  .fb__form { display: flex; flex-direction: column; gap: 0.625rem; }
+  @media (min-width: 768px) { .fb__form { gap: 0.75rem; } }
+  .fb__field { display: flex; flex-direction: column; gap: 0.25rem; }
+  .fb__label { font-size: 0.7rem; font-weight: 600; color: rgba(255,255,255,0.8); letter-spacing: 0.02em; }
+  @media (min-width: 768px) { .fb__label { font-size: 0.8rem; } }
 
-  .fb__field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
+  .fb__input { width: 100%; padding: 0.5rem 0.75rem; font-size: 0.85rem; font-family: 'Inter', system-ui, sans-serif; color: #FFF; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 0.5rem; outline: none; transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s; }
+  @media (min-width: 768px) { .fb__input { padding: 0.625rem 0.875rem; font-size: 0.9rem; } }
+  .fb__input::placeholder { color: rgba(255,255,255,0.3); }
+  .fb__input:focus { border-color: #F59E0B; background: rgba(255,255,255,0.1); box-shadow: 0 0 0 3px rgba(245,158,11,0.15); }
 
-  .fb__label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: rgba(255,255,255, 0.8);
-    letter-spacing: 0.02em;
-  }
-  @media (min-width: 768px) {
-    .fb__label { font-size: 0.8rem; }
-  }
-
-  .fb__input {
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.85rem;
-    font-family: 'Inter', system-ui, sans-serif;
-    color: #FFFFFF;
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 0.5rem;
-    outline: none;
-    transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
-  }
-  @media (min-width: 768px) {
-    .fb__input { padding: 0.625rem 0.875rem; font-size: 0.9rem; }
-  }
-  .fb__input::placeholder { color: rgba(255,255,255, 0.3); }
-  .fb__input:focus {
-    border-color: #F59E0B;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
-  }
-
-  /* Errors */
-  .fb__err {
-    display: none;
-    font-size: 0.7rem;
-    color: #EF4444;
-    font-weight: 500;
-  }
+  .fb__err { display: none; font-size: 0.7rem; color: #EF4444; font-weight: 500; }
   .fb__err.is-visible { display: block; }
 
-  /* Checkbox */
   .fb__field--check { margin-top: 0.125rem; }
-  .fb__check-label {
-    display: flex;
-    gap: 0.5rem;
-    align-items: flex-start;
-    cursor: pointer;
-  }
-  .fb__checkbox {
-    flex-shrink: 0;
-    width: 1rem; height: 1rem;
-    margin-top: 0.125rem;
-    accent-color: #F59E0B;
-    cursor: pointer;
-  }
-  .fb__check-text {
-    font-size: 0.65rem;
-    color: rgba(255,255,255, 0.5);
-    line-height: 1.6;
-  }
-  @media (min-width: 768px) {
-    .fb__check-text { font-size: 0.7rem; }
-  }
+  .fb__check-label { display: flex; gap: 0.5rem; align-items: flex-start; cursor: pointer; }
+  .fb__checkbox { flex-shrink: 0; width: 1rem; height: 1rem; margin-top: 0.125rem; accent-color: #F59E0B; cursor: pointer; }
+  .fb__check-text { font-size: 0.65rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  @media (min-width: 768px) { .fb__check-text { font-size: 0.7rem; } }
 
-  /* Submit */
-  .fb__submit {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    padding: 0.75rem 1.5rem;
-    margin-top: 0.25rem;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #0F172A;
-    background: linear-gradient(135deg, #F59E0B, #FBBF24);
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    animation: fb-pulse 2.5s ease-in-out infinite;
-  }
-  .fb__submit:hover {
-    animation: none;
-    background: linear-gradient(135deg, #D97706, #F59E0B);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
-  }
+  .fb__submit { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 0.75rem 1.5rem; margin-top: 0.25rem; font-family: 'Inter', system-ui, sans-serif; font-size: 0.95rem; font-weight: 700; color: #0F172A; background: linear-gradient(135deg, #F59E0B, #FBBF24); border: none; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s ease; animation: fb-pulse 2.5s ease-in-out infinite; }
+  .fb__submit:hover { animation: none; background: linear-gradient(135deg, #D97706, #F59E0B); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(245,158,11,0.4); }
   .fb__submit svg { flex-shrink: 0; }
 
-  /* Feedback */
-  .fb__msg {
-    padding: 0.75rem 1rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border-radius: 0.5rem;
-    text-align: center;
-  }
-  .fb__msg--ok {
-    color: #22C55E;
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-  }
-  .fb__msg--fail {
-    color: #EF4444;
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-  }
+  .fb__msg { padding: 0.75rem 1rem; font-size: 0.8rem; font-weight: 500; border-radius: 0.5rem; text-align: center; }
+  .fb__msg--fail { color: #EF4444; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); }
+
+  /* --- Success Panel + Demo Sandbox --- */
+  .fb__success { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; text-align: center; animation: fb-fadeUp 0.4s ease both; }
+  .fb__success-check { font-size: 2.5rem; line-height: 1; }
+
+  .fb__demo-box { width: 100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(245,158,11,0.25); border-radius: 0.75rem; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.25rem; }
+  .fb__demo-title { font-size: 0.85rem; font-weight: 700; color: #F59E0B; margin: 0; text-align: center; }
+  .fb__demo-cred { display: flex; flex-direction: column; gap: 0.375rem; }
+  .fb__demo-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+  .fb__demo-lbl { font-size: 0.75rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+  .fb__demo-val { font-size: 0.8rem; color: #FBBF24; font-weight: 700; background: rgba(0,0,0,0.3); padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-family: 'JetBrains Mono', monospace; }
+
+  .fb__demo-btn { display: block; width: 100%; padding: 0.75rem; text-align: center; font-family: 'Inter', system-ui, sans-serif; font-size: 0.9rem; font-weight: 700; color: #0F172A; background: linear-gradient(135deg, #22C55E, #16A34A); border-radius: 0.5rem; text-decoration: none; transition: all 0.2s ease; }
+  .fb__demo-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(34,197,94,0.4); color: #0F172A; }
+
+  .fb__demo-note { font-size: 0.65rem; color: rgba(255,255,255,0.4); line-height: 1.5; margin: 0; font-style: italic; }
 </style>

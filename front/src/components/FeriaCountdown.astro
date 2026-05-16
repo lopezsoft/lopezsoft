@@ -1,0 +1,168 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Countdown Feria Chinchiná 2026
+// --------------------------------------------------------------------------
+// Barra sticky que muestra cuenta regresiva antes del evento (27-28 mayo).
+// Se auto-oculta cuando llega la fecha del evento.
+// ==========================================================================
+
+interface Props {
+  targetDate: string;
+}
+
+const { targetDate } = Astro.props;
+---
+
+<div class="fc" id="feria-countdown" data-target={targetDate} aria-label="Cuenta regresiva Feria Chinchiná 2026">
+  <div class="fc__inner container">
+    <span class="fc__badge">🎪 Feria Chinchiná 2026</span>
+    <div class="fc__timer">
+      <div class="fc__unit">
+        <span class="fc__num" id="fc-days">--</span>
+        <span class="fc__lbl">Días</span>
+      </div>
+      <span class="fc__sep">:</span>
+      <div class="fc__unit">
+        <span class="fc__num" id="fc-hours">--</span>
+        <span class="fc__lbl">Horas</span>
+      </div>
+      <span class="fc__sep">:</span>
+      <div class="fc__unit">
+        <span class="fc__num" id="fc-mins">--</span>
+        <span class="fc__lbl">Min</span>
+      </div>
+      <span class="fc__sep">:</span>
+      <div class="fc__unit">
+        <span class="fc__num" id="fc-secs">--</span>
+        <span class="fc__lbl">Seg</span>
+      </div>
+    </div>
+    <span class="fc__text">¡Te esperamos en nuestro stand!</span>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const el = document.getElementById('feria-countdown');
+    if (!el) return;
+
+    const target = new Date(el.dataset.target || '').getTime();
+    if (isNaN(target)) return;
+
+    const $d = document.getElementById('fc-days');
+    const $h = document.getElementById('fc-hours');
+    const $m = document.getElementById('fc-mins');
+    const $s = document.getElementById('fc-secs');
+
+    const pad = (n: number): string => String(n).padStart(2, '0');
+
+    const tick = (): void => {
+      const now = Date.now();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        el.style.display = 'none';
+        return;
+      }
+
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins = Math.floor((diff % 3600000) / 60000);
+      const secs = Math.floor((diff % 60000) / 1000);
+
+      if ($d) $d.textContent = pad(days);
+      if ($h) $h.textContent = pad(hours);
+      if ($m) $m.textContent = pad(mins);
+      if ($s) $s.textContent = pad(secs);
+    };
+
+    tick();
+    setInterval(tick, 1000);
+  });
+</script>
+
+<style>
+  .fc {
+    background: linear-gradient(135deg, #0F172A 0%, #1e40af 100%);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+    padding: 0.625rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .fc::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(245,158,11,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .fc__inner {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .fc__badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #F59E0B;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  @media (min-width: 768px) {
+    .fc__badge { font-size: 0.8rem; }
+  }
+
+  .fc__timer {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .fc__unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 2rem;
+  }
+
+  .fc__num {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  @media (min-width: 768px) {
+    .fc__num { font-size: 1.3rem; }
+  }
+
+  .fc__lbl {
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  .fc__sep {
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.3);
+    margin-top: -0.75rem;
+  }
+
+  .fc__text {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .fc__text { display: inline; font-size: 0.8rem; }
+  }
+</style>

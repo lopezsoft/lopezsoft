@@ -5,6 +5,7 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import Hero from "@components/Hero.astro";
 import FeriaChinchinaBanner from "@components/FeriaChinchinaBanner.astro";
+import FeriaCountdown from "@components/FeriaCountdown.astro";
 import SocialProofBar from "@components/SocialProofBar.astro";
 import ProductCard from "@components/ProductCard.astro";
 import ServiceCard from "@components/ServiceCard.astro";
@@ -14,8 +15,13 @@ import { DEFAULT_LOCALE } from "@i18n/config";
 
 const t = useTranslations(DEFAULT_LOCALE);
 
-// --- Lógica condicional: Feria Chinchiná 2026 ----------------------------
-// Se activa vía env PUBLIC_FERIA_ACTIVA=true ó por rango de fecha (COT).
+// --- Lógica de 3 estados: Feria Chinchiná 2026 ---------------------------
+// Estado 1: Pre-evento (countdown visible + hero normal)
+// Estado 2: Durante evento (banner con formulario, 27-28 mayo)
+// Estado 3: Post-evento (hero normal, sin countdown)
+const FERIA_START = new Date('2026-05-27T00:00:00-05:00');
+const FERIA_END = new Date('2026-05-29T00:00:00-05:00');
+
 const feriaActiva =
 	import.meta.env.PUBLIC_FERIA_ACTIVA === "true" ||
 	(() => {
@@ -23,10 +29,12 @@ const feriaActiva =
 			new Date().toLocaleString("en-US", { timeZone: "America/Bogota" }),
 		);
 		const year = now.getFullYear();
-		const month = now.getMonth(); // 0-indexed: mayo = 4
+		const month = now.getMonth();
 		const day = now.getDate();
 		return year === 2026 && month === 4 && (day === 27 || day === 28);
 	})();
+
+const isPreEvent = !feriaActiva && new Date() < FERIA_START;
 
 const products = [
 	{ key: "matias_erp", image: "/images/products/erp-500.png" },
@@ -39,6 +47,7 @@ const hardwareServices = ["diagnosis", "licensing", "onsite"];
 ---
 
 <MainLayout description={t("seo.home.description")}>
+	{isPreEvent && <FeriaCountdown targetDate={FERIA_START.toISOString()} />}
 	{feriaActiva ? <FeriaChinchinaBanner /> : <Hero lang={DEFAULT_LOCALE} />}
 
 	<!-- Barra de Prueba Social / Autoridad -->
