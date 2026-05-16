@@ -193,21 +193,28 @@ const habeasDataText =
     console.log('[Feria] 📦 Datos válidos listos para enviar:', formData);
 
     // 1. Enviar a Webhook
-    const payloadData = { ...formData, source: 'feria-chinchina-2026' };
-    const payloadParams = new URLSearchParams(payloadData);
+    const consentEl = form.querySelector('#fl-consent');
+    const payloadData = { 
+      nombre: formData.fullName,
+      negocio: formData.businessName,
+      celular: formData.phone,
+      habeasData: consentEl && consentEl.checked ? true : false,
+      source: 'feria-chinchina-2026' 
+    };
+    const payloadString = JSON.stringify(payloadData);
     
     if (webhookUrl) {
       console.log('[Feria] 📤 Enviando a webhook:', webhookUrl);
       if (navigator.sendBeacon) {
-        // Al pasar URLSearchParams, sendBeacon usa application/x-www-form-urlencoded automáticamente
-        const sent = navigator.sendBeacon(webhookUrl, payloadParams);
+        // Enviar como string de texto (text/plain) para que Apps Script haga JSON.parse()
+        const sent = navigator.sendBeacon(webhookUrl, payloadString);
         console.log('[Feria] sendBeacon status:', sent);
       } else {
         fetch(webhookUrl, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: payloadParams
+          headers: { 'Content-Type': 'text/plain' },
+          body: payloadString
         }).then(() => console.log('[Feria] fetch enviado'));
       }
     } else {
