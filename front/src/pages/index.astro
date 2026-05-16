@@ -4,6 +4,7 @@
 // ==========================================================================
 import MainLayout from "@layouts/MainLayout.astro";
 import Hero from "@components/Hero.astro";
+import FeriaChinchinaBanner from "@components/FeriaChinchinaBanner.astro";
 import SocialProofBar from "@components/SocialProofBar.astro";
 import ProductCard from "@components/ProductCard.astro";
 import ServiceCard from "@components/ServiceCard.astro";
@@ -12,6 +13,20 @@ import { useTranslations, getLocalizedPath } from "@i18n/utils";
 import { DEFAULT_LOCALE } from "@i18n/config";
 
 const t = useTranslations(DEFAULT_LOCALE);
+
+// --- Lógica condicional: Feria Chinchiná 2026 ----------------------------
+// Se activa vía env PUBLIC_FERIA_ACTIVA=true ó por rango de fecha (COT).
+const feriaActiva =
+	import.meta.env.PUBLIC_FERIA_ACTIVA === "true" ||
+	(() => {
+		const now = new Date(
+			new Date().toLocaleString("en-US", { timeZone: "America/Bogota" }),
+		);
+		const year = now.getFullYear();
+		const month = now.getMonth(); // 0-indexed: mayo = 4
+		const day = now.getDate();
+		return year === 2026 && month === 4 && (day === 27 || day === 28);
+	})();
 
 const products = [
 	{ key: "matias_erp", image: "/images/products/erp-500.png" },
@@ -24,7 +39,7 @@ const hardwareServices = ["diagnosis", "licensing", "onsite"];
 ---
 
 <MainLayout description={t("seo.home.description")}>
-	<Hero lang={DEFAULT_LOCALE} />
+	{feriaActiva ? <FeriaChinchinaBanner /> : <Hero lang={DEFAULT_LOCALE} />}
 
 	<!-- Barra de Prueba Social / Autoridad -->
 	<SocialProofBar lang={DEFAULT_LOCALE} />

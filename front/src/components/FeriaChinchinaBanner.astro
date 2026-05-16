@@ -1,0 +1,313 @@
+---
+// ==========================================================================
+// LOPEZSOFT SAS — Banner Temporal: Feria Chinchiná 2026
+// --------------------------------------------------------------------------
+// Componente condicional que reemplaza al Hero estándar durante el evento.
+// Se activa por: PUBLIC_FERIA_ACTIVA=true ó fechas 27-28 mayo 2026 (COT).
+// ==========================================================================
+
+// --- Lógica de activación (server-side / build-time) ----------------------
+const envOverride = import.meta.env.PUBLIC_FERIA_ACTIVA === 'true';
+
+const isEventDate = (() => {
+  const now = new Date(
+    new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' }),
+  );
+  const year = now.getFullYear();
+  const month = now.getMonth(); // 0-indexed: mayo = 4
+  const day = now.getDate();
+  return year === 2026 && month === 4 && (day === 27 || day === 28);
+})();
+
+const isActive = envOverride || isEventDate;
+
+// --- Datos del componente -------------------------------------------------
+const whatsappNumber = '573001234567'; // TODO: Reemplazar con número real antes de deploy
+const whatsappMessage = encodeURIComponent(
+  'Hola, visito su stand en Chinchiná y deseo más información',
+);
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+const habeasDataText =
+  'Autorizo a LOPEZSOFT SAS el tratamiento de mis datos personales conforme a la Ley 1581 de 2012 y su Política de Privacidad, con fines comerciales y de contacto.';
+---
+
+{isActive && (
+  <div class="feria-banner">
+    <div class="feria-banner__container container">
+      {/* ============================================================ */}
+      {/* Columna Izquierda — Contenido + CTAs                        */}
+      {/* ============================================================ */}
+      <div class="feria-banner__content">
+        <span class="feria-banner__badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+            <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
+            <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/>
+            <path d="M10 6h4"/>
+            <path d="M10 10h4"/>
+            <path d="M10 14h4"/>
+            <path d="M10 18h4"/>
+          </svg>
+          Feria Chinchiná 2026
+        </span>
+
+        <h1 class="feria-banner__title">
+          ¡Bienvenido a la Feria Chinchiná!
+          <span class="feria-banner__title-accent">Optimice su negocio hoy.</span>
+        </h1>
+
+        <p class="feria-banner__subtitle">
+          Descubra cómo nuestro ecosistema tecnológico transforma la gestión
+          de su empresa con soluciones ERP, facturación electrónica y
+          soporte técnico especializado.
+        </p>
+
+        <div class="feria-banner__actions">
+          <a
+            id="feria-cta-whatsapp"
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--primary btn--lg feria-banner__btn-whatsapp"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Hablar con un Asesor
+          </a>
+          <a
+            id="feria-cta-ecosystem"
+            href="#products"
+            class="btn btn--ghost btn--lg"
+          >
+            Conocer Ecosistema LOPEZSOFT
+          </a>
+        </div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* Columna Derecha — Formulario de Captura de Leads             */}
+      {/* ============================================================ */}
+      <div class="feria-banner__form-wrapper">
+        <div class="feria-banner__form-card">
+          <h2 class="feria-banner__form-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+              <path d="M9 18h6"/>
+              <path d="M10 22h4"/>
+            </svg>
+            Activa tu Demo Gratis
+          </h2>
+          <p class="feria-banner__form-desc">
+            Completa tus datos y un asesor te contactará para una demostración personalizada.
+          </p>
+
+          <form class="feria-banner__form" id="feria-lead-form" novalidate>
+            <div class="feria-banner__field">
+              <label class="feria-banner__label" for="fl-name">
+                Nombre Completo <span class="feria-banner__required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="feria-banner__input"
+                type="text"
+                id="fl-name"
+                name="fullName"
+                required
+                minlength="2"
+                maxlength="100"
+                autocomplete="name"
+                placeholder="Ej: Carlos Rodríguez"
+                aria-describedby="fl-name-error"
+              />
+              <span class="feria-banner__error" id="fl-name-error" data-error="fullName" role="alert"></span>
+            </div>
+
+            <div class="feria-banner__field">
+              <label class="feria-banner__label" for="fl-business">
+                Nombre del Negocio <span class="feria-banner__required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="feria-banner__input"
+                type="text"
+                id="fl-business"
+                name="businessName"
+                required
+                minlength="2"
+                maxlength="100"
+                autocomplete="organization"
+                placeholder="Ej: Café del Valle S.A.S"
+                aria-describedby="fl-business-error"
+              />
+              <span class="feria-banner__error" id="fl-business-error" data-error="businessName" role="alert"></span>
+            </div>
+
+            <div class="feria-banner__field">
+              <label class="feria-banner__label" for="fl-phone">
+                Celular / WhatsApp <span class="feria-banner__required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="feria-banner__input"
+                type="tel"
+                id="fl-phone"
+                name="phone"
+                required
+                minlength="7"
+                maxlength="15"
+                autocomplete="tel"
+                placeholder="Ej: 300 123 4567"
+                inputmode="tel"
+                aria-describedby="fl-phone-error"
+              />
+              <span class="feria-banner__error" id="fl-phone-error" data-error="phone" role="alert"></span>
+            </div>
+
+            <div class="feria-banner__field feria-banner__field--checkbox">
+              <label class="feria-banner__checkbox-label" for="fl-consent">
+                <input
+                  class="feria-banner__checkbox"
+                  type="checkbox"
+                  id="fl-consent"
+                  name="consent"
+                  required
+                  aria-describedby="fl-consent-error"
+                  data-error-msg="Debe autorizar el tratamiento de datos para continuar."
+                />
+                <span class="feria-banner__checkbox-text">
+                  {habeasDataText}
+                </span>
+              </label>
+              <span class="feria-banner__error" id="fl-consent-error" data-error="consent" role="alert"></span>
+            </div>
+
+            <button
+              id="feria-submit-btn"
+              class="btn btn--warm btn--lg feria-banner__submit"
+              type="submit"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+              Activar Demo Gratis
+            </button>
+
+            <div
+              class="feria-banner__feedback feria-banner__feedback--success"
+              id="fl-success"
+              role="status"
+              aria-live="polite"
+              hidden
+            >
+              ✅ ¡Registro exitoso! Un asesor se comunicará contigo pronto.
+            </div>
+            <div
+              class="feria-banner__feedback feria-banner__feedback--error"
+              id="fl-error"
+              role="alert"
+              aria-live="assertive"
+              hidden
+            >
+              ⚠️ Por favor revisa los campos marcados e intenta de nuevo.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+{/* ======================================================================
+    Script de validación — Solo se carga si el banner está activo.
+    Patrón idéntico al ContactForm.astro del proyecto.
+====================================================================== */}
+{isActive && (
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('feria-lead-form') as HTMLFormElement | null;
+      if (!form) return;
+
+      const showError = (field: string, message: string): void => {
+        const el = form.querySelector(`[data-error="${field}"]`);
+        if (el) {
+          el.textContent = message;
+          el.classList.add('is-visible');
+        }
+      };
+
+      const clearErrors = (): void => {
+        form.querySelectorAll('.feria-banner__error').forEach((el) => {
+          el.textContent = '';
+          el.classList.remove('is-visible');
+        });
+      };
+
+      const validateField = (input: HTMLInputElement): boolean => {
+        const { name, value } = input;
+        const trimmed = value.trim();
+
+        if (input.required && !trimmed) {
+          showError(name, 'Este campo es obligatorio.');
+          return false;
+        }
+
+        const min = input.getAttribute('minlength');
+        if (min && trimmed.length < parseInt(min, 10)) {
+          showError(name, `Mínimo ${min} caracteres.`);
+          return false;
+        }
+
+        // Validación de teléfono: solo dígitos y espacios, mínimo 7 dígitos
+        if (name === 'phone' && trimmed) {
+          const digits = trimmed.replace(/\D/g, '');
+          if (digits.length < 7 || digits.length > 15) {
+            showError(name, 'Ingrese un número de celular válido.');
+            return false;
+          }
+        }
+
+        return true;
+      };
+
+      form.addEventListener('submit', (e: Event) => {
+        e.preventDefault();
+
+        clearErrors();
+        document.getElementById('fl-success')?.setAttribute('hidden', '');
+        document.getElementById('fl-error')?.setAttribute('hidden', '');
+
+        const inputs = form.querySelectorAll<HTMLInputElement>(
+          "input:not([type='checkbox'])",
+        );
+
+        let isValid = true;
+        inputs.forEach((input) => {
+          if (!validateField(input)) isValid = false;
+        });
+
+        // Validar checkbox de Habeas Data
+        const consent = form.querySelector<HTMLInputElement>('#fl-consent');
+        if (consent && !consent.checked) {
+          showError('consent', consent.dataset.errorMsg || 'Requerido');
+          isValid = false;
+        }
+
+        if (!isValid) {
+          document.getElementById('fl-error')?.removeAttribute('hidden');
+          return;
+        }
+
+        // TODO: Integrar con endpoint de backend cuando esté disponible
+        // Por ahora: feedback visual de éxito
+        document.getElementById('fl-success')?.removeAttribute('hidden');
+        form.reset();
+
+        // Scroll suave al mensaje de éxito en móvil
+        document.getElementById('fl-success')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+        });
+      });
+    });
+  </script>
+)}
