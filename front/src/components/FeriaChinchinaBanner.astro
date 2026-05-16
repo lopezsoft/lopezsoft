@@ -133,6 +133,10 @@ const habeasDataText =
     const webhookUrl = form.dataset.webhook || '';
     const waNumber = form.dataset.wa || '';
 
+    // DEBUG: verificar que los data attributes se leyeron
+    console.log('[Feria] webhookUrl:', webhookUrl ? '✅ configurado' : '❌ vacío');
+    console.log('[Feria] waNumber:', waNumber);
+
     const showError = (field: string, msg: string): void => {
       const el = form.querySelector(`[data-error="${field}"]`);
       if (el) { el.textContent = msg; el.classList.add('is-visible'); }
@@ -155,15 +159,33 @@ const habeasDataText =
       return true;
     };
 
+    // Enviar lead al webhook usando sendBeacon (evita problemas CORS)
     const sendToWebhook = (data: Record<string, string>): void => {
-      if (!webhookUrl) return;
-      try {
+      const payload = JSON.stringify({ ...data, source: 'feria-chinchina-2026' });
+
+      if (!webhookUrl) {
+        console.warn('[Feria] ⚠️ PUBLIC_LEADS_WEBHOOK no configurado. Lead NO enviado:', data);
+        return;
+      }
+
+      console.log('[Feria] 📤 Enviando lead al webhook...', data);
+
+      // sendBeacon: método más fiable, no tiene problemas CORS
+      const sent = navigator.sendBeacon(webhookUrl, payload);
+      if (sent) {
+        console.log('[Feria] ✅ sendBeacon exitoso');
+      } else {
+        // Fallback a fetch si sendBeacon falla
+        console.log('[Feria] ⚠️ sendBeacon falló, usando fetch fallback...');
         fetch(webhookUrl, {
           method: 'POST',
+          mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ ...data, source: 'feria-chinchina-2026' }),
-        }).catch(() => { /* fire-and-forget */ });
-      } catch { /* fire-and-forget */ }
+          body: payload,
+        })
+        .then(() => console.log('[Feria] ✅ fetch enviado (no-cors)'))
+        .catch((err) => console.error('[Feria] ❌ fetch falló:', err));
+      }
     };
 
     const openWhatsApp = (data: Record<string, string>): void => {
@@ -193,12 +215,19 @@ const habeasDataText =
 
       if (!isValid) { document.getElementById('fl-error')?.removeAttribute('hidden'); return; }
 
+      // Recoger datos del formulario
       const formData: Record<string, string> = {};
       inputs.forEach((input) => { formData[input.name] = input.value.trim(); });
 
+      console.log('[Feria] 🎯 Formulario válido, procesando...', formData);
+
+      // 1. Enviar al webhook
       sendToWebhook(formData);
+
+      // 2. Abrir WhatsApp con datos del lead
       openWhatsApp(formData);
 
+      // 3. Mostrar panel de demo sandbox
       document.getElementById('feria-form-panel')?.setAttribute('hidden', '');
       const successPanel = document.getElementById('feria-success-panel');
       if (successPanel) {
