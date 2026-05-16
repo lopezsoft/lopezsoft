@@ -36,15 +36,19 @@ const habeasDataText =
     <div class="fb__inner container">
       {/* === Columna Izquierda === */}
       <div class="fb__content">
-        <span class="fb__badge">🎪 Feria Chinchiná 2026</span>
+        <span class="fb__badge">🎪 Feria Caldas Más Digital · Chinchiná</span>
         <h1 class="fb__title">
-          ¡Bienvenido a la Feria Chinchiná!
+          Chinchiná se conecta con el futuro.
           <span class="fb__title-gold">Optimice su negocio hoy.</span>
         </h1>
         <p class="fb__desc">
           Facture electrónicamente ante la DIAN, controle su caja y gestione
           inventario con <strong>Matias ERP 3.0</strong> — la solución para
           comerciantes que quieren crecer.
+        </p>
+        <p class="fb__schedule">
+          📅 Mié. 27 mayo: 9:00 a.m. – 4:00 p.m. &nbsp;|&nbsp;
+          Jue. 28 mayo: 9:00 a.m. – 1:00 p.m.
         </p>
         <div class="fb__ctas">
           <a id="feria-cta-whatsapp" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola, visito su stand en Chinchiná y deseo más información sobre Matias ERP')}`} target="_blank" rel="noopener noreferrer" class="fb__btn fb__btn--wa">
@@ -273,6 +277,9 @@ const habeasDataText =
   .fb__desc { color: rgba(255,255,255,0.7); font-size: 0.85rem; line-height: 1.6; max-width: 30rem; margin: 0; }
   .fb__desc strong { color: #F59E0B; font-weight: 700; }
   @media (min-width: 768px) { .fb__desc { font-size: 0.95rem; } }
+
+  .fb__schedule { color: rgba(255,255,255,0.55); font-size: 0.75rem; margin: 0; padding: 0.375rem 0.75rem; background: rgba(255,255,255,0.06); border-radius: 0.375rem; border: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  @media (min-width: 768px) { .fb__schedule { font-size: 0.8rem; } }
 
   .fb__ctas { display: flex; flex-direction: column; gap: 0.625rem; margin-top: 0.25rem; }
   @media (min-width: 480px) { .fb__ctas { flex-direction: row; flex-wrap: wrap; } }
