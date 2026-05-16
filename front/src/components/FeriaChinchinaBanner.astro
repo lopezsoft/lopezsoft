@@ -125,32 +125,41 @@ const habeasDataText =
       </div>
     </div>
   </section>
-<script>
-  const form = document.getElementById('feria-lead-form') as HTMLFormElement | null;
-  if (form) {
+<script is:inline>
+  // Debug incondicional para saber que el script SÍ cargó
+  console.log('[Feria] Script inicializado. Escuchando eventos del formulario...');
+
+  document.addEventListener('submit', function(e) {
+    const form = e.target;
+    if (!form || form.id !== 'feria-lead-form') return;
+    
+    e.preventDefault(); // Prevenir el reset inmediato
+    console.log('[Feria] 🎯 Formulario interceptado correctamente.');
 
     const webhookUrl = form.dataset.webhook || '';
     const waNumber = form.dataset.wa || '';
 
-    // DEBUG: verificar que los data attributes se leyeron
-    console.log('[Feria] webhookUrl:', webhookUrl ? '✅ configurado' : '❌ vacío');
-    console.log('[Feria] waNumber:', waNumber);
-
-    const showError = (field: string, msg: string): void => {
+    const showError = (field, msg) => {
       const el = form.querySelector(`[data-error="${field}"]`);
       if (el) { el.textContent = msg; el.classList.add('is-visible'); }
     };
-    const clearErrors = (): void => {
-      form.querySelectorAll('.fb__err').forEach((el) => {
+
+    const clearErrors = () => {
+      form.querySelectorAll('.fb__err').forEach(el => {
         el.textContent = ''; el.classList.remove('is-visible');
       });
     };
-    const validateField = (input: HTMLInputElement): boolean => {
-      const { name, value } = input;
+
+    const validateField = (input) => {
+      const name = input.name;
+      const value = input.value;
       const trimmed = value.trim();
+      
       if (input.required && !trimmed) { showError(name, 'Este campo es obligatorio.'); return false; }
+      
       const min = input.getAttribute('minlength');
       if (min && trimmed.length < parseInt(min, 10)) { showError(name, `Mínimo ${min} caracteres.`); return false; }
+      
       if (name === 'phone' && trimmed) {
         const digits = trimmed.replace(/\D/g, '');
         if (digits.length < 7 || digits.length > 15) { showError(name, 'Ingrese un número válido.'); return false; }
@@ -158,83 +167,73 @@ const habeasDataText =
       return true;
     };
 
-    // Enviar lead al webhook usando sendBeacon (evita problemas CORS)
-    const sendToWebhook = (data: Record<string, string>): void => {
-      const payload = JSON.stringify({ ...data, source: 'feria-chinchina-2026' });
+    clearErrors();
+    const errorContainer = document.getElementById('fl-error');
+    if (errorContainer) errorContainer.setAttribute('hidden', '');
 
-      if (!webhookUrl) {
-        console.warn('[Feria] ⚠️ PUBLIC_LEADS_WEBHOOK no configurado. Lead NO enviado:', data);
-        return;
-      }
+    const inputs = form.querySelectorAll("input:not([type='checkbox'])");
+    let isValid = true;
+    inputs.forEach(input => { if (!validateField(input)) isValid = false; });
 
-      console.log('[Feria] 📤 Enviando lead al webhook...', data);
+    const consent = form.querySelector('#fl-consent');
+    if (consent && !consent.checked) { 
+      showError('consent', consent.dataset.errorMsg || 'Requerido'); 
+      isValid = false; 
+    }
 
-      // sendBeacon: método más fiable, no tiene problemas CORS
-      const sent = navigator.sendBeacon(webhookUrl, payload);
-      if (sent) {
-        console.log('[Feria] ✅ sendBeacon exitoso');
+    if (!isValid) { 
+      if (errorContainer) errorContainer.removeAttribute('hidden'); 
+      return; 
+    }
+
+    // Recoger datos
+    const formData = {};
+    inputs.forEach(input => { formData[input.name] = input.value.trim(); });
+
+    console.log('[Feria] 📦 Datos válidos listos para enviar:', formData);
+
+    // 1. Enviar a Webhook
+    const payload = JSON.stringify({ ...formData, source: 'feria-chinchina-2026' });
+    if (webhookUrl) {
+      console.log('[Feria] 📤 Enviando a webhook:', webhookUrl);
+      if (navigator.sendBeacon) {
+        const sent = navigator.sendBeacon(webhookUrl, payload);
+        console.log('[Feria] sendBeacon status:', sent);
       } else {
-        // Fallback a fetch si sendBeacon falla
-        console.log('[Feria] ⚠️ sendBeacon falló, usando fetch fallback...');
         fetch(webhookUrl, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
-          body: payload,
-        })
-        .then(() => console.log('[Feria] ✅ fetch enviado (no-cors)'))
-        .catch((err) => console.error('[Feria] ❌ fetch falló:', err));
+          body: payload
+        }).then(() => console.log('[Feria] fetch enviado'));
       }
-    };
+    } else {
+      console.warn('[Feria] ⚠️ No hay webhookUrl configurado.');
+    }
 
-    const openWhatsApp = (data: Record<string, string>): void => {
-      if (!waNumber) return;
+    // 2. Abrir WhatsApp
+    if (waNumber) {
       const msg = [
         '🎪 *Nuevo Lead — Feria Caldas Más Digital*',
-        `👤 Nombre: ${data.fullName}`,
-        `🏪 Negocio: ${data.businessName}`,
-        `📱 Celular: ${data.phone}`,
+        `👤 Nombre: ${formData.fullName}`,
+        `🏪 Negocio: ${formData.businessName}`,
+        `📱 Celular: ${formData.phone}`,
         `🕐 Registrado: ${new Date().toLocaleString('es-CO')}`,
         '💡 Interesado en Demo Matias ERP 3.0',
       ].join('\n');
       window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
-    };
+    }
 
-    form.addEventListener('submit', (e: Event) => {
-      e.preventDefault();
-      clearErrors();
-      document.getElementById('fl-error')?.setAttribute('hidden', '');
-
-      const inputs = form.querySelectorAll<HTMLInputElement>("input:not([type='checkbox'])");
-      let isValid = true;
-      inputs.forEach((input) => { if (!validateField(input)) isValid = false; });
-
-      const consent = form.querySelector<HTMLInputElement>('#fl-consent');
-      if (consent && !consent.checked) { showError('consent', consent.dataset.errorMsg || 'Requerido'); isValid = false; }
-
-      if (!isValid) { document.getElementById('fl-error')?.removeAttribute('hidden'); return; }
-
-      // Recoger datos del formulario
-      const formData: Record<string, string> = {};
-      inputs.forEach((input) => { formData[input.name] = input.value.trim(); });
-
-      console.log('[Feria] 🎯 Formulario válido, procesando...', formData);
-
-      // 1. Enviar al webhook
-      sendToWebhook(formData);
-
-      // 2. Abrir WhatsApp con datos del lead
-      openWhatsApp(formData);
-
-      // 3. Mostrar panel de demo sandbox
-      document.getElementById('feria-form-panel')?.setAttribute('hidden', '');
-      const successPanel = document.getElementById('feria-success-panel');
-      if (successPanel) {
-        successPanel.removeAttribute('hidden');
-        successPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    });
-  }
+    // 3. Mostrar panel de demo sandbox
+    const formPanel = document.getElementById('feria-form-panel');
+    const successPanel = document.getElementById('feria-success-panel');
+    
+    if (formPanel) formPanel.setAttribute('hidden', '');
+    if (successPanel) {
+      successPanel.removeAttribute('hidden');
+      successPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
 </script>
 
 <style>
