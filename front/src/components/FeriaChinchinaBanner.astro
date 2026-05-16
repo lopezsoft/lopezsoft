@@ -237,12 +237,12 @@ const habeasDataText =
     // 2. Abrir WhatsApp
     if (waNumber) {
       const msg = [
-        '\u26FA *Nuevo Lead — Feria Caldas Más Digital*',
-        `\uD83D\uDC64 Nombre: ${formData.fullName}`,
-        `\uD83C\uDFEA Negocio: ${formData.businessName}`,
-        `\uD83D\uDCF1 Celular: ${formData.phone}`,
-        `\uD83D\uDD50 Registrado: ${new Date().toLocaleString('es-CO')}`,
-        '\uD83D\uDCA1 Interesado en Demo Matias ERP 3.0',
+        '\u{1F3AA} *Nuevo Lead - Feria Caldas Mas Digital*',
+        `\u{1F464} Nombre: ${formData.fullName}`,
+        `\u{1F3EA} Negocio: ${formData.businessName}`,
+        `\u{1F4F1} Celular: ${formData.phone}`,
+        `\u{1F550} Registrado: ${new Date().toLocaleString('es-CO')}`,
+        '\u{1F4A1} Interesado en Demo Matias ERP 3.0',
       ].join('\n');
       window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
     }
