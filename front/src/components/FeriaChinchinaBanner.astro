@@ -126,9 +126,8 @@ const habeasDataText =
     </div>
   </section>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('feria-lead-form') as HTMLFormElement | null;
-    if (!form) return;
+  const form = document.getElementById('feria-lead-form') as HTMLFormElement | null;
+  if (form) {
 
     const webhookUrl = form.dataset.webhook || '';
     const waNumber = form.dataset.wa || '';
@@ -235,7 +234,7 @@ const habeasDataText =
         successPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     });
-  });
+  }
 </script>
 
 <style>
